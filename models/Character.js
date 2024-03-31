@@ -6,7 +6,7 @@
 * */
 import fs from 'node:fs'
 import lodash from 'lodash'
-import Base from './Base.js'
+import { Base } from '#miao.models'
 import { Data, Format, Cfg, Meta } from '#miao'
 import CharImg from './character/CharImg.js'
 import CharTalent from './character/CharTalent.js'

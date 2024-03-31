@@ -3,14 +3,11 @@ import { Common } from '#miao'
 import lodash from 'lodash'
 import fs from 'node:fs'
 
-let games = ['gs', 'sr'];
-let charPath;
-
 let cfgMap = {
   char: {},
   async init () {
-    for (let game of games) {
-      charPath = `${process.cwd()}/plugins/miao-plugin/resources/meta-${game}/character`;
+    for (let game of ['gs','sr']) {
+      let charPath = `${process.cwd()}/plugins/miao-plugin/resources/meta-${game}/character`;
       if (Common.cfg('artisLiang') || Common.cfg('artisLiangZ')) {
         charPath = `${process.cwd()}/plugins/liangshi-calc/damage/meta-${game}`;
       }

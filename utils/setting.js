@@ -22,6 +22,7 @@ class Setting {
   /** 初始化配置 */
   initCfg () {
     const files = fs.readdirSync(this.defPath).filter(file => file.endsWith('.yaml'))
+    if (!fs.existsSync(`${this.configPath}`)) fs.mkdirSync(`${this.configPath}`);
     for (let file of files) {
       if (!fs.existsSync(`${this.configPath}${file}`)) {
         fs.copyFileSync(`${this.defPath}${file}`, `${this.configPath}${file}`)
