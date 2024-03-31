@@ -66,9 +66,6 @@ export class wikistart extends plugin {
     if (type === 'star') {
       fs.copyFileSync(`${pluginReplace}/apps/index.js`,`${miaoPath}/apps/index.js`);
       fs.copyFileSync(`${pluginReplace}/models/index.js`,`${miaoPath}/models/index.js`);
-      if (fs.existsSync('./plugins/liangshi-calc/')) {
-        fs.copyFileSync(`${pluginReplace}/CharCfg.js`,`${pluginPath}/models/character/CharCfg.js`);
-      }
     } else if (type === 'shut'){
       fs.copyFileSync(`${pluginReplace}/backup/apps/index.js`,`${miaoPath}/apps/index.js`);
       fs.copyFileSync(`${pluginReplace}/backup/models/index.js`,`${miaoPath}/models/index.js`);
