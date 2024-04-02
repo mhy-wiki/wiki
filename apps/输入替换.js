@@ -1,7 +1,7 @@
 import { MysApi } from '#miao.models'
 import { Data } from '#miao'
 
-let wikiReg = /^#?(?:星铁)?(开拓者.*|.*主|主角|星|琼|穹)(面板|面版|圣遗物|伤害|武器)(.*)/
+let wikiReg = /^#?(?:星铁)?(开拓者.*|(?:存护|毁灭|火|物(?:理)?)主|主角|星|琼|穹)(面板|面版|圣遗物|伤害|武器)(.*)/
 
 export class wiki_replace extends plugin {
   constructor (e) {
