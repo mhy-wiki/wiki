@@ -27,7 +27,7 @@ export class wiki extends plugin{
           fnc: 'calendarsr'
         },
         {
-          reg: '^#(今日|今天|每日|我的)*(素材|材料|天赋)[ |0-9]*$',
+          reg: '^#(今日|今天|每日|我的|明天|明日|周([1-7]|一|二|三|四|五|六|日))*(素材|材料|天赋)[ |0-9]*$',
           fnc: 'todaymaterial'
         }
       ]
