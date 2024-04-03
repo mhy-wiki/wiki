@@ -12,7 +12,7 @@ import CharImg from './character/CharImg.js'
 import CharTalent from './character/CharTalent.js'
 import CharId from './character/CharId.js'
 import CharMeta from './character/CharMeta.js'
-import CharCfg from './character/CharCfg.js'
+import CharCfg from '../../miao-plugin/models/character/CharCfg.js'
 
 let metaKey = 'abbr,star,elem,weapon,talentId,talentCons,eta'.split(',')
 const detailKey = 'title,allegiance,birth,astro,desc,cncv,jpcv,costume,baseAttr,growAttr,materials,talent,talentData,cons,passive,attr,sp'.split(',')
