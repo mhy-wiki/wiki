@@ -534,8 +534,8 @@ const buffs = {
       title: '装备者受到伤害[buffCount]次伤害后,元素战技与元素爆发造成的伤害提升[eDmg]%',
       data: {
         buffCount: ({ params }) => ( params.BurstHit || 0 ) ,
-        eDmg: 10 + 10 * 0.8 * Math.min( 5 , ( params.BurstHit || 0 ) ) ,
-        qDmg: 10 + 10 * 0.8 * Math.min( 5 , ( params.BurstHit || 0 ) )
+        eDmg: ({ params }) =>  10 + 10 * 0.8 * Math.min( 5 , ( params.BurstHit || 0 ) ) ,
+        qDmg: ({ params }) =>  10 + 10 * 0.8 * Math.min( 5 , ( params.BurstHit || 0 ) )
       }
     }
   },
@@ -552,7 +552,7 @@ const buffs = {
       title: '当前生命值提升或降低[buffCount]次，暴击率提升[cpct]%',
       data: {
         buffCount: ({ params }) => ( params.ChangeHp || 5 ) ,
-        cpct: 12 * Math.min( 3 , ( params.ChangeHp || 5 ) )
+        cpct: ({ params }) => 12 * Math.min( 3 , ( params.ChangeHp || 5 ) )
       }
     }
   },
