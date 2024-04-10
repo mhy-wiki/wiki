@@ -39,6 +39,16 @@ export default function (staticIdx, keyIdx) {
         }
       }
     ],
-    夜色流光溢彩: []
+    夜色流光溢彩: [
+      (tables) => {
+        return {
+          title: '施放终结技后使装备者的攻击力提高[atkPct]%,我方全体造成的伤害提高[dmg]%',
+          data: {
+            atkPct: tables[2],
+            dmg: tables[3]
+          }
+        }
+      } 
+    ]
   }
 }
