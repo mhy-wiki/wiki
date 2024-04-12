@@ -15,7 +15,7 @@ const weaponBuffs = {}
 let loadBuffs = async function () {
   for (let type of types) {
     let calc = await Data.importDefault(`/resources/meta-sr/weapon/${type}/calc.js`, 'wiki')
-    if (!fs.existsSync('./plugins/wiki/resources/meta-sr/weapon/${type}/calc.js')) {
+    if (!fs.existsSync(`./plugins/wiki/resources/meta-sr/weapon/${type}/calc.js`)) {
       calc = await Data.importDefault(`/resources/meta-sr/weapon/${type}/calc.js`, 'miao')
     }
     if (lodash.isFunction(calc)) {
