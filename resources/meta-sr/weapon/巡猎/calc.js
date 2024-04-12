@@ -93,7 +93,16 @@ export default function (staticIdx, keyIdx) {
     ],
     驶向第二次生命: [
       staticIdx(1, 'stance'),
-      keyIdx('造成的击破伤害无视目标[tIgnore]%的防御力。在战斗中击破特攻大于等于150%时，速度提高[speedPct]%', { tIgnore: 2, speedPct: 3 })
+      (tables) => {
+        return {
+          title: '造成的击破伤害无视目标[buff]%的防御力。在战斗中击破特攻大于等于150%时，速度提高[speedPct]%',
+          data: {
+            buff: tables[2] ,
+            ignore: ({ params }) =>  params.break = true ? tables[2] : 0 ,
+            speedPct: ({ attr, calc }) => calc(attr.stance) >= 150 ? tables[3] : 0
+          }
+        }
+      }
     ]
   }
 }
