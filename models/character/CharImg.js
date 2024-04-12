@@ -105,7 +105,7 @@ const CharImg = {
     }
     const tPath = `${miaoResources}/meta-gs/character/旅行者/${travelerElem}/`
     let add = (key, path, path2) => {
-      if (path2 && fs.existsSync(`${nPath}/${path2}.${fileType}`)) {
+      if (path2 && fs.existsSync(`${miaoResources}/${nPath}/${path2}.${fileType}`)) {
         imgs[key] = `${nPath}${path2}.${fileType}`
       } else {
         imgs[key] = `${nPath}${path}.${fileType}`
