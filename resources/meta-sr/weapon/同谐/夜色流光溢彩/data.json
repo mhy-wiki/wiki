@@ -70,7 +70,11 @@
       "promote": 5,
       "maxLevel": 70,
       "cost": {},
-      "attrs": {}
+      "attrs": {
+        "atk": 247.68,
+        "hp": 371.52,
+        "def": 180.6
+      }
     },
     "6": {
       "promote": 6,
