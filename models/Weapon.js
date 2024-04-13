@@ -1,6 +1,6 @@
+import fs from 'node:fs'
 import { Base } from '#miao.models'
 import { Data, Format, Meta } from '#miao'
-import fs from 'node:fs'
 
 let weaponSet
 

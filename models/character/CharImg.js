@@ -1,10 +1,10 @@
 /**
  * 角色照片及角色图像资源相关
  * */
-import { pluginResources, miaoResources } from '../../utils/path.js';
-import sizeOf from 'image-size';
 import fs from 'node:fs';
 import lodash from 'lodash';
+import sizeOf from 'image-size';
+import { pluginResources, miaoResources } from '../../utils/path.js';
 
 const rPath = `${pluginResources}`
 const CharImg = {

@@ -7,12 +7,12 @@
 import fs from 'node:fs'
 import lodash from 'lodash'
 import { Base } from '#miao.models'
-import { Data, Format, Cfg, Meta } from '#miao'
 import CharImg from './character/CharImg.js'
-import CharTalent from './character/CharTalent.js'
-import CharId from './character/CharId.js'
-import CharMeta from './character/CharMeta.js'
+import { Data, Format, Cfg, Meta } from '#miao'
+import CharId from '../../miao-plugin/models/character/CharId.js'
 import CharCfg from '../../miao-plugin/models/character/CharCfg.js'
+import CharMeta from '../../miao-plugin/models/character/CharMeta.js'
+import CharTalent from '../../miao-plugin/models/character/CharTalent.js'
 
 let metaKey = 'abbr,star,elem,weapon,talentId,talentCons,eta'.split(',')
 const detailKey = 'title,allegiance,birth,astro,desc,cncv,jpcv,costume,baseAttr,growAttr,materials,talent,talentData,cons,passive,attr,sp'.split(',')

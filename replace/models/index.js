@@ -2,7 +2,7 @@ import fs from 'node:fs'
 
 import Base from './Base.js'
 import Character from '../../wiki/models/Character.js'
-import Artifact from './Artifact.js'
+import Artifact from '../../wiki/models/Artifact.js'
 import ArtifactSet from './ArtifactSet.js'
 import Abyss from './Abyss.js'
 import Player from './Player.js'
