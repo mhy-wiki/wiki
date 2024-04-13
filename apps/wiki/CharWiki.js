@@ -1,8 +1,8 @@
-import CharWikiData from '../../../miao-plugin/apps/wiki/CharWikiData.js';
+import lodash from 'lodash';
+import { Common } from '#miao';
 import CharTalent from './CharTalent.js';
 import { Character } from '#miao.models';
-import { Common } from '#miao';
-import lodash from 'lodash';
+import CharWikiData from '../../../miao-plugin/apps/wiki/CharWikiData.js';
 
 const wikiReg = /^(?:#)?(?:星铁)?(.*)(天赋|技能|行迹|命座|命之座|星魂|资料|图鉴|照片|写真|图片|图像)$/
 
