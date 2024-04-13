@@ -39,7 +39,9 @@ class Artifact extends Base {
   }
 
   get img () {
-    let iPath = `${this.isGs ? 'meta-gs' : 'meta-sr'}/artifact/${this.isGs ? 'imgs/' : ''}${this.setName}/${this.idx}.webp`
+    let iPath = this.isGs ?
+      `meta-gs/artifact/imgs/${this.setName}/${this.idx}.webp` :
+      `meta-sr/artifact/${this.setName}/arti-${this.idx}.webp`
     if (!fs.existsSync(`${process.cwd()}/plugins/miao-plugin/resources/${iPath}`)) {
       return `../../wiki/resources/${iPath}`
     }
