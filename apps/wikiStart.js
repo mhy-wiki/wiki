@@ -14,7 +14,7 @@ export class wikistart extends plugin {
       priority: -5000,
       rule: [
         {
-          reg: '^#?(扩展)?wiki([，,])?(强制)?(启动|关闭(重启)?)([！!])?$',
+          reg: '^#?(扩展)?wiki([，,])?(启动|关闭(重启)?)([！!])?$',
           fnc: 'wikistar',
           permission: 'master'
         }
@@ -25,12 +25,6 @@ export class wikistart extends plugin {
   async wikistar (e) {
     let msg = e.msg.replace(/^#?(扩展)?wiki([，,])?(强制)?([！!])?/g,'')
     if (msg == '启动') {
-      if (/强制/.test(e.msg)) {
-        this.wikiPanel('star')
-        await e.reply("喵喵扩展_wiki启动成功，正在执行重启操作以载入新wiki，请稍等...")
-        this.restartApp()
-        return true
-      }
       if (expandwiki) return e.reply("喵喵扩展_wiki已启动,无需重复开启.")
       this.wikiPanel('star')
       await e.reply("喵喵扩展_wiki启动成功，正在执行重启操作以载入新wiki，请稍等...")
@@ -42,8 +36,8 @@ export class wikistart extends plugin {
         return true
       }
       if (/重启/.test(msg)) {
-        this.wikiPanel('star')
         this.wikiPanel('shut')
+        this.wikiPanel('star')
         await e.reply("喵喵扩展_wiki关闭重启中，请稍等...")
         this.restartApp()
         return true
