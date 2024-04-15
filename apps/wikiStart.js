@@ -64,13 +64,12 @@ export class wikistart extends plugin {
       let config = set.getCfg('wiki')
       config.expandWiki = true
       set.setCfg('wiki', config)
-      fs.copyFileSync(`${pluginReplace}/models/index.js`,`${miaoPath}/models/index.js`)
+      fs.copyFileSync(`${pluginReplace}/index.js`,`${miaoPath}/models/index.js`)
     } else if (type === 'shut') {
       let config = set.getCfg('wiki')
       config.expandWiki = false
       set.setCfg('wiki', config)
-      fs.copyFileSync(`${pluginReplace}/backup/apps/index.js`,`${miaoPath}/apps/index.js`)
-      fs.copyFileSync(`${pluginReplace}/backup/models/index.js`,`${miaoPath}/models/index.js`)
+      fs.copyFileSync(`${pluginReplace}/backup/index.js`,`${miaoPath}/models/index.js`)
     }
   }
 }

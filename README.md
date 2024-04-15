@@ -15,8 +15,8 @@ git clone https://用户名:密码@gitee.com/qsyhh/wiki.git ./plugins/wiki/
 | 指令        | 功能       |
 |-----------|----------|
 | #扩展wiki启动 | 启动扩展wiki |
-| #扩展wiki关闭 | 关闭扩展wiki |
-| #更新wiki   | 更新插件     |
+| #扩展wiki关闭(重启)? | 关闭(重启)?扩展wiki |
+| #(强制)?更新wiki   | (强制)?更新插件     |
 
 ## 免责声明
 
