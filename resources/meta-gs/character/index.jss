@@ -1,0 +1,37 @@
+import lodash from 'lodash'
+import { alias } from './alias.js'
+import { Data, Meta } from '#miao'
+import { extraChars, wifeCfg } from './extra.js'
+
+let data = Data.readJSON('resources/meta-gs/character/data.json', 'miao')
+// let data = Data.readJSON('resources/meta-gs/character/data.json', 'wiki')
+// if (!fs.existsSync(`./plugins/wiki/resources/meta-gs/character/data.json`)) {
+//   data = Data.readJSON('resources/meta-gs/character/data.json', 'miao')
+// }
+let meta = Meta.create('gs', 'char')
+
+meta.addData(data)
+meta.addAlias(alias)
+
+// 添加自定义角色
+lodash.forEach(extraChars, (alias, char) => {
+  meta.addDataItem(char, {
+    id: char,
+    name: char
+  })
+})
+// 添加自定义角色别名
+meta.addAlias(extraChars)
+
+// 添加老婆设置
+let wifeData = {}
+lodash.forEach(wifeCfg, (txt, type) => {
+  wifeData[type] = wifeData[type] || {}
+  Data.eachStr(txt, (name) => {
+    let id = meta.getId(name)
+    if (id) {
+      wifeData[type][id] = true
+    }
+  })
+})
+meta.addMeta({ wifeData })

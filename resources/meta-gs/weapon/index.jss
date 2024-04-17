@@ -1,9 +1,9 @@
 import fs from 'node:fs'
 import lodash from 'lodash'
 import { Data, Meta } from '#miao'
-import { descFix } from './desc.js'
-import { abbr, alias } from './alias.js'
-import { weaponType, weaponSet } from './extra.js'
+import { descFix } from '../../../../miao-plugin/resources/meta-gs/weapon/desc.js'
+import { abbr, alias } from '../../../../miao-plugin/resources/meta-gs/weapon/alias.js'
+import { weaponType, weaponSet } from '../../../../miao-plugin/resources/meta-gs/weapon/extra.js'
 
 let weaponBuffs = {}
 let data = {}
