@@ -9,6 +9,10 @@
 ```
 git clone https://用户名:密码@gitee.com/qsyhh/wiki.git ./plugins/wiki/
 ```
+> 使用ssh
+> ```
+> git clone git@gitee.com:qsyhh/wiki.git ./plugins/wiki/
+> ```
 
 ## 指令
 
