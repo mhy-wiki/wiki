@@ -1,13 +1,15 @@
 import fs from 'node:fs'
 import lodash from 'lodash'
-// import artiBuffs from './calc.js'
 import { Data, Meta } from '#miao'
-// import { artiSetAbbr, aliasCfg, artiAbbr } from './alias.js'
-import artiBuffs from '../../../../miao-plugin/resources/meta-sr/artifact/calc.js'
 import { mainAttr, subAttr, attrMap } from '../../../../miao-plugin/resources/meta-sr/artifact/meta.js'
-import { artiSetAbbr, aliasCfg, artiAbbr } from '../../../../miao-plugin/resources/meta-sr/artifact/alias.js'
 
-import { usefulAttr } from '../../../../miao-plugin/resources/meta-sr/artifact/artis-mark.js'
+// import artiBuffs from './calc.js'
+// import { artiSetAbbr, aliasCfg, artiAbbr } from './alias.js'
+import { usefulAttr } from './artis-mark.js'
+
+import artiBuffs from '../../../../miao-plugin/resources/meta-sr/artifact/calc.js'
+import { artiSetAbbr, aliasCfg, artiAbbr } from '../../../../miao-plugin/resources/meta-sr/artifact/alias.js'
+// import { usefulAttr } from '../../../../miao-plugin/resources/meta-sr/artifact/artis-mark.js'
 
 let data = Data.readJSON('resources/meta-sr/artifact/data.json', 'wiki')
 if (!fs.existsSync(`./plugins/wiki/resources/meta-sr/artifact/data.json`)) {

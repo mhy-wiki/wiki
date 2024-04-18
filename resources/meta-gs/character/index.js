@@ -1,7 +1,10 @@
 import fs from 'node:fs'
 import lodash from 'lodash'
-// import { alias } from './alias.js'
 import { Data, Meta } from '#miao'
+
+// import { alias } from './alias.js'
+// import { extraChars, wifeCfg } from './extra.js'
+
 import { alias } from '../../../../miao-plugin/resources/meta-gs/character/alias.js'
 import { extraChars, wifeCfg } from '../../../../miao-plugin/resources/meta-gs/character/extra.js'
 
