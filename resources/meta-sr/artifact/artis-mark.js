@@ -49,6 +49,8 @@ export const usefulAttr = {
   青雀: { hp: 0, atk: 75, def: 0, speed: 75, cpct: 100, cdmg: 100, stance: 0, heal: 0, recharge: 50, effPct: 0, effDef: 0, dmg: 100 },
   停云: { hp: 50, atk: 100, def: 0, speed: 100, cpct: 0, cdmg: 0, stance: 0, heal: 0, recharge: 100, effPct: 0, effDef: 0, dmg: 0 },
   素裳: { hp: 0, atk: 75, def: 0, speed: 75, cpct: 100, cdmg: 100, stance: 50, heal: 0, recharge: 50, effPct: 0, effDef: 0, dmg: 100 },
+  '开拓者•同协': { hp: 0, atk: 75, def: 0, speed: 75, cpct: 100, cdmg: 100, stance: 100, heal: 0, recharge: 50, effPct: 0, effDef: 0, dmg: 100 },
+  '开拓者•同协男': { hp: 0, atk: 75, def: 0, speed: 75, cpct: 100, cdmg: 100, stance: 100, heal: 0, recharge: 50, effPct: 0, effDef: 0, dmg: 100 },
   '开拓者•存护': { hp: 50, atk: 0, def: 100, speed: 100, cpct: 0, cdmg: 0, stance: 0, heal: 0, recharge: 0, effPct: 100, effDef: 50, dmg: 0 },
   '开拓者•存护男': { hp: 50, atk: 0, def: 100, speed: 100, cpct: 0, cdmg: 0, stance: 0, heal: 0, recharge: 0, effPct: 100, effDef: 50, dmg: 0 },
   '开拓者•毁灭': { hp: 0, atk: 75, def: 0, speed: 75, cpct: 100, cdmg: 100, stance: 0, heal: 0, recharge: 50, effPct: 0, effDef: 0, dmg: 100 },
