@@ -6,9 +6,15 @@
 
 ## 克隆
 
-1.HTTPS
+1.Gitee
+
 ```
-git clone https://用户名：密码@gt.lanyw.top/257800180/wiki.git ./plugins/wiki/
+git clone https://用户名:密码@gitee.com/qsyhh/wiki.git ./plugins/wiki/
+```
+
+2.GitLab
+```
+git clone https://用户名:密码@gt.lanyw.top/257800180/wiki.git ./plugins/wiki/
 ```
 
 ## 指令
