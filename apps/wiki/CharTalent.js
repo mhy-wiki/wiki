@@ -1,5 +1,5 @@
-import { Common, Format } from '#miao';
 import lodash from 'lodash';
+import { Common, Format } from '#miao';
 
 const CharTalent = {
   async render (e, mode, char) {
