@@ -1,103 +1,119 @@
-{{extend elemLayout}}
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="#"/>
+    <link rel="preload" href="{{_miao_path}}common/font/HYWH-65W.woff" as="font" type="font/woff">
+    <link rel="preload" href="{{_miao_path}}common/font/NZBZ.woff" as="font" type="font/woff">
+    <link rel="preload" href="{{_miao_path}}common/font/tttgbnumber.woff" as="font" type="font/woff">
+    <link rel="stylesheet" type="text/css" href="{{_miao_path}}common/common.css"/>
+    <title>miao-plugin</title>
+    <style>
+      // .talent-name span {
+      //   font-size: 18px;
+      //   color: #fff;
+      // }
+      .talent-detail.talent-merge .talent-line:nth-child(2) .talent-icon {
+        display: block;
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="{{_miao_path}}wiki/character-talent.css"/>
+  </head>
 
-{{block 'css'}}
-<link rel="stylesheet" type="text/css" href="{{wiki_path}}/wiki/character-talent.css"/>
-{{/block}}
-
-{{block 'main'}}
-
-<div class="head-box" style="background-image:url('{{miao_path}}{{imgs.card}}')">
-  <div class="head">
-    <img src="{{miao_path}}{{imgs.qFace||imgs.face}}"/>
-  </div>
-  <div class="head-detail">
-    <div class="name">
-      {{if game === 'gs'}}
-        {{title}}·{{name}}
-      {{else}}
-        {{name}}
-      {{/if}}
-    </div>
-    <div class="desc">
-      {{if game === 'gs'}}
-        {{@desc}}
-      {{else}}
-        {{detail.desc}}
-      {{/if}}
-    </div>
-  </div>
-  {{ if line[0]?.num !== 'NaN'}}
-  <div class="data-box">
-    <div class="tab-label">{{game === 'gs' ? '90' : '80'}}级基础数据</div>
-    <div class="data-line">
-      {{each line item}}
-      <div class="data_line_item">
-        <div class="num">{{item.num}}</div>
-        <div class="label">{{item.label}}</div>
-      </div>
-      {{/each}}
-    </div>
-  </div>
-  {{else}}
-  <div class="data-box">
-    <div class="tab-label">90级基础数据</div>
-    <div class="data-line">
-      暂无详细数据
-    </div>
-  </div>
-  {{/if}}
-</div>
-
-
-{{if mode == "talent"}}
-{{set talentKey = game === 'gs' ? ['a','e','q']:['a','e','q','t','z'] }}
-{{each talentKey type}}
-{{if detail.talent[type]}}
-<div class="talent-box elem-bg">
-  <div class="talent-detail cont {{detail.talent[type+2]?'talent-merge':''}}">
-    {{set minLv = game === 'gs' ? 6 : (type==='a' || type ==='a2'? 1 : 6) }}
-    {{set maxLv = game === 'gs' ? 13 : (type==='a' || type ==='a2' ? 7 : 12 )}}
-    <% include(wiki_path+'/wiki/talent-detail.html', [detail.talent[type], {miao_path,lvs,type,icon:imgs[type],minLv,maxLv,game}]) %>
-
-    {{if detail.talent[type+2]}}
-      {{set minLv = game === 'gs' ? 6 : (type==='a' || type ==='a2'? 1 : 6) }}
-      {{set maxLv = game === 'gs' ? 13 : (type==='a' || type ==='a2' ? 7 : 12 )}}
-      <% include(wiki_path+'/wiki/talent-detail.html', [detail.talent[type+2], {miao_path,lvs,type,icon:imgs[type+2],minLv,maxLv,game}]) %>
-    {{/if}}
-  </div>
-
-
-
-
-</div>
-{{/if}}
-
-{{/each}}
-
-<div class="talent-box elem-bg">
-  <div class="talent-detail passive-talent">
-    {{if game === 'gs'}}
-      {{each detail.passive pass idx}}
-        <% include(wiki_path+'/wiki/talent-detail.html', [pass, {miao_path,icon:imgs['passive'+idx],game}]) %>
-      {{/each}}
-    {{else}}
-      {{each detail.treeData treeData idx}}
-        {{if treeData.type === 'skill'}}
-          <% include(wiki_path+'/wiki/talent-detail.html', [treeData, {miao_path,icon:imgs['tree'+treeData.idx],game}]) %>
+  {{set elemCls = {火:'pyro',冰:'cryo',风:'anemo',雷:'electro',量子:'quantum',虚数:'geo',物理:'sr', }[element||elem] || element || elem || 'hydro' }}
+  <body class="elem-{{elemCls}} {{displayMode || mode || `default`}}-mode {{bodyClass}}" {{sys.scale}}>
+    <div class="container elem-bg" id="container">
+      <div class="head-box" style="background-image:url('{{_miao_path}}{{imgs.card}}')">
+        <div class="head">
+          <img src="{{_miao_path}}{{imgs.qFace||imgs.face}}"/>
+        </div>
+        <div class="head-detail">
+          <div class="name">
+            {{if game === 'gs'}}
+              {{title}}·{{name}}
+            {{else}}
+              {{name}}
+            {{/if}}
+          </div>
+          <div class="desc">
+            {{if game === 'gs'}}
+              {{@desc}}
+            {{else}}
+              {{detail.desc}}
+            {{/if}}
+          </div>
+        </div>
+        {{ if line[0]?.num !== 'NaN'}}
+        <div class="data-box">
+          <div class="tab-label">{{game === 'gs' ? '90' : '80'}}级基础数据</div>
+          <div class="data-line">
+            {{each line item}}
+            <div class="data_line_item">
+              <div class="num">{{item.num}}</div>
+              <div class="label">{{item.label}}</div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+        {{else}}
+        <div class="data-box">
+          <div class="tab-label">90级基础数据</div>
+          <div class="data-line">
+            暂无详细数据
+          </div>
+        </div>
         {{/if}}
-      {{/each}}
-    {{/if}}
-  </div>
-</div>
-{{/if}}
+      </div>
 
-{{if mode == "cons"}}
-<div class="talent-box elem-bg">
-  <div class="talent-detail">
-    {{each detail.cons con idx}}
-    <% include(wiki_path+'/wiki/talent-detail.html', [con, {miao_path,lvs,type,icon:imgs['cons'+idx],game}]) %>
+    {{if mode == "talent"}}
+    {{set talentKey = game === 'gs' ? ['a','e','q']:['a','e','q','t','z'] }}
+    {{each talentKey type}}
+    {{if detail.talent[type]}}
+    <div class="talent-box elem-bg">
+      <div class="talent-detail cont {{detail.talent[type+2]?'talent-merge':''}}">
+        {{set minLv = game === 'gs' ? 6 : (type==='a' || type ==='a2'? 1 : 6) }}
+        {{set maxLv = game === 'gs' ? 13 : (type==='a' || type ==='a2' ? 7 : 12 )}}
+        <% include(wiki_path+'/wiki/talent-detail.html', [detail.talent[type], {_miao_path,lvs,type,icon:imgs[type],minLv,maxLv,game}]) %>
+
+        {{if detail.talent[type+2]}}
+          {{set minLv = game === 'gs' ? 6 : (type==='a' || type ==='a2'? 1 : 6) }}
+          {{set maxLv = game === 'gs' ? 13 : (type==='a' || type ==='a2' ? 7 : 12 )}}
+          <% include(wiki_path+'/wiki/talent-detail.html', [detail.talent[type+2], {_miao_path,lvs,type,icon:imgs[type+2],minLv,maxLv,game}]) %>
+        {{/if}}
+      </div>
+    </div>
+    {{/if}}
     {{/each}}
-  </div>
-</div>
-{{/if}}
-{{/block}}
+
+    <div class="talent-box elem-bg">
+      <div class="talent-detail passive-talent">
+        {{if game === 'gs'}}
+          {{each detail.passive pass idx}}
+            <% include(wiki_path+'/wiki/talent-detail.html', [pass, {_miao_path,icon:imgs['passive'+idx],game}]) %>
+          {{/each}}
+        {{else}}
+          {{each detail.treeData treeData idx}}
+            {{if treeData.type === 'skill'}}
+              <% include(wiki_path+'/wiki/talent-detail.html', [treeData, {_miao_path,icon:imgs['tree'+treeData.idx],game}]) %>
+            {{/if}}
+          {{/each}}
+        {{/if}}
+      </div>
+    </div>
+    {{/if}}
+
+    {{if mode == "cons"}}
+    <div class="talent-box elem-bg">
+      <div class="talent-detail">
+        {{each detail.cons con idx}}
+        <% include(wiki_path+'/wiki/talent-detail.html', [con, {_miao_path,lvs,type,icon:imgs['cons'+idx],game}]) %>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+
+    <div class="copyright">{{@copyright || sys?.copyright}} & wiki</div>
+    </div>
+  </body>
+</html>

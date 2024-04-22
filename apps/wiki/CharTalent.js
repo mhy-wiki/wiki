@@ -1,5 +1,6 @@
 import lodash from 'lodash';
 import { Common, Format } from '#miao';
+import { pluginResources } from '../../utils/path.js';
 
 const CharTalent = {
   async render (e, mode, char) {
@@ -31,7 +32,8 @@ const CharTalent = {
       imgs: char.getImgs(),
       mode,
       lvs,
-      line: CharTalent.getLineData(char)
+      line: CharTalent.getLineData(char),
+      wiki_path: pluginResources
     }, { e, scale: 1.1 })
   },
   getLineData (char) {

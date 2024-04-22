@@ -1,16 +1,16 @@
 {{set ds = $data[0] || false }}
-{{set {miao_path, icon,lvs,type,game,minLv,maxLv} = $data[1]}}
+{{set {_miao_path, icon,lvs,type,game,minLv,maxLv} = $data[1]}}
 
 <div class="talent-line">
   <div class="talent-icon">
-    <img src="{{miao_path}}{{icon}}"/>
+    <img src="{{_miao_path}}{{icon}}"/>
   </div>
   <div class="talent-info">
-      {{ if type && game==='sr'}}
-     <div class="talent-name">{{ds.name}} - {{ds.type}} | {{ds.tag}}</div>
-     {{else}}
-    <div class="talent-name">{{ds.name}}</div>
-      {{/if}}
+    {{ if type && game==='sr'}}
+      <div class="talent-name">{{ds.name}}<!--<br /><span>{{ds.type}} | {{ds.tag}}</span>--></div>
+    {{else}}
+      <div class="talent-name">{{ds.name}}</div>
+    {{/if}}
     <div class="talent-desc">
       {{each ds.desc d}}
       {{ if d[0] === "<" || game==='sr' }}
