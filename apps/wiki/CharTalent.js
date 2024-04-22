@@ -24,7 +24,7 @@ const CharTalent = {
         })
       })
     }
-    return await Common.render('wiki/character-talent', {
+    return await Common.render('wiki', 'wiki/character-talent', {
       saveId: `${mode}-${char.id}`,
       ...char.getData(),
       game: char.game,
