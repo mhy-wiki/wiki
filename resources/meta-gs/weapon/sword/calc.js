@@ -263,7 +263,7 @@ export default function (step, staticStep) {
     }],
     赦罪: [staticStep('cdmg', 20), {
       title: '基生命之契的数值增加时，装备者造成的伤害提升[dmg]',
-      data: {
+      refine: {
         dmg: step(12 * 3)
       }
     }]
