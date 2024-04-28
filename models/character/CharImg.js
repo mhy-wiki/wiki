@@ -4,7 +4,7 @@
 import fs from 'node:fs';
 import lodash from 'lodash';
 import sizeOf from 'image-size';
-import { pluginResources, miaoResources } from '../../utils/path.js';
+import { pluginResources, miaoResources } from '../../components/path.js';
 
 const rPath = `${pluginResources}`
 const CharImg = {
