@@ -1,9 +1,9 @@
 import fs from 'node:fs'
-import set from '../utils/setting.js'
+import Config from '../components/Config.js'
 import { Restart } from '../../other/restart.js'
-import { pluginReplace, miaoPath } from '../utils/path.js'
+import { pluginReplace, miaoPath } from '../components/path.js'
 
-var expandwiki = set.getCfg('wiki')?.expandWiki;
+const expandwiki = Config.getCfg('wiki')?.expandWiki;
 
 export class wikistart extends plugin {
   constructor() {

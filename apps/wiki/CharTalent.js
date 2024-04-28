@@ -1,6 +1,6 @@
 import lodash from 'lodash';
 import { Common, Format } from '#miao';
-import { pluginResources } from '../../utils/path.js';
+import { pluginResources } from '../../components/path.js';
 
 const CharTalent = {
   async render (e, mode, char) {

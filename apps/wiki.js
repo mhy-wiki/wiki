@@ -1,7 +1,7 @@
-import set from '../utils/setting.js'
 import CharWiki from './wiki/CharWiki.js'
+import Config from '../components/Config.js'
 
-let expandwiki = set.getCfg('wiki')?.expandWiki;
+const expandwiki = Config.getCfg('wiki')?.expandWiki;
 
 export class wiki extends plugin{
   constructor () {

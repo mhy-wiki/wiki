@@ -1,9 +1,9 @@
+import fs from 'node:fs'
 import YAML from 'yaml'
 import chokidar from 'chokidar'
-import fs from 'node:fs'
 import { pluginPath } from './path.js'
 
-class Setting {
+class Config {
   constructor () {
     /** 默认设置 */
     this.defPath = `${pluginPath}/config/defSet/`
@@ -69,4 +69,4 @@ class Setting {
   }
 }
 
-export default new Setting()
+export default new Config()
