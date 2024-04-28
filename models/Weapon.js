@@ -211,10 +211,10 @@ class Weapon extends Base {
       let { descFix } = Meta.getMeta('gs', 'weapon')
       let reg = /\$\[(\d)\]/g
       let ret
-      let desc = descFix[this.name] || text || ''
+      let desc = (affix === 'all') ? text : descFix[this.name] || text || ''
       while ((ret = reg.exec(desc)) !== null) {
         let idx = ret[1]
-        let value = datas?.[idx]?.[affix - 1]
+        let value = (affix === 'all') ? datas?.[idx]?.join('</nobr>/<nobr>') : datas?.[idx]?.[affix - 1]
         desc = desc.replaceAll(ret[0], `<nobr>${value}</nobr>`)
       }
       return {
@@ -233,6 +233,19 @@ class Weapon extends Base {
         value = Format.pct(value, format === 'f2' ? 2 : 1)
       } else {
         value = Format.comma(value)
+      }
+      if (affix === 'all') {
+        let values = []
+        for (let i = 0; i < 5; i++) {
+          value = tables?.[idx]?.[i]
+          if (pct === '%') {
+            value = Format.pct(value, format === 'f2' ? 2 : 1)
+          } else {
+            value = Format.comma(value)
+          }
+          values.push(value)
+        }
+        value = values.join('</nobr>/<nobr>')
       }
       desc = desc.replaceAll(txt, value)
     }
