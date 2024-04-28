@@ -337,7 +337,7 @@ export default function (step, staticStep) {
     筑云: {
       title: '元素能量减少时，装备者的元素精通提升[mastery]%',
       refine: {
-        mastery: step(48, 12)
+        mastery: step(40, 10)
       }
     },
     白雨心弦: {
