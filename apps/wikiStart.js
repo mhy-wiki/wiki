@@ -61,14 +61,14 @@ export class wikistart extends plugin {
 
   wikiPanel(type) {
     if (type === 'star') {
-      let config = set.getCfg('wiki')
+      let config = Config.getCfg('wiki')
       config.expandWiki = true
-      set.setCfg('wiki', config)
+      Config.setCfg('wiki', config)
       fs.copyFileSync(`${pluginReplace}/index.js`,`${miaoPath}/models/index.js`)
     } else if (type === 'shut') {
-      let config = set.getCfg('wiki')
+      let config = Config.getCfg('wiki')
       config.expandWiki = false
-      set.setCfg('wiki', config)
+      Config.setCfg('wiki', config)
       fs.copyFileSync(`${pluginReplace}/backup/index.js`,`${miaoPath}/models/index.js`)
     }
   }
