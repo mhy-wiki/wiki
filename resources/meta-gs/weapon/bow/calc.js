@@ -334,16 +334,18 @@ export default function (step, staticStep) {
         dmg: step(16)
       }
     },
+
     筑云: {
-      title: '元素能量减少时，装备者的元素精通提升[mastery]%',
+      title: '元素能量减少时，装备者的元素精通提升[mastery]点',
       refine: {
-        mastery: step(40, 10)
+        mastery: step(40 * 2)
       }
     },
+
     白雨心弦: {
       title: '满层下，生命值上限提升[hpPct]%元素爆发的暴击率提[qCpct]%',
       refine: {
-        hpPct: step(40, 10),
+        hpPct: step(40),
         qCpct: step(28)
       }
     }
