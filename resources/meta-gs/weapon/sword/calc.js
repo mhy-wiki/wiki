@@ -4,7 +4,7 @@ export default function (step, staticStep) {
       title: '元素战技造成的伤害值提高[ePlus]',
       sort: 9,
       data: {
-        ePlus: ({ attr, calc, refine }) => calc(attr.def) * step(40)[refine] / 100
+        ePlus: ({ attr, refine }) => attr.def * step(40)[refine] / 100
       }
     },
     腐殖之剑: {

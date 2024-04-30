@@ -449,9 +449,9 @@ const buffs = {
       title: '普通攻击命中敌人时,普通攻击造成的伤害提高[_aPlus]，当前效果触发概率[buffCount]%',
       sort: 9,
       data: {
-        buffCount: ({ params }) => ( params.EchoesProbability || 1 ) * 100 ,
-        _aPlus: ({ params , attr }) => ( attr.atk.base + attr.atk.plus + attr.atk.pct * attr.atk.base / 100 ) * 0.7 ,
-        aPlus: ({ params , attr }) => ( attr.atk.base + attr.atk.plus + attr.atk.pct * attr.atk.base / 100 ) * 0.7 * ( params.EchoesProbability || 1 )
+        buffCount: ({ params }) => ( params.EchoesProbability || 1 ) * 100,
+        _aPlus: ({ attr }) => attr.atk * 0.7,
+        aPlus: ({ params , attr }) => attr.atk * 0.7 * ( params.EchoesProbability || 1 )
       }
     }
   },
