@@ -1,5 +1,5 @@
 import CharWiki from './wiki/CharWiki.js'
-import Config from '../components/Config.js'
+import { Config } from '../components/index.js'
 
 const expandwiki = Config.getCfg('wiki')?.expandWiki;
 

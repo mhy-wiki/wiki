@@ -1,7 +1,7 @@
 import fs from 'node:fs'
-import Config from '../components/Config.js'
 import { Restart } from '../../other/restart.js'
-import { pluginReplace, miaoPath } from '../components/path.js'
+import { Config } from '../components/index.js'
+import { wikiPath } from '../components/index.js'
 
 const expandwiki = Config.getCfg('wiki')?.expandWiki;
 
@@ -64,12 +64,12 @@ export class wikistart extends plugin {
       let config = Config.getCfg('wiki')
       config.expandWiki = true
       Config.setCfg('wiki', config)
-      fs.copyFileSync(`${pluginReplace}/index.js`,`${miaoPath}/models/index.js`)
+      fs.copyFileSync(wikiPath.getDir('wiki/replace/index.js'), wikiPath.getDir('miao-plugin/models/index.js'))
     } else if (type === 'shut') {
       let config = Config.getCfg('wiki')
       config.expandWiki = false
       Config.setCfg('wiki', config)
-      fs.copyFileSync(`${pluginReplace}/backup/index.js`,`${miaoPath}/models/index.js`)
+      fs.copyFileSync(wikiPath.getDir('wiki/replace/backup/index.js'), wikiPath.getDir('miao-plugin/models/index.js'))
     }
   }
 }

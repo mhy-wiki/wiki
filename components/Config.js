@@ -1,16 +1,16 @@
 import fs from 'node:fs'
 import YAML from 'yaml'
 import chokidar from 'chokidar'
-import { pluginPath } from './path.js'
+import { wikiPath } from './index.js'
 
 class Config {
   constructor () {
     /** 默认设置 */
-    this.defPath = `${pluginPath}/config/defSet/`
+    this.defPath = wikiPath.getDir('wiki/config/defSet/')
     this.defSet = {}
 
     /** 用户设置 */
-    this.configPath = `${pluginPath}/config/config/`
+    this.configPath = wikiPath.getDir('wiki/config/config/')
     this.config = {}
 
     /** 监听文件 */

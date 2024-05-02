@@ -4,9 +4,10 @@
 import fs from 'node:fs';
 import lodash from 'lodash';
 import sizeOf from 'image-size';
-import { pluginResources, miaoResources } from '../../components/path.js';
+import { wikiPath } from '../../components/index.js';
 
-const rPath = `${pluginResources}`
+const rPath = wikiPath.getDir('wiki', true)
+const mPath = wikiPath.getDir('miao-plugin', true)
 const CharImg = {
 
   // 获取角色的插画
@@ -65,7 +66,7 @@ const CharImg = {
         }
       }
       if (!fs.existsSync(`${rPath}/${imgPath}`)) {
-          let imgs = fs.readdirSync(`${miaoResources}/${imgPath}`).filter((file) => {
+          let imgs = fs.readdirSync(`${mPath}/${imgPath}`).filter((file) => {
             return /\.(png|webp)$/.test(file)
           })
         } else {
@@ -85,7 +86,7 @@ const CharImg = {
         defpath = `${rPath}/${defImg}`
         return defpath;
       } else {
-        defpath = `${miaoResources}/${defImg}`
+        defpath = `${mPath}/${defImg}`
         return defpath;
       }
     }
@@ -100,12 +101,12 @@ const CharImg = {
       travelerElem = ''
     }
     let nPath = `/meta-gs/character/${name}/`
-    if (!fs.existsSync(`${miaoResources}/${nPath}`)) {
+    if (!fs.existsSync(`${mPath}/${nPath}`)) {
       nPath = `../../wiki/resources/meta-gs/character/${name}/`
     }
     const tPath = `/meta-gs/character/旅行者/${travelerElem}/`
     let add = (key, path, path2) => {
-      if (path2 && fs.existsSync(`${miaoResources}/${nPath}/${path2}.${fileType}`)) {
+      if (path2 && fs.existsSync(`${mPath}/${nPath}/${path2}.${fileType}`)) {
         imgs[key] = `${nPath}${path2}.${fileType}`
       } else {
         imgs[key] = `${nPath}${path}.${fileType}`
@@ -143,7 +144,7 @@ const CharImg = {
     }
     let imgs = {}
     let add = (key, path, path2) => {
-      if (path2 && fs.existsSync(`${miaoResources}/${nPath}/${path2}.${fileType}`)) {
+      if (path2 && fs.existsSync(`${mPath}/${nPath}/${path2}.${fileType}`)) {
         imgs[key] = `${nPath}${path2}.${fileType}`
       } else {
         imgs[key] = `${nPath}${path}.${fileType}`
