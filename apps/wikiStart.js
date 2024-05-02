@@ -1,7 +1,6 @@
 import fs from 'node:fs'
 import { Restart } from '../../other/restart.js'
-import { Config } from '../components/index.js'
-import { wikiPath } from '../components/index.js'
+import { Config, wikiPath } from '../components/index.js'
 
 const expandwiki = Config.getCfg('wiki')?.expandWiki;
 
