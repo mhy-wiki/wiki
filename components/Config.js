@@ -4,7 +4,7 @@ import chokidar from 'chokidar'
 import { wikiPath } from './index.js'
 
 class Config {
-  constructor () {
+  constructor() {
     /** 默认设置 */
     this.defPath = wikiPath.getDir('wiki/config/defSet/')
     this.defSet = {}
@@ -20,7 +20,7 @@ class Config {
   }
 
   /** 初始化配置 */
-  initCfg () {
+  initCfg() {
     const files = fs.readdirSync(this.defPath).filter(file => file.endsWith('.yaml'))
     if (!fs.existsSync(`${this.configPath}`)) fs.mkdirSync(`${this.configPath}`);
     for (let file of files) {
@@ -31,8 +31,11 @@ class Config {
     }
   }
 
-  // 获取配置文件内容转JSON
-  getCfg (filename) {
+  /**
+   * 获取配置文件内容转JSON
+   * @param filename - 文件名
+   */
+  getCfg(filename) {
     try {
       if (!fs.existsSync(`${this.configPath}${filename}.yaml`)) { return false }
       return YAML.parse(fs.readFileSync(`${this.configPath}${filename}.yaml`, 'utf8'))
@@ -42,10 +45,26 @@ class Config {
     }
   }
 
-  // 写入配置文件
-  setCfg (filename, data) {
+  /**
+   * 
+   * @param filename - 文件名
+   * @param item - 配置项
+   * @param data - 写入配置
+   */
+  changeCfg(filename, item, data) {
+    const config = this.getCfg(filename)
+    config[item] = data
+    this.writeCfg(filename, config)
+  }
+
+  /**
+   * 写入配置文件
+   * @param filename - 文件名
+   * @param data - 写入内容
+   */
+  writeCfg(filename, data) {
     try {
-      if (!fs.existsSync(`${this.configPath}${filename}.yaml`)) { return false }
+      if (!fs.existsSync(`${this.configPath}${filename}.yaml`)) return false
       fs.writeFileSync(`${this.configPath}${filename}.yaml`, YAML.stringify(data), 'utf8')
     } catch (error) {
       logger.error(`[${filename}] 写入失败 ${error}`)
@@ -53,8 +72,13 @@ class Config {
     }
   }
 
-  // 监听配置文件
-  watch (file, app, type = 'defSet') {
+  /**
+   * 监听配置文件
+   * @param file
+   * @param app
+   * @param type
+   */
+  watch(file, app, type = 'defSet') {
     if (this.watcher[type][app]) return
 
     const watcher = chokidar.watch(file)

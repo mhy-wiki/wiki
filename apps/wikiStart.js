@@ -2,7 +2,7 @@ import fs from 'node:fs'
 import { Restart } from '../../other/restart.js'
 import { Config, wikiPath } from '../components/index.js'
 
-const expandwiki = Config.getCfg('wiki')?.expandWiki;
+const expandwiki = Config.getCfg('wiki')?.expandWiki
 
 export class wikistart extends plugin {
   constructor() {
@@ -21,11 +21,11 @@ export class wikistart extends plugin {
     })
   }
 
-  async wikistar (e) {
+  async wikistar(e) {
     let msg = e.msg.replace(/^#?(扩展)?wiki([，,])?(强制)?([！!])?/g,'')
     if (msg == '启动') {
       if (expandwiki) return e.reply("喵喵扩展_wiki已启动,无需重复开启.")
-      this.wikiPanel('star')
+      this.wikiPanel(true)
       await e.reply("喵喵扩展_wiki启动成功，正在执行重启操作以载入新wiki，请稍等...")
       this.restartApp()
       return true
@@ -35,13 +35,12 @@ export class wikistart extends plugin {
         return true
       }
       if (/重启/.test(msg)) {
-        this.wikiPanel('shut')
-        this.wikiPanel('star')
+        this.wikiPanel(true, true)
         await e.reply("喵喵扩展_wiki关闭重启中，请稍等...")
         this.restartApp()
         return true
       }
-      this.wikiPanel('shut')
+      this.wikiPanel(true)
       await e.reply("喵喵扩展_wiki已关闭，正在执行重启操作，请稍等...")
       this.restartApp()
       return true
@@ -58,16 +57,13 @@ export class wikistart extends plugin {
     new Restart(this.e).restart();
   }
 
-  wikiPanel(type) {
-    if (type === 'star') {
-      let config = Config.getCfg('wiki')
-      config.expandWiki = true
-      Config.setCfg('wiki', config)
+  wikiPanel(star, shut = false) {
+    if (star) {
+      Config.changeCfg('wiki', 'expandWiki', true)
       fs.copyFileSync(wikiPath.getDir('wiki/replace/index.js'), wikiPath.getDir('miao-plugin/models/index.js'))
-    } else if (type === 'shut') {
-      let config = Config.getCfg('wiki')
-      config.expandWiki = false
-      Config.setCfg('wiki', config)
+    }
+    if (shut) {
+      Config.changeCfg('wiki', 'expandWiki', false)
       fs.copyFileSync(wikiPath.getDir('wiki/replace/backup/index.js'), wikiPath.getDir('miao-plugin/models/index.js'))
     }
   }

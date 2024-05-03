@@ -4,7 +4,7 @@ import { MysApi } from '#miao.models'
 const wikiReg = /^#?(?:星铁)?(开拓者.*|(?:存护|毁灭|火|物(?:理)?)主|主角|星|琼|穹)(面板|面版|圣遗物|伤害|武器)(.*)/
 
 export class wiki_replace extends plugin {
-  constructor (e) {
+  constructor(e) {
     super({
       name: 'wiki替换',
       dsc: 'wiki_replace',
@@ -13,18 +13,18 @@ export class wiki_replace extends plugin {
     })
   }
 
-  async accept (e) {
-    let msg = wikiReg.exec(e.msg);
+  async accept(e) {
+    let msg = wikiReg.exec(e.msg)
     if (!msg) return false
-    if (/开拓者.*|(存护|毁灭|火|物(理)?)主|星|琼|穹/.test(msg[1]) ) e.game = 'sr';
+    if (/开拓者.*|(存护|毁灭|火|物(理)?)主|星|琼|穹/.test(msg[1]) ) e.game = 'sr'
     if (!e.isSr) return false
-    e.msg = /换/.test(msg[3]) ? e.msg.includes(msg[3], '') : e.msg;
+    e.msg = /换/.test(msg[3]) ? e.msg.includes(msg[3], '') : e.msg
     let user = await MysApi.initUser(e);
     if (!user.uid) return false
-    let json = Data.readJSON(`./data/PlayerData/sr/${user.uid}.json`);
+    let json = Data.readJSON(`./data/PlayerData/sr/${user.uid}.json`)
     if (!json.avatars) return false
-    let key = Object.keys(json.avatars);
-    let keys = ['8001','8002','8003','8004'];
+    let key = Object.keys(json.avatars)
+    let keys = ['8001','8002','8003','8004']
     switch(msg[1]) {
       case '物主':
       case '物理主':
@@ -32,22 +32,22 @@ export class wiki_replace extends plugin {
       case '开拓者毁灭':
       case '开拓者•毁灭':
       case '开拓者·毁灭':
-        keys = ['8001','8002'];
-        break;
+        keys = ['8001','8002']
+        break
       case '火主':
       case '存护主':
       case '开拓者存护':
       case '开拓者•存护':
       case '开拓者·存护':
-        keys = ['8003','8004'];
-        break;
+        keys = ['8003','8004']
+        break
       default:
         keys = keys;
-        break;
+        break
     }
-    let arr = key.filter(i => keys.includes(i));
+    let arr = key.filter(i => keys.includes(i))
     if (!arr[0]) return false
-    e.original_msg = e.msg = json.avatars[arr[0]].name + msg[2] +msg[3];
+    e.original_msg = e.msg = json.avatars[arr[0]].name + msg[2] +msg[3]
     return false
   }
 }

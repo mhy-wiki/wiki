@@ -3,7 +3,7 @@ import { Common, Format } from '#miao'
 import { wikiPath } from '../../components/index.js'
 
 const CharTalent = {
-  async render (e, mode, char) {
+  async render(e, mode, char) {
     let lvs = []
     for (let i = 1; i <= 15; i++) {
       lvs.push('Lv' + i)
@@ -36,7 +36,7 @@ const CharTalent = {
       wiki_path: wikiPath.getDir('wiki', true)
     }, { e, scale: 1.1 })
   },
-  getLineData (char) {
+  getLineData(char) {
     let ret = []
     if (char.isSr) {
       lodash.forEach({ hp: '基础生命', atk: '基础攻击', def: '基础防御', speed: '速度' }, (label, key) => {
@@ -73,7 +73,7 @@ const CharTalent = {
     return ret
   },
   // 获取精炼描述
-  getDesc (desc, tables, lv = 5) {
+  getDesc(desc, tables, lv = 5) {
     let reg = /\$(\d)\[(i|f1|f2)](%?)/g
 
     let ret
