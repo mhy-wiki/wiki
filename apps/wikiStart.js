@@ -58,13 +58,13 @@ export class wikistart extends plugin {
   }
 
   wikiPanel(star, shut = false) {
-    if (star) {
-      Config.changeCfg('wiki', 'expandWiki', true)
-      fs.copyFileSync(wikiPath.getDir('wiki/replace/index.js'), wikiPath.getDir('miao-plugin/models/index.js'))
-    }
     if (shut) {
       Config.changeCfg('wiki', 'expandWiki', false)
       fs.copyFileSync(wikiPath.getDir('wiki/replace/backup/index.js'), wikiPath.getDir('miao-plugin/models/index.js'))
+    }
+    if (star) {
+      Config.changeCfg('wiki', 'expandWiki', true)
+      fs.copyFileSync(wikiPath.getDir('wiki/replace/index.js'), wikiPath.getDir('miao-plugin/models/index.js'))
     }
   }
 }
