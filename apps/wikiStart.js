@@ -40,7 +40,7 @@ export class wikistart extends plugin {
         this.restartApp()
         return true
       }
-      this.wikiPanel(true)
+      this.wikiPanel(false, true)
       await e.reply("喵喵扩展_wiki已关闭，正在执行重启操作，请稍等...")
       this.restartApp()
       return true
