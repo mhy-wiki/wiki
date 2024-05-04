@@ -6,6 +6,7 @@ import { Meta } from '#miao'
 import { Base, ArtifactSet } from '#miao.models'
 import ArtisMark from '../../miao-plugin/models/artis/ArtisMark.js'
 import ArtisAttr from '../../miao-plugin/models/artis/ArtisAttr.js'
+import { wikiPath } from '../components/index.js';
 
 class Artifact extends Base {
 
@@ -42,10 +43,10 @@ class Artifact extends Base {
     let iPath = this.isGs ?
       `meta-gs/artifact/imgs/${this.setName}/${this.idx}.webp` :
       `meta-sr/artifact/${this.setName}/arti-${this.idx}.webp`
-    if (!fs.existsSync(`${process.cwd()}/plugins/miao-plugin/resources/${iPath}`)) {
+    if (fs.existsSync(`${wikiPath.getDir('wiki', true)}/${iPath}`)) {
       return `../../wiki/resources/${iPath}`
     }
-    return `${iPath}`
+    return iPath
   }
 
   static get (name, game = 'gs') {

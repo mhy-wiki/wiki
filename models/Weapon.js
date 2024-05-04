@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import { Base } from '#miao.models'
 import { Data, Format, Meta } from '#miao'
+import { wikiPath } from '../../components/index.js';
 
 let weaponSet
 
@@ -31,7 +32,7 @@ class Weapon extends Base {
 
   get img () {
     let iPath = `${this.isGs ? 'meta-gs' : 'meta-sr'}/weapon/${this.type}/${this.name}/icon.webp`
-    if (!fs.existsSync(`${process.cwd()}/plugins/miao-plugin/resources/${iPath}`)) {
+    if (fs.existsSync(`${wikiPath.getDir('wiki', true)}/${iPath}`)) {
       return `../../wiki/resources/${iPath}`
     }
     return `${iPath}`
@@ -52,7 +53,7 @@ class Weapon extends Base {
 
   get imgs () {
     let iPath = `${this.isGs ? 'meta-gs' : 'meta-sr'}/weapon/${this.type}/${this.name}`
-    if (!fs.existsSync(`${process.cwd()}/plugins/miao-plugin/resources/${iPath}/icon.webp`)) {
+    if (fs.existsSync(`${wikiPath.getDir('wiki', true)}/${iPath}/icon.webp`)) {
       return {
         icon: `../../wiki/resources/${iPath}/icon.webp`,
         icon2: `../../wiki/resources/${iPath}/${this.isGs ? 'awaken.webp' : 'icon-s.webp'}`,
@@ -132,7 +133,7 @@ class Weapon extends Base {
     }
     const path = `resources/${this.isGs ? 'meta-gs' : 'meta-sr'}/weapon/${this.type}/${this.name}/data.json`
     try {
-      if (!fs.existsSync(`${process.cwd()}/plugins/miao-plugin/${path}`)) {
+      if (fs.existsSync(`${wikiPath.getDir('wiki')}/${path}`)) {
         this._detail = Data.readJSON(`${path}`, 'wiki')
       } else {
         this._detail = Data.readJSON(`${path}`, 'miao')

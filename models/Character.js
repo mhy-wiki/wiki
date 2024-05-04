@@ -13,6 +13,7 @@ import CharId from '../../miao-plugin/models/character/CharId.js'
 import CharCfg from '../../miao-plugin/models/character/CharCfg.js'
 import CharMeta from '../../miao-plugin/models/character/CharMeta.js'
 import CharTalent from '../../miao-plugin/models/character/CharTalent.js'
+import { wikiPath } from '../components/index.js';
 
 let metaKey = 'abbr,star,elem,weapon,talentId,talentCons,eta'.split(',')
 const detailKey = 'title,allegiance,birth,astro,desc,cncv,jpcv,costume,baseAttr,growAttr,materials,talent,talentData,cons,passive,attr,sp'.split(',')
@@ -303,13 +304,13 @@ class Character extends Base {
       return {}
     }
     let name = this.isTraveler ? `旅行者/${this.elem}` : this.name
-    let file = `./plugins/wiki/resources/meta-${this.game}/character/${name}/data.json`;
-    if (fs.existsSync(file)) {
+    let file = `resources/meta-${this.game}/character/${name}/data.json`
+    if (fs.existsSync(`${wikiPath.getDir('wiki')}/${file}`)) {
       this.meta = this.meta || {}
-      this.meta._detail = Data.readJSON(`resources/meta-${this.game}/character/${name}/data.json`, 'wiki')
+      this.meta._detail = Data.readJSON(file, 'wiki')
     } else {
       this.meta = this.meta || {}
-      this.meta._detail = Data.readJSON(`resources/meta-${this.game}/character/${name}/data.json`, 'miao')
+      this.meta._detail = Data.readJSON(file, 'miao')
     }
     return this.meta._detail
   }

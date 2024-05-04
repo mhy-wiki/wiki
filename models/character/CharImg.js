@@ -1,10 +1,10 @@
 /**
  * 角色照片及角色图像资源相关
  * */
-import fs from 'node:fs';
-import lodash from 'lodash';
-import sizeOf from 'image-size';
-import { wikiPath } from '../../components/index.js';
+import fs from 'node:fs'
+import lodash from 'lodash'
+import sizeOf from 'image-size'
+import { wikiPath } from '../../components/index.js'
 
 const rPath = wikiPath.getDir('wiki', true)
 const mPath = wikiPath.getDir('miao-plugin', true)
@@ -101,7 +101,7 @@ const CharImg = {
       travelerElem = ''
     }
     let nPath = `/meta-gs/character/${name}/`
-    if (!fs.existsSync(`${mPath}/${nPath}`)) {
+    if (fs.existsSync(`${rPath}/${nPath}`)) {
       nPath = `../../wiki/resources/meta-gs/character/${name}/`
     }
     const tPath = `/meta-gs/character/旅行者/${travelerElem}/`
@@ -139,7 +139,7 @@ const CharImg = {
   getImgsSr (name, talentCons) {
     let fileType = 'webp'
     let nPath = `/meta-sr/character/${name}/`
-    if (!fs.existsSync(`${process.cwd()}/plugins/miao-plugin/resources/${nPath}`)) {
+    if (fs.existsSync(`${rPath}/${nPath}`)) {
       nPath = `../../wiki/resources/meta-sr/character/${name}/`
     }
     let imgs = {}
