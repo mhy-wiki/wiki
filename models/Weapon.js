@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import { Base } from '#miao.models'
 import { Data, Format, Meta } from '#miao'
-import { wikiPath } from '../../components/index.js';
+import { wikiPath } from '../components/index.js';
 
 let weaponSet
 
