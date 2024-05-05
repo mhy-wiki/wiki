@@ -281,6 +281,15 @@ export default {
     }
   },
   出云显世与高天神国: {
+    2: attr('atkPct', 12), 
+    4: {
+      title: '装备者发动追加攻击时，造成伤害提升[dmg]%',
+      data: {
+        dmg: 20 * 2
+      }
+    }
+  },
+  出云显世与高天神国: {
     2: [attr('speedPct', 6), {
       title: '攻击具有火属性弱点的敌人时，击破特攻提升[stance]%',
       data: {
