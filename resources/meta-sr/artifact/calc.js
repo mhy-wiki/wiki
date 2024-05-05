@@ -270,5 +270,22 @@ export default {
         cpct: 12
       }
     }]
+  },
+  出云显世与高天神国: {
+    2: attr('stance', 16), 
+    4: {
+      title: '基于佩戴者的击破特攻，造成的伤害忽略敌人[ignore]%防御力',
+      data: {
+        ignore: ({ attr }) => attr.cdmg >= 250 ? 18 : ( attr.cdmg >= 150 ? 10 : 0 ) 
+      }
+    }
+  },
+  出云显世与高天神国: {
+    2: [attr('speedPct', 6), {
+      title: '攻击具有火属性弱点的敌人时，击破特攻提升[stance]%',
+      data: {
+        stance: 40
+      }
+    }]
   }
 }
