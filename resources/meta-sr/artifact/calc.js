@@ -275,6 +275,7 @@ export default {
     2: attr('stance', 16), 
     4: {
       title: '基于佩戴者的击破特攻，造成的伤害忽略敌人[ignore]%防御力',
+      sort: 9,
       data: {
         ignore: ({ attr }) => attr.cdmg >= 250 ? 18 : ( attr.cdmg >= 150 ? 10 : 0 ) 
       }
