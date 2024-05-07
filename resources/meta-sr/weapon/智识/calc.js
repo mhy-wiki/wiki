@@ -85,6 +85,18 @@ export default function (staticIdx, keyIdx) {
           }
         }
       }
+    ],
+    不息的演算: [
+      staticIdx(1, 'atkPct'),
+      (tables) => {
+        return {
+          title: '释放攻击击中敌方目标，使攻击力提升[atkPct]%，击中3名或3名以上敌方目标使速度提高[speedPct]%',
+          data: {
+            atkPct: tables[2] * 5 ,
+            speedPct: tables[3]
+          }
+        }
+      }
     ]
   }
 }
