@@ -74,13 +74,13 @@ export default function (staticIdx, keyIdx) {
       staticIdx(1, 'atkPct'),
       keyIdx('提高暴击伤害[cdmg]%', 'cdmg', 2)
     ],
-    但希望是无价的: [
+    偏偏希望无价: [
       staticIdx(1, 'cpct'),
       (tables) => {
         return {
-          title: '装备者暴击伤害超过120%，攻击造成的伤害提升[dmg]%，普通攻击无视敌人[aIgnore]%的防御力',
+          title: '装备者暴击伤害超过120%，追加攻击造成的伤害提升[tDmg]%，普通攻击无视敌人[aIgnore]%的防御力',
           data: {
-            dmg: ({ attr }) => attr.cdmg >= 120 ? Math.min( Math.floor( ( attr.cdmg - 120 ) / 20 ) * tables[2] , tables[2] * 4) : 0 ,
+            tDmg: ({ attr }) => attr.cdmg >= 120 ? Math.min( Math.floor( ( attr.cdmg - 120 ) / 20 ) * tables[2] , tables[2] * 4) : 0 ,
             aIgnore: ({ attr }) => attr.cdmg >= 200 ? tables[3] : 0
           }
         }

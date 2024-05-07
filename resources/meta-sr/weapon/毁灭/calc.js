@@ -81,7 +81,7 @@ export default function (staticIdx, keyIdx) {
       staticIdx(1, 'stance'),
       keyIdx('释放终结技时，暴击率提高[cpct]%', 'cpct', 2)
     ],
-    梦想应在何处休息: [
+    梦应归于何处: [
       staticIdx(1, 'stance'),
       keyIdx('装备者击破敌人弱点时，使敌人受到伤害增加[enemydmg]%，速度减少15%', 'enemydmg', 2)
     ]
