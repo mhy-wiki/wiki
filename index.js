@@ -1,5 +1,5 @@
-import { Version } from '#miao';
 import fs from 'node:fs';
+import { Version } from './components/index.js'
 
 if (!global.segment) global.segment = (await import('oicq')).segment
 
