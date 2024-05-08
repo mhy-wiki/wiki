@@ -396,7 +396,12 @@
       "promote": 6,
       "maxLevel": 80,
       "cost": {},
-      "grow": {},
+      "grow": {
+        "atk": 4.092,
+        "hp": 8.448,
+        "def": 4.125,
+        "speed": 0
+      },
       "attrs": {
         "atk": 278.256,
         "hp": 574.464,
