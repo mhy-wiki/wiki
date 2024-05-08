@@ -1,7 +1,7 @@
 import { Data } from '#miao'
 import { MysApi } from '#miao.models'
 
-const wikiReg = /^#?(?:星铁)?(开拓者.*|(?:存护|毁灭|火|物(?:理)?)主|主角|星|琼|穹)(面板|面版|圣遗物|伤害|武器)(.*)/
+const wikiReg = /^#?(?:星铁)?(开拓者.*|(?:存护|毁灭|同谐|火|物理?|虚数)主|主角|星|琼|穹)(面板|面版|圣遗物|伤害|武器)(.*)/
 
 export class wiki_replace extends plugin {
   constructor(e) {
@@ -16,7 +16,7 @@ export class wiki_replace extends plugin {
   async accept(e) {
     let msg = wikiReg.exec(e.msg)
     if (!msg) return false
-    if (/开拓者.*|(存护|毁灭|火|物(理)?)主|星|琼|穹/.test(msg[1]) ) e.game = 'sr'
+    if (/开拓者.*|(存护|毁灭|同谐|火|物理?|虚数)主|星|琼|穹/.test(msg[1]) ) e.game = 'sr'
     if (!e.isSr) return false
     e.msg = /换/.test(msg[3]) ? e.msg.includes(msg[3], '') : e.msg
     let user = await MysApi.initUser(e);
@@ -24,7 +24,7 @@ export class wiki_replace extends plugin {
     let json = Data.readJSON(`./data/PlayerData/sr/${user.uid}.json`)
     if (!json.avatars) return false
     let key = Object.keys(json.avatars)
-    let keys = ['8001','8002','8003','8004']
+    let keys = ['8001','8002','8003','8004','8005','8006']
     switch(msg[1]) {
       case '物主':
       case '物理主':
@@ -40,6 +40,13 @@ export class wiki_replace extends plugin {
       case '开拓者•存护':
       case '开拓者·存护':
         keys = ['8003','8004']
+        break
+      case '虚数主':
+      case '同谐主':
+      case '开拓者同谐':
+      case '开拓者•同谐':
+      case '开拓者·同谐':
+        keys = ['8005','8006']
         break
       default:
         keys = keys;
