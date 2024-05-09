@@ -49,6 +49,10 @@ export default function (staticIdx, keyIdx) {
           }
         }
       } 
+    ],
+    为了明日的旅途: [
+      staticIdx(1, 'atkPct'),
+      keyIdx('装备者释放终结技后，造成的伤害提高[dmg]%', 'dmg', 2)
     ]
   }
 }
