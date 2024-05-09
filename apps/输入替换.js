@@ -1,6 +1,8 @@
 import { Data } from '#miao'
 import { MysApi } from '#miao.models'
+import { Config } from '../components/index.js'
 
+const expandwiki = Config.getCfg('wiki')?.expandWiki
 const wikiReg = /^#?(?:星铁)?(开拓者.*|(?:存护|毁灭|同谐|火|物理?|虚数)主|主角|星|琼|穹)(面板|面版|圣遗物|伤害|武器)(.*)/
 
 export class wiki_replace extends plugin {
@@ -14,6 +16,7 @@ export class wiki_replace extends plugin {
   }
 
   async accept(e) {
+    if (!expandwiki) return false
     let msg = wikiReg.exec(e.msg)
     if (!msg) return false
     if (/开拓者.*|(存护|毁灭|同谐|火|物理?|虚数)主|星|琼|穹/.test(msg[1]) ) e.game = 'sr'
