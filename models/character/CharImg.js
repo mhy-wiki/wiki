@@ -139,6 +139,7 @@ const CharImg = {
   getImgsSr (char) {
     let fileType = 'webp'
     let name = char.name
+    if (char.id == 8001 || char.id == 8003 || char.id == 8005) name = `${name}男`
     let nPath = `/meta-sr/character/${name}/`
     if (fs.existsSync(`${rPath}/${nPath}`)) {
       nPath = `../../wiki/resources/meta-sr/character/${name}/`
