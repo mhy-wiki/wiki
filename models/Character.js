@@ -32,7 +32,7 @@ class Character extends Base {
     }
     // 设置数据
     this._id = id
-    this.name = name
+    this.name = /开拓者/.test(name) ? name.replace(/男/g, '') : name
     this.game = game
     if (!this.isCustom) {
       let meta = Meta.getData(game, 'char', name)
@@ -326,8 +326,6 @@ class Character extends Base {
 
   getArtisCfg () {
     if (!this._artisRule && this._artisRule !== false) {
-      let name = this.name
-      if (/男/.test(name)) this.name = name.replace(/男/g, '')
       this._artisRule = CharCfg.getArtisCfg(this)
     }
     return this._artisRule

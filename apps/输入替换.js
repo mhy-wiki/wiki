@@ -61,7 +61,9 @@ export class wiki_replace extends plugin {
     }
     let arr = key.filter(i => keys.includes(i))
     if (!arr[0]) return false
-    e.original_msg = e.msg = json.avatars[arr[0]].name + msg[2] +msg[3]
+    let name = json.avatars[arr[0]].name
+    if (arr == 8001 || arr == 8003 || arr == 8005) name = `${name}男`
+    e.original_msg = e.msg = name + msg[2] +msg[3]
     return false
   }
 }
