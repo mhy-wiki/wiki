@@ -1220,7 +1220,7 @@
   "8001": {
     "id": 8001,
     "key": "trailblazer",
-    "name": "开拓者•毁灭男",
+    "name": "开拓者物理男",
     "star": 5,
     "elem": "物理",
     "weapon": "毁灭",
@@ -1244,7 +1244,7 @@
   "8002": {
     "id": 8002,
     "key": "trailblazer",
-    "name": "开拓者•毁灭",
+    "name": "开拓者物理",
     "star": 5,
     "elem": "物理",
     "weapon": "毁灭",
@@ -1268,7 +1268,7 @@
   "8003": {
     "id": 8003,
     "key": "trailblazer",
-    "name": "开拓者•存护男",
+    "name": "开拓者火男",
     "star": 5,
     "elem": "火",
     "weapon": "存护",
@@ -1292,7 +1292,7 @@
   "8004": {
     "id": 8004,
     "key": "trailblazer",
-    "name": "开拓者•存护",
+    "name": "开拓者火",
     "star": 5,
     "elem": "火",
     "weapon": "存护",
@@ -1316,7 +1316,7 @@
   "8005": {
     "id": 8005,
     "key": "trailblazer",
-    "name": "开拓者•同谐男",
+    "name": "开拓者虚数男",
     "star": 5,
     "elem": "虚数",
     "weapon": "同谐",
@@ -1340,7 +1340,7 @@
   "8006": {
     "id": 8006,
     "key": "trailblazer",
-    "name": "开拓者•同谐",
+    "name": "开拓者虚数",
     "star": 5,
     "elem": "虚数",
     "weapon": "同谐",

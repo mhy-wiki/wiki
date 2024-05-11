@@ -13,7 +13,8 @@ import CharId from '../../miao-plugin/models/character/CharId.js'
 import CharCfg from '../../miao-plugin/models/character/CharCfg.js'
 import CharMeta from '../../miao-plugin/models/character/CharMeta.js'
 import CharTalent from '../../miao-plugin/models/character/CharTalent.js'
-import { wikiPath } from '../components/index.js';
+
+import { wikiPath } from '../components/index.js';
 
 let metaKey = 'abbr,star,elem,weapon,talentId,talentCons,eta'.split(',')
 const detailKey = 'title,allegiance,birth,astro,desc,cncv,jpcv,costume,baseAttr,growAttr,materials,talent,talentData,cons,passive,attr,sp'.split(',')
@@ -281,7 +282,7 @@ class Character extends Base {
     }
     if (!this._imgs[cacheId]) {
       if (this.isSr) {
-        this._imgs[cacheId] = CharImg.getImgsSr(this.name, this.talentCons)
+        this._imgs[cacheId] = CharImg.getImgsSr(this)
       } else {
         this._imgs[cacheId] = CharImg.getImgs(this.name, costumeIdx, this.isTraveler ? this.elem : '', this.weaponType, this.talentCons)
       }
@@ -325,6 +326,8 @@ class Character extends Base {
 
   getArtisCfg () {
     if (!this._artisRule && this._artisRule !== false) {
+      let name = this.name
+      if (/男/.test(name)) this.name = name.replace(/男/g, '')
       this._artisRule = CharCfg.getArtisCfg(this)
     }
     return this._artisRule
