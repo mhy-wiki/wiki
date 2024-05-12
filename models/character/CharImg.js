@@ -61,36 +61,29 @@ const CharImg = {
     for (let imgPath of imgPaths) {
       let ret = []
       for (let type of ['webp', 'png']) {
-        if (fs.existsSync(`${rPath}/${imgPath}.${type}`)) {
-          ret.push(imgPath + `${type}`)
+        if (fs.existsSync(`${mPath}/${imgPath}.${type}`)) {
+          ret.push(imgPath + `.${type}`)
         }
       }
-      if (!fs.existsSync(`${rPath}/${imgPath}`)) {
-          let imgs = fs.readdirSync(`${mPath}/${imgPath}`).filter((file) => {
-            return /\.(png|webp)$/.test(file)
-          })
-        } else {
-          let imgs = fs.readdirSync(`${rPath}/${imgPath}`).filter((file) => {
-            return /\.(png|webp)$/.test(file)
-          })
-        }
+      if (fs.existsSync(`${mPath}/${imgPath}`)) {
+        let imgs = fs.readdirSync(`${mPath}/${imgPath}`).filter((file) => {
+          return /\.(png|webp)$/.test(file)
+        })
         for (let img of imgs) {
           ret.push(`${imgPath}/${encodeURIComponent(img)}`)
+        }
       }
       if (ret.length > 0) {
         return lodash.sample(ret)
       }
     }
     for (let defImg of defImgs) {
-      if (fs.existsSync(`${rPath}/${defImg}`)) {
-        defpath = `${rPath}/${defImg}`
-        return defpath;
-      } else {
-        defpath = `${mPath}/${defImg}`
-        return defpath;
+      if (fs.existsSync(`${mPath}/${defImg}`)) {
+        return defImg
       }
     }
   },
+
 
   // 获取角色的图像资源数据
   getImgs (name, costumeIdx = '', travelerElem = '', weaponType = 'sword', talentCons) {

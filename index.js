@@ -1,7 +1,11 @@
-import fs from 'node:fs';
+import fs from 'node:fs'
+import Profile from './models/Profile.js'
 import { Version } from './components/index.js'
 
 if (!global.segment) global.segment = (await import('oicq')).segment
+
+/** 星铁主角面板图预加载 */
+Profile.init()
 
 const files = fs.readdirSync('./plugins/wiki/apps').filter(file => file.endsWith('.js'))
 
