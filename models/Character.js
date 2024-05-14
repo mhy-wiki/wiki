@@ -32,7 +32,7 @@ class Character extends Base {
     }
     // 设置数据
     this._id = id
-    this.name = /开拓者/.test(name) ? name.replace(/男/g, '') : name
+    this.name = name
     this.game = game
     if (!this.isCustom) {
       let meta = Meta.getData(game, 'char', name)
@@ -90,6 +90,11 @@ class Character extends Base {
   // 是否是旅行者
   get isTraveler () {
     return this.isGs && CharId.isTraveler(this.id)
+  }
+
+  // 是否是开拓者
+  get isTrailblazer () {
+    return this.isSr && CharId.isTrailblazer(this.id)
   }
 
   get weaponType () {
@@ -282,7 +287,7 @@ class Character extends Base {
     }
     if (!this._imgs[cacheId]) {
       if (this.isSr) {
-        this._imgs[cacheId] = CharImg.getImgsSr(this)
+        this._imgs[cacheId] = CharImg.getImgsSr(this.name, this.talentCons)
       } else {
         this._imgs[cacheId] = CharImg.getImgs(this.name, costumeIdx, this.isTraveler ? this.elem : '', this.weaponType, this.talentCons)
       }

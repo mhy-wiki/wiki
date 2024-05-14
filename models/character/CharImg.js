@@ -129,10 +129,8 @@ const CharImg = {
   },
 
   // 获取星铁角色图像资源
-  getImgsSr (char) {
+  getImgsSr (name, talentCons) {
     let fileType = 'webp'
-    let name = char.name
-    if (char.id == 8001 || char.id == 8003 || char.id == 8005) name = `${name}男`
     let nPath = `/meta-sr/character/${name}/`
     if (fs.existsSync(`${rPath}/${nPath}`)) {
       nPath = `../../wiki/resources/meta-sr/character/${name}/`
@@ -162,8 +160,8 @@ const CharImg = {
     }
     imgs.banner = '/meta-sr/character/common/imgs/banner.webp'
     imgs.card = '/meta-sr/character/common/imgs/card.webp'
-    imgs.cons3 = imgs[char.talentCons[3]]
-    imgs.cons5 = imgs[char.talentCons[5]]
+    imgs.cons3 = imgs[talentCons[3]]
+    imgs.cons5 = imgs[talentCons[5]]
     return imgs
   }
 }
