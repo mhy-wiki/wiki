@@ -6,7 +6,7 @@ let wikiPath = {
    * @param _path - 插件名/文件(夹)路径
    * @param { default[false] } isres - 是否为resources目录
    */
-  getDir(_path, isres = false) {
+  getDir (_path, isres = false) {
     return path.join(process.cwd().replace(/\\/g, '/'), 'plugins', _path, isres ? 'resources' : '')
   }
 }

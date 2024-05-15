@@ -14,7 +14,7 @@ import CharCfg from '../../miao-plugin/models/character/CharCfg.js'
 import CharMeta from '../../miao-plugin/models/character/CharMeta.js'
 import CharTalent from '../../miao-plugin/models/character/CharTalent.js'
 
-import { wikiPath } from '../components/index.js';
+import { wikiPath } from '../components/index.js'
 
 let metaKey = 'abbr,star,elem,weapon,talentId,talentCons,eta'.split(',')
 const detailKey = 'title,allegiance,birth,astro,desc,cncv,jpcv,costume,baseAttr,growAttr,materials,talent,talentData,cons,passive,attr,sp'.split(',')

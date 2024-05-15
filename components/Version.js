@@ -7,7 +7,7 @@ let changelogs = []
 let currentVersion
 let versionCount = 4
 
-const _logPath =  wikiPath.getDir('wiki/CHANGELOG.md')
+const _logPath = wikiPath.getDir('wiki/CHANGELOG.md')
 
 let packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'))
 
@@ -15,7 +15,7 @@ const getLine = function (line) {
   line = line.replace(/(^\s*\*|\r)/g, '')
   line = line.replace(/\s*`([^`]+`)/g, '<span class="cmd">$1')
   line = line.replace(/`\s*/g, '</span>')
-  line = line.replace(/\s*\*\*([^\*]+\*\*)/g, '<span class="strong">$1')
+  line = line.replace(/\s*\*\*([^*]+\*\*)/g, '<span class="strong">$1')
   line = line.replace(/\*\*\s*/g, '</span>')
   line = line.replace(/ⁿᵉʷ/g, '<span class="new"></span>')
   return line
@@ -26,7 +26,7 @@ try {
     logs = fs.readFileSync(_logPath, 'utf8') || ''
     logs = logs.split('\n')
 
-    let temp = {};
+    let temp = {}
     let lastLine = {}
     lodash.forEach(logs, (line) => {
       if (versionCount <= -1) {
@@ -75,10 +75,9 @@ if (packageJson.name === 'miao-yunzai') {
   yunzaiName = 'Miao-Yunzai'
 } else if (packageJson.name === 'trss-yunzai') {
   yunzaiName = 'TRSS-Yunzai'
-} 
-else if (packageJson.name === 'a-yunzai') {
+} else if (packageJson.name === 'a-yunzai') {
   yunzaiName = 'A-Yunzai'
-} 
+}
 
 let Version = {
   get version () {

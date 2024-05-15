@@ -3,8 +3,8 @@ import { Config } from '../components/index.js'
 
 const expandwiki = Config.getCfg('wiki')?.expandWiki
 
-export class wiki extends plugin{
-  constructor() {
+export class wiki extends plugin {
+  constructor () {
     super({
       name: '喵喵:角色资料',
       dsc: '喵喵:角色资料',
@@ -16,16 +16,16 @@ export class wiki extends plugin{
           fnc: 'wiki'
         }
       ]
-    }) 
+    })
   }
 
-  accept(e) {
+  accept (e) {
     if (!expandwiki) return false
     e.original_msg = e.original_msg || e.msg
     if (CharWiki.check(e, e.original_msg) === true) return true
   }
 
-  async wiki(e) {
+  async wiki (e) {
     if (!expandwiki) return false
     await CharWiki.wiki(e)
   }

@@ -1,5 +1,5 @@
 import lodash from 'lodash'
-import { Common } from '#miao'
+import { Cfg, Common } from '#miao'
 import CharTalent from './CharTalent.js'
 import { Character } from '#miao.models'
 import CharWikiData from '../../../miao-plugin/apps/wiki/CharWikiData.js'
@@ -7,7 +7,7 @@ import CharWikiData from '../../../miao-plugin/apps/wiki/CharWikiData.js'
 const wikiReg = /^(?:#)?(?:星铁)?(.*)(天赋|技能|行迹|命座|命之座|星魂|资料|图鉴|照片|写真|图片|图像)$/
 
 const CharWiki = {
-  check(e) {
+  check (e) {
     let msg = e.original_msg || e.msg
     if (!e.msg) {
       return false
@@ -33,7 +33,7 @@ const CharWiki = {
     if (['cons', 'talent'].includes(mode) && !Common.cfg('charWikiTalent')) {
       return false
     }
-    let char = Character.get(ret[1], e.game);
+    let char = Character.get(ret[1], e.game)
     if (!char || (char.isCustom)) {
       return false
     }
@@ -43,7 +43,7 @@ const CharWiki = {
     return true
   },
 
-  async wiki(e) {
+  async wiki (e) {
     let mode = e.wikiMode
     let char = e.char
 
@@ -82,7 +82,7 @@ const CharWiki = {
     return await CharTalent.render(e, mode, char)
   },
 
-  async render({ e, char }) {
+  async render ({ e, char }) {
     let data = char.getData()
     lodash.extend(data, char.getData('weaponTypeName,elemName'))
     // 命座持有

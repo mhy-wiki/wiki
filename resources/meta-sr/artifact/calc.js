@@ -272,17 +272,17 @@ export default {
     }]
   },
   荡除蠹灾的铁骑: {
-    2: attr('stance', 16), 
+    2: attr('stance', 16),
     4: {
       title: '基于佩戴者的击破特攻，造成的伤害忽略敌人[ignore]%防御力',
       sort: 9,
       data: {
-        ignore: ({ attr }) => attr.cdmg >= 250 ? 18 : ( attr.cdmg >= 150 ? 10 : 0 ) 
+        ignore: ({ attr }) => attr.cdmg >= 250 ? 18 : (attr.cdmg >= 150 ? 10 : 0)
       }
     }
   },
   风举云飞的勇烈: {
-    2: attr('atkPct', 12), 
+    2: attr('atkPct', 12),
     4: {
       title: '装备者发动追加攻击时，造成伤害提升[dmg]%',
       data: {
@@ -302,7 +302,7 @@ export default {
     2: {
       title: '我方角色施放追加攻击时，追加攻击造成的伤害提高[tDmg]%并额外使装备者的暴击伤害提高[cdmg]%',
       data: {
-        tDmg: 4 * 6 ,
+        tDmg: 4 * 6,
         cdmg: 24
       }
     }

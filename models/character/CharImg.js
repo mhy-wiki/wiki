@@ -84,7 +84,6 @@ const CharImg = {
     }
   },
 
-
   // 获取角色的图像资源数据
   getImgs (name, costumeIdx = '', travelerElem = '', weaponType = 'sword', talentCons) {
     let fileType = 'webp'
@@ -150,7 +149,7 @@ const CharImg = {
     for (let i = 1; i <= 3; i++) {
       add(`tree${i}`, `imgs/tree-${i}`)
     }
-    for (let key of ['a', 'e', 'q', 't', 'z', 'a2', 'e2' ,'q2']) {
+    for (let key of ['a', 'e', 'q', 't', 'z', 'a2', 'e2', 'q2']) {
       add(key, `imgs/talent-${key}`)
     }
     for (let i = 1; i <= 6; i++) {

@@ -80,7 +80,7 @@ export default function (staticIdx, keyIdx) {
         return {
           title: '装备者暴击伤害超过120%，追加攻击造成的伤害提升[tDmg]%，普通攻击无视敌人[aIgnore]%的防御力',
           data: {
-            tDmg: ({ attr }) => attr.cdmg >= 120 ? Math.min( Math.floor( ( attr.cdmg - 120 ) / 20 ) * tables[2] , tables[2] * 4) : 0 ,
+            tDmg: ({ attr }) => attr.cdmg >= 120 ? Math.min(Math.floor((attr.cdmg - 120) / 20) * tables[2], tables[2] * 4) : 0,
             aIgnore: ({ attr }) => attr.cdmg >= 200 ? tables[3] : 0
           }
         }
@@ -92,7 +92,7 @@ export default function (staticIdx, keyIdx) {
         return {
           title: '释放攻击击中敌方目标，使攻击力提升[atkPct]%，击中3名或3名以上敌方目标使速度提高[speedPct]%',
           data: {
-            atkPct: tables[2] * 5 ,
+            atkPct: tables[2] * 5,
             speedPct: tables[3]
           }
         }

@@ -1,11 +1,11 @@
 import fs from 'node:fs'
+import lodash from 'lodash'
 import { Base } from '#miao.models'
 import { Data, Format, Meta } from '#miao'
-import { wikiPath } from '../components/index.js';
+
+import { wikiPath } from '../components/index.js'
 
 let weaponSet
-
-import lodash from 'lodash'
 
 class Weapon extends Base {
   constructor (meta, game = 'gs') {
@@ -57,8 +57,8 @@ class Weapon extends Base {
       return {
         icon: `../../wiki/resources/${iPath}/icon.webp`,
         icon2: `../../wiki/resources/${iPath}/${this.isGs ? 'awaken.webp' : 'icon-s.webp'}`,
-        gacha: `../../wiki/resources/${iPath}/${this.isGs ? 'gacha.webp' : 'splash.webp'}`      
-       }
+        gacha: `../../wiki/resources/${iPath}/${this.isGs ? 'gacha.webp' : 'splash.webp'}`
+      }
     }
     return {
       icon: `${iPath}/icon.webp`,
@@ -225,7 +225,7 @@ class Weapon extends Base {
     }
     let skill = this.detail.skill
     let { desc, tables } = skill
-    let reg = /\$(\d)\[(i|f1|f2)\](\%?)/g
+    let reg = /\$(\d)\[(i|f1|f2)\](%?)/g
     let ret
     while ((ret = reg.exec(desc)) !== null) {
       let [txt, idx, format, pct] = ret
@@ -332,7 +332,6 @@ class Weapon extends Base {
         if (!tables[ds.idx]) return true
         ds.data[ds.key] = tables[ds.idx]
       } else if (ds.refine) {
-
         lodash.forEach(ds.refine, (r, key) => {
           ds.data[key] = ({ refine }) => r[refine] * (ds.buffCount || 1)
         })

@@ -1,8 +1,8 @@
 import { Common } from '#miao'
 import { Version } from '../components/index.js'
 
-export class wikiVersion extends plugin{
-  constructor() {
+export class wikiVersion extends plugin {
+  constructor () {
     super({
       name: '扩展wiki版本',
       dsc: 'wikiVersion',
@@ -14,7 +14,7 @@ export class wikiVersion extends plugin{
           fnc: 'version'
         }
       ]
-    }) 
+    })
   }
 
   async version (e) {

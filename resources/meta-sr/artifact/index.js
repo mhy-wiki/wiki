@@ -12,7 +12,7 @@ import { usefulAttr } from './artis-mark.js'
 // import { usefulAttr } from '../../../../miao-plugin/resources/meta-sr/artifact/artis-mark.js'
 
 let data = Data.readJSON('resources/meta-sr/artifact/data.json', 'wiki')
-if (!fs.existsSync(`./plugins/wiki/resources/meta-sr/artifact/data.json`)) {
+if (!fs.existsSync('./plugins/wiki/resources/meta-sr/artifact/data.json')) {
   data = Data.readJSON('resources/meta-sr/artifact/data.json', 'miao')
 }
 let metaData = Data.readJSON('/resources/meta-sr/artifact/meta.json', 'miao')

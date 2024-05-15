@@ -15,7 +15,7 @@ let setMeta = Meta.create('gs', 'artiSet')
 let artiMeta = Meta.create('gs', 'arti')
 
 let artis = Data.readJSON('resources/meta-gs/artifact/data.json', 'wiki')
-if (!fs.existsSync(`./plugins/wiki/resources/meta-gs/artifact/data.json`)) {
+if (!fs.existsSync('./plugins/wiki/resources/meta-gs/artifact/data.json')) {
   artis = Data.readJSON('resources/meta-gs/artifact/data.json', 'miao')
 }
 let setIds = {}
@@ -47,7 +47,12 @@ setMeta.addAbbr(setAbbr)
 setMeta.addAlias(setAlias)
 setMeta.addAlias(setIds)
 artiMeta.addMeta({
-  mainAttr, subAttr, attrMap, attrNameMap, mainIdMap, attrIdMap,
+  mainAttr,
+  subAttr,
+  attrMap,
+  attrNameMap,
+  mainIdMap,
+  attrIdMap,
   artiBuffs: calc,
   usefulAttr
 })
@@ -55,4 +60,3 @@ artiMeta.addMeta({
 setMeta.addMeta({
   artiBuffs: calc
 })
-

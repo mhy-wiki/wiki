@@ -4,7 +4,7 @@ import chokidar from 'chokidar'
 import { wikiPath } from './index.js'
 
 class Config {
-  constructor() {
+  constructor () {
     /** 默认设置 */
     this.defPath = wikiPath.getDir('wiki/config/defSet/')
     this.defSet = {}
@@ -20,9 +20,9 @@ class Config {
   }
 
   /** 初始化配置 */
-  initCfg() {
+  initCfg () {
     const files = fs.readdirSync(this.defPath).filter(file => file.endsWith('.yaml'))
-    if (!fs.existsSync(`${this.configPath}`)) fs.mkdirSync(`${this.configPath}`);
+    if (!fs.existsSync(`${this.configPath}`)) fs.mkdirSync(`${this.configPath}`)
     for (let file of files) {
       if (!fs.existsSync(`${this.configPath}${file}`)) {
         fs.copyFileSync(`${this.defPath}${file}`, `${this.configPath}${file}`)
@@ -35,7 +35,7 @@ class Config {
    * 获取配置文件内容转JSON
    * @param filename - 文件名
    */
-  getCfg(filename) {
+  getCfg (filename) {
     try {
       if (!fs.existsSync(`${this.configPath}${filename}.yaml`)) { return false }
       return YAML.parse(fs.readFileSync(`${this.configPath}${filename}.yaml`, 'utf8'))
@@ -46,23 +46,14 @@ class Config {
   }
 
   /**
-   * 
-   * @param filename - 文件名
-   * @param item - 配置项
-   * @param data - 写入配置
-   */
-  changeCfg(filename, item, data) {
-    const config = this.getCfg(filename)
-    config[item] = data
-    this.writeCfg(filename, config)
-  }
-
-  /**
    * 写入配置文件
    * @param filename - 文件名
+   * @param item - 配置项
    * @param data - 写入内容
    */
-  writeCfg(filename, data) {
+  changeCfg (filename, item, data) {
+    const config = this.getCfg(filename)
+    config[item] = data
     try {
       if (!fs.existsSync(`${this.configPath}${filename}.yaml`)) return false
       fs.writeFileSync(`${this.configPath}${filename}.yaml`, YAML.stringify(data), 'utf8')
@@ -78,7 +69,7 @@ class Config {
    * @param app
    * @param type
    */
-  watch(file, app, type = 'defSet') {
+  watch (file, app, type = 'defSet') {
     if (this.watcher[type][app]) return
 
     const watcher = chokidar.watch(file)

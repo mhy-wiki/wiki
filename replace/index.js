@@ -18,7 +18,7 @@ import Button from './Button.js'
 for (let game of ['gs', 'sr']) {
   if (game == 'gs') {
     for (let type of ['artifact', 'character', 'material', 'weapon']) {
-      let file = `./plugins/wiki/resources/meta-gs/${type}/index.js`;
+      let file = `./plugins/wiki/resources/meta-gs/${type}/index.js`
       if (fs.existsSync(file)) {
         await import(`file://${process.cwd()}/${file}`)
       } else {
