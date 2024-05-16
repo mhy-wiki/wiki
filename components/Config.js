@@ -56,7 +56,7 @@ class Config {
     config[item] = data
     try {
       if (!fs.existsSync(`${this.configPath}${filename}.yaml`)) return false
-      fs.writeFileSync(`${this.configPath}${filename}.yaml`, YAML.stringify(data), 'utf8')
+      fs.writeFileSync(`${this.configPath}${filename}.yaml`, YAML.stringify(config), 'utf8')
     } catch (error) {
       logger.error(`[${filename}] 写入失败 ${error}`)
       return false
