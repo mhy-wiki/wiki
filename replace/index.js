@@ -1,5 +1,4 @@
 import fs from 'node:fs'
-
 import Base from './Base.js'
 import Character from '../../wiki/models/Character.js'
 import Artifact from '../../wiki/models/Artifact.js'
@@ -14,25 +13,17 @@ import Weapon from '../../wiki/models/Weapon.js'
 import User from './User.js'
 import MysApi from './MysApi.js'
 import Button from './Button.js'
+import { miaoPath, rootPath } from '#miao.path'
 
 for (let game of ['gs', 'sr']) {
-  if (game == 'gs') {
-    for (let type of ['artifact', 'character', 'material', 'weapon']) {
-      let file = `./plugins/wiki/resources/meta-gs/${type}/index.js`
-      if (fs.existsSync(file)) {
-        await import(`file://${process.cwd()}/${file}`)
-      } else {
-        file = `./plugins/miao-plugin/resources/meta-gs/${type}/index.js`
-        await import(`file://${process.cwd()}/${file}`)
-      }
-    }
-  } else {
-    for (let type of ['artifact', 'character', 'weapon']) {
-      let file = `./plugins/wiki/resources/meta-sr/${type}/index.js`
-      if (fs.existsSync(file)) {
-        await import(`file://${process.cwd()}/${file}`)
-      } else {
-        await import(`file://${process.cwd()}/plugins/miao-plugin/resources/meta-sr/${type}/index.js`)
+  for (let type of ['artifact', 'character', 'material', 'weapon']) {
+    let file = `${rootPath}/plugins/wiki/resources/meta-${game}/${type}/index.js`
+    if (!fs.existsSync(file)) file = `${miaoPath}/resources/meta-${game}/${type}/index.js`
+    if (fs.existsSync(file)) {
+      try {
+        await import(`file://${file}`)
+      } catch (e) {
+        console.log(e)
       }
     }
   }
