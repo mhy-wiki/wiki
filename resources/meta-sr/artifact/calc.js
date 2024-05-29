@@ -277,16 +277,16 @@ export default {
       title: '基于佩戴者的击破特攻，造成的伤害忽略敌人[ignore]%防御力',
       sort: 9,
       data: {
-        ignore: ({ attr }) => attr.cdmg >= 250 ? 18 : (attr.cdmg >= 150 ? 10 : 0)
+        ignore: ({ attr }) => attr.cdmg >= 250 ? 15 : (attr.cdmg >= 150 ? 10 : 0)
       }
     }
   },
   风举云飞的勇烈: {
     2: attr('atkPct', 12),
-    4: {
-      title: '装备者发动追加攻击时，造成伤害提升[dmg]%',
+    4: [attr('cpct', 6), {
+      title: '装备者发动追加攻击时，使终结技造成伤害提升[dmg]%',
       data: {
-        dmg: 20 * 2
+        qDmg: 30
       }
     }
   },
@@ -302,8 +302,8 @@ export default {
     2: {
       title: '我方角色施放追加攻击时，追加攻击造成的伤害提高[tDmg]%并额外使装备者的暴击伤害提高[cdmg]%',
       data: {
-        tDmg: 4 * 6,
-        cdmg: 24
+        tDmg: 5 * 5,
+        cdmg: 25
       }
     }
   }
