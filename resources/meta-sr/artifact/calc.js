@@ -288,7 +288,7 @@ export default {
       data: {
         qDmg: 30
       }
-    }
+    }]
   },
   劫火莲灯铸炼宫: {
     2: [attr('speedPct', 6), {
