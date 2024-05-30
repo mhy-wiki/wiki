@@ -284,7 +284,7 @@ export default {
   风举云飞的勇烈: {
     2: attr('atkPct', 12),
     4: [attr('cpct', 6), {
-      title: '装备者发动追加攻击时，使终结技造成伤害提升[dmg]%',
+      title: '装备者发动追加攻击时，使终结技造成伤害提升[qDmg]%',
       data: {
         qDmg: 30
       }
