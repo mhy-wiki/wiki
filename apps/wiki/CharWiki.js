@@ -1,13 +1,14 @@
-import lodash from 'lodash'
-import { Cfg, Common } from '#miao'
-import CharTalent from './CharTalent.js'
-import { Character } from '#miao.models'
-import CharWikiData from '../../../miao-plugin/apps/wiki/CharWikiData.js'
+/* eslint-disable import/no-unresolved */
+import lodash from "lodash"
+import { Cfg, Common } from "#miao"
+import CharTalent from "./CharTalent.js"
+import { Character } from "#miao.models"
+import CharWikiData from "../../../miao-plugin/apps/wiki/CharWikiData.js"
 
 const wikiReg = /^(?:#)?(?:星铁)?(.*)(天赋|技能|行迹|命座|命之座|星魂|资料|图鉴|照片|写真|图片|图像)$/
 
 const CharWiki = {
-  check (e) {
+  check(e) {
     let msg = e.original_msg || e.msg
     if (!e.msg) {
       return false
@@ -16,21 +17,21 @@ const CharWiki = {
     if (!ret || !ret[1] || !ret[2]) {
       return false
     }
-    let mode = 'talent'
+    let mode = "talent"
     if (/(命|星魂)/.test(ret[2])) {
-      mode = 'cons'
+      mode = "cons"
     } else if (/(图鉴|资料)/.test(ret[2])) {
-      mode = 'wiki'
-      if (!Common.cfg('charWiki')) {
+      mode = "wiki"
+      if (!Common.cfg("charWiki")) {
         return false
       }
     } else if (/图|画|写真|照片/.test(ret[2])) {
-      mode = 'pic'
-      if (!Common.cfg('charPic')) {
+      mode = "pic"
+      if (!Common.cfg("charPic")) {
         return false
       }
     }
-    if (['cons', 'talent'].includes(mode) && !Common.cfg('charWikiTalent')) {
+    if ([ "cons", "talent" ].includes(mode) && !Common.cfg("charWikiTalent")) {
       return false
     }
     let char = Character.get(ret[1], e.game)
@@ -38,43 +39,43 @@ const CharWiki = {
       return false
     }
     e.wikiMode = mode
-    e.msg = '#喵喵扩展WIKI'
+    e.msg = "#喵喵扩展WIKI"
     e.char = char
     return true
   },
 
-  async wiki (e) {
+  async wiki(e) {
     let mode = e.wikiMode
     let char = e.char
 
-    if (mode === 'pic') {
-      let img = char.getCardImg(Cfg.get('charPicSe', false), false)
+    if (mode === "pic") {
+      let img = char.getCardImg(Cfg.get("charPicSe", false), false)
       if (img && img.img) {
         e.reply(segment.image(`file://${process.cwd()}/plugins/miao-plugin/resources/${img.img}`))
       } else {
-        e.reply('暂无图片')
+        e.reply("暂无图片")
       }
       return true
     }
     if (char.isCustom) {
-      if (mode === 'wiki') {
+      if (mode === "wiki") {
         return false
       }
-      e.reply('暂不支持自定义角色')
+      e.reply("暂不支持自定义角色")
       return true
     }
-    if (!char.isRelease && Cfg.get('notReleasedData') === false) {
-      e.reply('未实装角色资料已禁用...')
+    if (!char.isRelease && Cfg.get("notReleasedData") === false) {
+      e.reply("未实装角色资料已禁用...")
       return true
     }
 
-    if (mode === 'wiki') {
-      if (char.source === 'amber') {
-        e.reply('暂不支持该角色图鉴展示')
+    if (mode === "wiki") {
+      if (char.source === "amber") {
+        e.reply("暂不支持该角色图鉴展示")
         return true
       }
       if (char.isSr) {
-        e.reply('暂不支持星铁角色')
+        e.reply("暂不支持星铁角色")
         return true
       }
       return await this.render({ e, char })
@@ -82,13 +83,13 @@ const CharWiki = {
     return await CharTalent.render(e, mode, char)
   },
 
-  async render ({ e, char }) {
+  async render({ e, char }) {
     let data = char.getData()
-    lodash.extend(data, char.getData('weaponTypeName,elemName'))
+    lodash.extend(data, char.getData("weaponTypeName,elemName"))
     // 命座持有
     let holding = await CharWikiData.getHolding(char.id)
     let usage = await CharWikiData.getUsage(char.id)
-    return await Common.render('wiki/character-wiki', {
+    return await Common.render("wiki/character-wiki", {
       data,
       attr: char.getAttrList(),
       detail: char.getDetail(),

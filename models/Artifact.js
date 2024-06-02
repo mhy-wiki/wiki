@@ -1,15 +1,16 @@
+/* eslint-disable import/no-unresolved */
 /*
 * 圣遗物
 * */
-import fs from 'node:fs'
-import { Meta } from '#miao'
-import { Base, ArtifactSet } from '#miao.models'
-import ArtisMark from '../../miao-plugin/models/artis/ArtisMark.js'
-import ArtisAttr from '../../miao-plugin/models/artis/ArtisAttr.js'
-import { wikiPath } from '../components/index.js'
+import fs from "node:fs"
+import { Meta } from "#miao"
+import { Base, ArtifactSet } from "#miao.models"
+import ArtisMark from "../../miao-plugin/models/artis/ArtisMark.js"
+import ArtisAttr from "../../miao-plugin/models/artis/ArtisAttr.js"
+import { wikiPath } from "../components/index.js"
 
 class Artifact extends Base {
-  constructor (data, game = 'gs') {
+  constructor(data, game = "gs") {
     if (!data) {
       return false
     }
@@ -20,35 +21,35 @@ class Artifact extends Base {
       return cache
     }
     this.game = game
-    this.id = data.id || ''
+    this.id = data.id || ""
     this.name = data.name
     this.meta = data
     return this._cache()
   }
 
-  get artiSet () {
+  get artiSet() {
     return ArtifactSet.get(this.set, this.game)
   }
 
-  get setName () {
+  get setName() {
     return this.set
   }
 
-  get abbr () {
+  get abbr() {
 
   }
 
-  get img () {
+  get img() {
     let iPath = this.isGs
       ? `meta-gs/artifact/imgs/${this.setName}/${this.idx}.webp`
       : `meta-sr/artifact/${this.setName}/arti-${this.idx}.webp`
-    if (fs.existsSync(`${wikiPath.getDir('wiki', true)}/${iPath}`)) {
+    if (fs.existsSync(`${wikiPath.getDir("wiki", true)}/${iPath}`)) {
       return `../../wiki/resources/${iPath}`
     }
     return iPath
   }
 
-  static get (name, game = 'gs') {
+  static get(name, game = "gs") {
     if (!name) {
       return false
     }
@@ -57,38 +58,38 @@ class Artifact extends Base {
       return Artifact.get(name.id || name.name, name.game || game)
     }
     // 兼容圣遗物ID获取
-    if (game === 'gs' && /^\d{5}$/.test(name)) {
+    if (game === "gs" && /^\d{5}$/.test(name)) {
       name = name.toString()
       let artiSet = ArtifactSet.get(name)
       if (artiSet) {
-        return artiSet.getArti([4, 2, 5, 1, 3][name[3] - 1])
+        return artiSet.getArti([ 4, 2, 5, 1, 3 ][name[3] - 1])
       }
     }
     // 根据名字查询
-    let data = Meta.getData(game, 'arti', name)
+    let data = Meta.getData(game, "arti", name)
     if (data) {
       return new Artifact(data, game)
     }
     return false
   }
 
-  static getSetNameByArti (name) {
+  static getSetNameByArti(name) {
     let arti = Artifact.get(name)
     if (arti) {
       return arti.setName
     }
-    return ''
+    return ""
   }
 
-  static getArtisKeyTitle (game = 'gs') {
+  static getArtisKeyTitle(game = "gs") {
     return ArtisMark.getKeyTitleMap(game)
   }
 
-  getStarById (id) {
-    return this.meta.ids[id] || ''
+  getStarById(id) {
+    return this.meta.ids[id] || ""
   }
 
-  getIdByStar (star = 5) {
+  getIdByStar(star = 5) {
     let ids = this.meta.ids || {}
     for (let key in ids) {
       if (ids[key] * 1 === star) {
@@ -98,7 +99,7 @@ class Artifact extends Base {
   }
 
   // 获取圣遗物属性数据
-  getAttrData (arti, idx = 1, game = 'gs') {
+  getAttrData(arti, idx = 1, game = "gs") {
     return ArtisAttr.getData(arti, idx, game)
   }
 }

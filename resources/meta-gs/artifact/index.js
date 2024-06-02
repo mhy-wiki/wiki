@@ -1,22 +1,23 @@
-import fs from 'node:fs'
-import lodash from 'lodash'
-import { Data, Meta } from '#miao'
-import { mainAttr, subAttr, attrMap, attrNameMap, mainIdMap, attrIdMap } from '../../../../miao-plugin/resources/meta-gs/artifact/extra.js'
+/* eslint-disable import/no-unresolved */
+import fs from "node:fs"
+import lodash from "lodash"
+import { Data, Meta } from "#miao"
+import { mainAttr, subAttr, attrMap, attrNameMap, mainIdMap, attrIdMap } from "../../../../miao-plugin/resources/meta-gs/artifact/extra.js"
 
 // import calc from './calc.js'
 // import { usefulAttr } from './artis-mark.js'
 // import { setAlias, setAbbr } from './alias.js'
 
-import calc from '../../../../miao-plugin/resources/meta-gs/artifact/calc.js'
-import { usefulAttr } from '../../../../miao-plugin/resources/meta-gs/artifact/artis-mark.js'
-import { setAlias, setAbbr } from '../../../../miao-plugin/resources/meta-gs/artifact/alias.js'
+import calc from "../../../../miao-plugin/resources/meta-gs/artifact/calc.js"
+import { usefulAttr } from "../../../../miao-plugin/resources/meta-gs/artifact/artis-mark.js"
+import { setAlias, setAbbr } from "../../../../miao-plugin/resources/meta-gs/artifact/alias.js"
 
-let setMeta = Meta.create('gs', 'artiSet')
-let artiMeta = Meta.create('gs', 'arti')
+let setMeta = Meta.create("gs", "artiSet")
+let artiMeta = Meta.create("gs", "arti")
 
-let artis = Data.readJSON('resources/meta-gs/artifact/data.json', 'wiki')
-if (!fs.existsSync('./plugins/wiki/resources/meta-gs/artifact/data.json')) {
-  artis = Data.readJSON('resources/meta-gs/artifact/data.json', 'miao')
+let artis = Data.readJSON("resources/meta-gs/artifact/data.json", "wiki")
+if (!fs.existsSync("./plugins/wiki/resources/meta-gs/artifact/data.json")) {
+  artis = Data.readJSON("resources/meta-gs/artifact/data.json", "miao")
 }
 let setIds = {}
 

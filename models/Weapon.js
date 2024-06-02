@@ -1,14 +1,15 @@
-import fs from 'node:fs'
-import lodash from 'lodash'
-import { Base } from '#miao.models'
-import { Data, Format, Meta } from '#miao'
+/* eslint-disable import/no-unresolved */
+import fs from "node:fs"
+import lodash from "lodash"
+import { Base } from "#miao.models"
+import { Data, Format, Meta } from "#miao"
 
-import { wikiPath } from '../components/index.js'
+import { wikiPath } from "../components/index.js"
 
 let weaponSet
 
 class Weapon extends Base {
-  constructor (meta, game = 'gs') {
+  constructor(meta, game = "gs") {
     if (!meta || !meta.name) {
       return false
     }
@@ -26,90 +27,90 @@ class Weapon extends Base {
     return this._cache()
   }
 
-  get title () {
+  get title() {
     return this.name
   }
 
-  get img () {
-    let iPath = `${this.isGs ? 'meta-gs' : 'meta-sr'}/weapon/${this.type}/${this.name}/icon.webp`
-    if (fs.existsSync(`${wikiPath.getDir('wiki', true)}/${iPath}`)) {
+  get img() {
+    let iPath = `${this.isGs ? "meta-gs" : "meta-sr"}/weapon/${this.type}/${this.name}/icon.webp`
+    if (fs.existsSync(`${wikiPath.getDir("wiki", true)}/${iPath}`)) {
       return `../../wiki/resources/${iPath}`
     }
     return `${iPath}`
   }
 
-  get abbr () {
+  get abbr() {
     let name = this.name
     let abbr = this.meta?.abbr
     return name.length <= 4 ? name : (abbr || name)
   }
 
-  get sName () {
+  get sName() {
     let name = this.name
     let abbr = this.meta?.abbr
-    name = name.replaceAll(/[「」]/g, '')
+    name = name.replaceAll(/[「」]/g, "")
     return name.length <= 8 ? name : (abbr || name)
   }
 
-  get imgs () {
-    let iPath = `${this.isGs ? 'meta-gs' : 'meta-sr'}/weapon/${this.type}/${this.name}`
-    if (fs.existsSync(`${wikiPath.getDir('wiki', true)}/${iPath}/icon.webp`)) {
+  get imgs() {
+    let iPath = `${this.isGs ? "meta-gs" : "meta-sr"}/weapon/${this.type}/${this.name}`
+    if (fs.existsSync(`${wikiPath.getDir("wiki", true)}/${iPath}/icon.webp`)) {
       return {
         icon: `../../wiki/resources/${iPath}/icon.webp`,
-        icon2: `../../wiki/resources/${iPath}/${this.isGs ? 'awaken.webp' : 'icon-s.webp'}`,
-        gacha: `../../wiki/resources/${iPath}/${this.isGs ? 'gacha.webp' : 'splash.webp'}`
+        icon2: `../../wiki/resources/${iPath}/${this.isGs ? "awaken.webp" : "icon-s.webp"}`,
+        gacha: `../../wiki/resources/${iPath}/${this.isGs ? "gacha.webp" : "splash.webp"}`
       }
     }
     return {
       icon: `${iPath}/icon.webp`,
-      icon2: `${iPath}/${iPath}/${this.isGs ? 'awaken.webp' : 'icon-s.webp'}`,
-      gacha: `${iPath}/${this.isGs ? 'gacha.webp' : 'splash.webp'}`
+      icon2: `${iPath}/${iPath}/${this.isGs ? "awaken.webp" : "icon-s.webp"}`,
+      gacha: `${iPath}/${this.isGs ? "gacha.webp" : "splash.webp"}`
     }
   }
 
-  get icon () {
+  get icon() {
     return this.img
   }
 
-  get detail () {
+  get detail() {
     return this.getDetail()
   }
 
-  get maxLv () {
+  get maxLv() {
     return this.star <= 2 ? 70 : 90
   }
 
-  get maxPromote () {
+  get maxPromote() {
     return this.star <= 2 ? 4 : 6
   }
 
-  get materials () {
+  get materials() {
     return this.getDetail()?.materials || {}
   }
 
-  get maxAffix () {
+  get maxAffix() {
     if (this.isSr) {
       return 5
     }
     let data = this.detail?.affixData?.datas || {}
-    return (data['0'] && data['0'][4]) ? 5 : 1
+    return (data["0"] && data["0"][4]) ? 5 : 1
   }
 
-  static isWeaponSet (name) {
-    weaponSet = weaponSet || Meta.getMeta('gs', 'weapon', 'weaponSet')
+  static isWeaponSet(name) {
+    weaponSet = weaponSet || Meta.getMeta("gs", "weapon", "weaponSet")
     return weaponSet.includes(name)
   }
 
-  static get (name, game = 'gs', type = '') {
-    let data = Meta.getData(game, 'weapon', name)
+  static get(name, game = "gs", type = "") {
+    let data = Meta.getData(game, "weapon", name)
     if (data) {
       return new Weapon(data, game)
     }
 
-    if (type && game === 'gs') {
-      const { weaponType } = Meta.getMeta(game, 'weapon')
+    if (type && game === "gs") {
+      const { weaponType } = Meta.getMeta(game, "weapon")
       let name2 = name + (weaponType[type] || type)
-      let data = Meta.getData(game, 'weapon', name2)
+      let data = Meta.getData(game, "weapon", name2)
       if (data) {
         return new Weapon(data, game)
       }
@@ -117,8 +118,8 @@ class Weapon extends Base {
     return false
   }
 
-  static async forEach (fn, type = '', game = 'gs') {
-    Meta.forEach(game, 'weapon', async (ds, id) => {
+  static async forEach(fn, type = "", game = "gs") {
+    Meta.forEach(game, "weapon", async(ds, id) => {
       let w = Weapon.get(ds.name)
       if (!w || (type && type !== w.type)) {
         return true
@@ -127,16 +128,16 @@ class Weapon extends Base {
     })
   }
 
-  getDetail () {
+  getDetail() {
     if (this._detail) {
       return this._detail
     }
-    const path = `resources/${this.isGs ? 'meta-gs' : 'meta-sr'}/weapon/${this.type}/${this.name}/data.json`
+    const path = `resources/${this.isGs ? "meta-gs" : "meta-sr"}/weapon/${this.type}/${this.name}/data.json`
     try {
-      if (fs.existsSync(`${wikiPath.getDir('wiki')}/${path}`)) {
-        this._detail = Data.readJSON(`${path}`, 'wiki')
+      if (fs.existsSync(`${wikiPath.getDir("wiki")}/${path}`)) {
+        this._detail = Data.readJSON(`${path}`, "wiki")
       } else {
-        this._detail = Data.readJSON(`${path}`, 'miao')
+        this._detail = Data.readJSON(`${path}`, "miao")
       }
     } catch (e) {
       console.log(e)
@@ -150,7 +151,7 @@ class Weapon extends Base {
    * @param promote 武器突破
    * @returns {{atkBase: number, attr: {value: *, key: *}}|{}|boolean}
    */
-  calcAttr (level, promote = -1) {
+  calcAttr(level, promote = -1) {
     let metaAttr = this.detail?.attr
     if (!metaAttr) {
       return false
@@ -169,7 +170,7 @@ class Weapon extends Base {
 
     let lvLeft = 1
     let lvRight = 20
-    let lvStep = [1, 20, 40, 50, 60, 70, 80, 90]
+    let lvStep = [ 1, 20, 40, 50, 60, 70, 80, 90 ]
     let currPromote = 0
     for (let idx = 0; idx < lvStep.length - 1; idx++) {
       if (promote === -1 || (currPromote === promote)) {
@@ -183,11 +184,11 @@ class Weapon extends Base {
     }
     let wAttr = this?.detail?.attr || {}
     let wAtk = wAttr.atk || {}
-    let valueLeft = wAtk[lvLeft + '+'] || wAtk[lvLeft] || {}
+    let valueLeft = wAtk[lvLeft + "+"] || wAtk[lvLeft] || {}
     let valueRight = wAtk[lvRight] || {}
     let atkBase = valueLeft * 1 + ((valueRight - valueLeft) * (level - lvLeft) / (lvRight - lvLeft))
     let wBonus = wAttr.bonusData || {}
-    valueLeft = wBonus[lvLeft + '+'] || wBonus[lvLeft]
+    valueLeft = wBonus[lvLeft + "+"] || wBonus[lvLeft]
     valueRight = wBonus[lvRight]
     let stepCount = Math.ceil((lvRight - lvLeft) / 5)
     let valueStep = (valueRight - valueLeft) / stepCount
@@ -206,20 +207,20 @@ class Weapon extends Base {
    * @param affix 精炼
    * @returns {{name, desc: *}|{}}
    */
-  getAffixDesc (affix = 1) {
+  getAffixDesc(affix = 1) {
     if (this.isGs) {
       let { text, datas } = this.detail?.affixData || {}
-      let { descFix } = Meta.getMeta('gs', 'weapon')
+      let { descFix } = Meta.getMeta("gs", "weapon")
       let reg = /\$\[(\d)\]/g
       let ret
-      let desc = (affix === 'all') ? text : descFix[this.name] || text || ''
+      let desc = (affix === "all") ? text : descFix[this.name] || text || ""
       while ((ret = reg.exec(desc)) !== null) {
         let idx = ret[1]
-        let value = (affix === 'all') ? datas?.[idx]?.join('</nobr>/<nobr>') : datas?.[idx]?.[affix - 1]
+        let value = (affix === "all") ? datas?.[idx]?.join("</nobr>/<nobr>") : datas?.[idx]?.[affix - 1]
         desc = desc.replaceAll(ret[0], `<nobr>${value}</nobr>`)
       }
       return {
-        name: '',
+        name: "",
         desc
       }
     }
@@ -228,30 +229,30 @@ class Weapon extends Base {
     let reg = /\$(\d)\[(i|f1|f2)\](%?)/g
     let ret
     while ((ret = reg.exec(desc)) !== null) {
-      let [txt, idx, format, pct] = ret
+      let [ txt, idx, format, pct ] = ret
       let value = tables?.[idx]?.[affix - 1]
-      if (pct === '%') {
-        value = Format.pct(value, format === 'f2' ? 2 : 1)
+      if (pct === "%") {
+        value = Format.pct(value, format === "f2" ? 2 : 1)
       } else {
         value = Format.comma(value)
       }
-      if (affix === 'all') {
+      if (affix === "all") {
         let values = []
         for (let i = 0; i < 5; i++) {
           value = tables?.[idx]?.[i]
-          if (pct === '%') {
-            value = Format.pct(value, format === 'f2' ? 2 : 1)
+          if (pct === "%") {
+            value = Format.pct(value, format === "f2" ? 2 : 1)
           } else {
             value = Format.comma(value)
           }
           values.push(value)
         }
-        value = values.join('</nobr>/<nobr>')
+        value = values.join("</nobr>/<nobr>")
       }
       desc = desc.replaceAll(txt, value)
     }
     return {
-      name: skill.name || '',
+      name: skill.name || "",
       desc
     }
   }
@@ -260,15 +261,15 @@ class Weapon extends Base {
    * 获取当前武器Buff配置
    * @returns {*|boolean}
    */
-  getWeaponBuffs () {
+  getWeaponBuffs() {
     let { game } = this
-    let { weaponBuffs } = Meta.getMeta(game, 'weapon')
+    let { weaponBuffs } = Meta.getMeta(game, "weapon")
     let buffs = weaponBuffs[this.id] || weaponBuffs[this.name]
     if (!buffs) {
       return false
     }
     if (lodash.isPlainObject(buffs) || lodash.isFunction(buffs)) {
-      buffs = [buffs]
+      buffs = [ buffs ]
     }
     return buffs
   }
@@ -279,7 +280,7 @@ class Weapon extends Base {
    * @param isStatic
    * @returns {*[]}
    */
-  getWeaponAffixBuffs (affix, isStatic = true) {
+  getWeaponAffixBuffs(affix, isStatic = true) {
     let buffs = this.getWeaponBuffs()
     let ret = []
     let self = this

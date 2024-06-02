@@ -1,19 +1,19 @@
 /**
  * 角色照片及角色图像资源相关
- * */
-import fs from 'node:fs'
-import lodash from 'lodash'
-import sizeOf from 'image-size'
-import { wikiPath } from '../../components/index.js'
+ */
+import fs from "node:fs"
+import lodash from "lodash"
+import sizeOf from "image-size"
+import { wikiPath } from "../../components/index.js"
 
-const rPath = wikiPath.getDir('wiki', true)
-const mPath = wikiPath.getDir('miao-plugin', true)
+const rPath = wikiPath.getDir("wiki", true)
+const mPath = wikiPath.getDir("miao-plugin", true)
 const CharImg = {
 
   // 获取角色的插画
-  getCardImg (names, se = false, def = true) {
+  getCardImg(names, se = false, def = true) {
     let list = []
-    let addImg = function (charImgPath, disable = false) {
+    let addImg = function(charImgPath, disable = false) {
       let dirPath = `./plugins/miao-plugin/resources/${charImgPath}`
 
       if (!fs.existsSync(dirPath)) {
@@ -30,13 +30,13 @@ const CharImg = {
       })
     }
     if (!lodash.isArray(names)) {
-      names = [names]
+      names = [ names ]
     }
     for (let name of names) {
       addImg(`character-img/${name}`)
       addImg(`character-img/${name}/upload`)
       addImg(`character-img/${name}/se`, !se)
-      const plusPath = './plugins/miao-plugin/resources/miao-res-plus/'
+      const plusPath = "./plugins/miao-plugin/resources/miao-res-plus/"
       if (fs.existsSync(plusPath)) {
         addImg(`miao-res-plus/character-img/${name}`)
         addImg(`miao-res-plus/character-img/${name}/se`, !se)
@@ -53,14 +53,14 @@ const CharImg = {
     }
     let ret = sizeOf(`./plugins/miao-plugin/resources/${img}`)
     ret.img = img
-    ret.mode = ret.width > ret.height ? 'left' : 'bottom'
+    ret.mode = ret.width > ret.height ? "left" : "bottom"
     return ret
   },
 
-  getRandomImg (imgPaths, defImgs = []) {
+  getRandomImg(imgPaths, defImgs = []) {
     for (let imgPath of imgPaths) {
       let ret = []
-      for (let type of ['webp', 'png']) {
+      for (let type of [ "webp", "png" ]) {
         if (fs.existsSync(`${mPath}/${imgPath}.${type}`)) {
           ret.push(imgPath + `.${type}`)
         }
@@ -85,12 +85,12 @@ const CharImg = {
   },
 
   // 获取角色的图像资源数据
-  getImgs (name, costumeIdx = '', travelerElem = '', weaponType = 'sword', talentCons) {
-    let fileType = 'webp'
-    costumeIdx = costumeIdx === '2' ? '2' : ''
+  getImgs(name, costumeIdx = "", travelerElem = "", weaponType = "sword", talentCons) {
+    let fileType = "webp"
+    costumeIdx = costumeIdx === "2" ? "2" : ""
     let imgs = {}
-    if (!['空', '荧', '旅行者'].includes(name)) {
-      travelerElem = ''
+    if (![ "空", "荧", "旅行者" ].includes(name)) {
+      travelerElem = ""
     }
     let nPath = `/meta-gs/character/${name}/`
     if (fs.existsSync(`${rPath}/${nPath}`)) {
@@ -107,13 +107,13 @@ const CharImg = {
     let tAdd = (key, path) => {
       imgs[key] = `${travelerElem ? tPath : nPath}${path}.${fileType}`
     }
-    add('face', 'imgs/face', `imgs/face${costumeIdx}`)
-    add('qFace', 'imgs/face', 'imgs/face-q')
-    add('side', 'imgs/side', `imgs/side${costumeIdx}`)
-    add('gacha', 'imgs/gacha')
-    add('splash', 'imgs/splash', `imgs/splash${costumeIdx}`)
-    tAdd('card', 'imgs/card')
-    tAdd('banner', 'imgs/banner')
+    add("face", "imgs/face", `imgs/face${costumeIdx}`)
+    add("qFace", "imgs/face", "imgs/face-q")
+    add("side", "imgs/side", `imgs/side${costumeIdx}`)
+    add("gacha", "imgs/gacha")
+    add("splash", "imgs/splash", `imgs/splash${costumeIdx}`)
+    tAdd("card", "imgs/card")
+    tAdd("banner", "imgs/banner")
     for (let i = 1; i <= 6; i++) {
       tAdd(`cons${i}`, `icons/cons-${i}`)
     }
@@ -121,15 +121,15 @@ const CharImg = {
       tAdd(`passive${i}`, `icons/passive-${i}`)
     }
     imgs.a = `/common/item/atk-${weaponType}.webp`
-    for (let t of ['e', 'q']) {
+    for (let t of [ "e", "q" ]) {
       imgs[t] = talentCons[t] > 0 ? imgs[`cons${talentCons[t]}`] : `${nPath}icons/talent-${t}.webp`
     }
     return imgs
   },
 
   // 获取星铁角色图像资源
-  getImgsSr (name, talentCons) {
-    let fileType = 'webp'
+  getImgsSr(name, talentCons) {
+    let fileType = "webp"
     let nPath = `/meta-sr/character/${name}/`
     if (fs.existsSync(`${rPath}/${nPath}`)) {
       nPath = `../../wiki/resources/meta-sr/character/${name}/`
@@ -142,14 +142,14 @@ const CharImg = {
         imgs[key] = `${nPath}${path}.${fileType}`
       }
     }
-    add('face', 'imgs/face')
-    add('qFace', 'imgs/face', 'imgs/face-q')
-    add('splash', 'imgs/splash')
-    add('preview', 'imgs/preview')
+    add("face", "imgs/face")
+    add("qFace", "imgs/face", "imgs/face-q")
+    add("splash", "imgs/splash")
+    add("preview", "imgs/preview")
     for (let i = 1; i <= 3; i++) {
       add(`tree${i}`, `imgs/tree-${i}`)
     }
-    for (let key of ['a', 'e', 'q', 't', 'z', 'a2', 'e2', 'q2']) {
+    for (let key of [ "a", "e", "q", "t", "z", "a2", "e2", "q2" ]) {
       add(key, `imgs/talent-${key}`)
     }
     for (let i = 1; i <= 6; i++) {
@@ -157,8 +157,8 @@ const CharImg = {
         add(`cons${i}`, `imgs/cons-${i}`)
       }
     }
-    imgs.banner = '/meta-sr/character/common/imgs/banner.webp'
-    imgs.card = '/meta-sr/character/common/imgs/card.webp'
+    imgs.banner = "/meta-sr/character/common/imgs/banner.webp"
+    imgs.card = "/meta-sr/character/common/imgs/card.webp"
     imgs.cons3 = imgs[talentCons[3]]
     imgs.cons5 = imgs[talentCons[5]]
     return imgs

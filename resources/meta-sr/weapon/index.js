@@ -1,22 +1,23 @@
-import fs from 'node:fs'
-import lodash from 'lodash'
-import { Data, Meta } from '#miao'
-import { abbr, aliasCfg } from './alias.js'
+/* eslint-disable import/no-unresolved */
+import fs from "node:fs"
+import lodash from "lodash"
+import { Data, Meta } from "#miao"
+import { abbr, aliasCfg } from "./alias.js"
 
-const types = '存护,丰饶,毁灭,同谐,虚无,巡猎,智识'.split(',')
-let data = Data.readJSON('/resources/meta-sr/weapon/data.json', 'wiki')
+const types = "存护,丰饶,毁灭,同谐,虚无,巡猎,智识".split(",")
+let data = Data.readJSON("/resources/meta-sr/weapon/data.json", "wiki")
 
-const meta = Meta.create('sr', 'weapon')
+const meta = Meta.create("sr", "weapon")
 meta.addData(data)
 meta.addAlias(aliasCfg)
 meta.addAbbr(abbr)
 
 const weaponBuffs = {}
-let loadBuffs = async function () {
+let loadBuffs = async function() {
   for (let type of types) {
-    let calc = await Data.importDefault(`/resources/meta-sr/weapon/${type}/calc.js`, 'wiki')
+    let calc = await Data.importDefault(`/resources/meta-sr/weapon/${type}/calc.js`, "wiki")
     if (!fs.existsSync(`./plugins/wiki/resources/meta-sr/weapon/${type}/calc.js`)) {
-      calc = await Data.importDefault(`/resources/meta-sr/weapon/${type}/calc.js`, 'miao')
+      calc = await Data.importDefault(`/resources/meta-sr/weapon/${type}/calc.js`, "miao")
     }
     if (lodash.isFunction(calc)) {
       calc = calc((idx, key) => {
