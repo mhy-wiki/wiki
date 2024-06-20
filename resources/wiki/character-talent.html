@@ -20,7 +20,11 @@
   {{set elemCls = {火:'pyro',冰:'cryo',风:'anemo',雷:'electro',量子:'quantum',虚数:'geo',物理:'sr', }[element||elem] || element || elem || 'hydro' }}
   <body class="elem-{{elemCls}} {{displayMode || mode || `default`}}-mode {{bodyClass}}" {{sys.scale}}>
     <div class="container elem-bg" id="container">
-      <div class="head-box" style="background-image:url('{{_miao_path}}{{imgs.card}}')">
+      {{if game === 'gs'}}
+        <div class="head-box" style="background-image:url('{{_miao_path}}{{imgs.card}}')">
+      {{else}}
+        <div class="head-box" style="background-image:url('{{_miao_path}}{{imgs.card}}');height:433px;">
+      {{/if}}
         <div class="head">
           <img src="{{_miao_path}}{{imgs.qFace||imgs.face}}"/>
         </div>
@@ -42,15 +46,40 @@
         </div>
         {{ if line[0]?.num !== 'NaN'}}
         <div class="data-box">
-          <div class="tab-label">{{game === 'gs' ? '90' : '80'}}级基础数据</div>
-          <div class="data-line">
-            {{each line item}}
-            <div class="data_line_item">
-              <div class="num">{{item.num}}</div>
-              <div class="label">{{item.label}}</div>
+          {{if game === 'gs'}}
+            <div class="tab-label">90级基础数据</div>
+            <div class="data-line">
+              {{each line item}}
+              <div class="data_line_item">
+                <div class="num">{{item.num}}</div>
+                <div class="label">{{item.label}}</div>
+              </div>
+              {{/each}}
             </div>
-            {{/each}}
-          </div>
+          {{else}}
+            <div class="tab-label">80级满行迹基础数据</div>
+            <div class="data-line">
+              {{each line.ret item}}
+              <div class="data_line_item">
+                <div class="num">{{item.num}}</div>
+                <div class="label">{{item.label}}</div>
+              </div>
+              {{/each}}
+            </div>
+            <hr>
+            <div class="data-line">
+              <div class="data_line_item">
+                <div class="num">{{detail.sp}}</div>
+                <div class="label">能量上限</div>
+              </div>
+              {{each line.growret item}}
+              <div class="data_line_item">
+                <div class="num">{{item.num}}</div>
+                <div class="label">{{item.label}}</div>
+              </div>
+              {{/each}}
+            </div>
+          {{/if}}
         </div>
         {{else}}
         <div class="data-box">
