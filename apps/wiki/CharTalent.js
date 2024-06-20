@@ -77,8 +77,7 @@ const CharTalent = {
       let growret = []
       for (let key of Object.keys(char.getDetail().tree)) {
         let i = char.getDetail().tree[key]
-        if (obj[i.key]) obj[i.key] += i.value
-        else obj[i.key] = i.value
+        obj[i.key] = obj[i.key] ? obj[i.key] + i.value : i.value
       }
       for (let i in obj) {
         growret.push({
@@ -130,8 +129,7 @@ const CharTalent = {
     lodash.forEach(tables, (ds, idx) => {
       let values = []
       lodash.forEach(ds.values, (v) => {
-        if (!ds.isSame) values.push(Format[idxFormat[idx] || "comma"](v))
-        else values.push(v)
+        values.push(ds.isSame ? v : Format[idxFormat[idx] || "comma"](v))
       })
       tableRet.push({
         name: ds.name,
