@@ -77,16 +77,15 @@ const CharTalent = {
       let growret = []
       for (let key of Object.keys(char.getDetail().tree)) {
         let i = char.getDetail().tree[key]
-        let keyName = i.key
-        let value = parseFloat(i.value.toFixed(2))
-        if (obj[keyName]) obj[keyName] += value
-        else obj[keyName] = value
+        if (obj[i.key]) obj[i.key] += i.value
+        else obj[i.key] = i.value
       }
       for (let i in obj) {
-        if (attrMap.sr[i]) growret.push({ label: attrMap.sr[i], num: obj[i] })
-        else growret.push({ label: `${char.elem}伤`, num: obj[i] })
+        growret.push({
+          label: attrMap.sr[i] || `${char.elem}伤`,
+          num: Format.comma(obj[i], 1)
+        })
       }
-
       return {
         ret,
         growret
