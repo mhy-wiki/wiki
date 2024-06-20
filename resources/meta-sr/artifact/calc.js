@@ -302,10 +302,10 @@ export default {
   荡除蠹灾的铁骑: {
     2: attr("stance", 16),
     4: {
-      title: "基于佩戴者的击破特攻，造成的伤害忽略敌人[ignore]%防御力",
-      sort: 9,
+      check: ({ attr }) => attr.stance >= 150,
+      title: "基于击破特攻，使造成的击破伤害无视[breakIgnore]%防御",
       data: {
-        ignore: ({ attr }) => attr.cdmg >= 250 ? 15 : (attr.cdmg >= 150 ? 10 : 0)
+        breakIgnore: ({ attr }) => attr.stance >= 250 ? 25 : 10
       }
     }
   },
@@ -313,9 +313,9 @@ export default {
     2: attr("atkPct", 12),
     4: [
       attr("cpct", 6), {
-        title: "装备者发动追加攻击时，使终结技造成伤害提升[qDmg]%",
+        title: "施放追加攻击使终结技伤害提高[qDmg]%",
         data: {
-          qDmg: 30
+          qDmg: 36
         }
       }
     ]
@@ -323,7 +323,7 @@ export default {
   劫火莲灯铸炼宫: {
     2: [
       attr("speedPct", 6), {
-        title: "攻击具有火属性弱点的敌人时，击破特攻提升[stance]%",
+        title: "攻击具有火属性弱点的敌人时，击破特攻提高[stance]%",
         data: {
           stance: 40
         }
