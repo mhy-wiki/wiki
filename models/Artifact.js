@@ -11,15 +11,12 @@ import { wikiPath } from "../components/index.js"
 
 class Artifact extends Base {
   constructor(data, game = "gs") {
-    if (!data) {
-      return false
-    }
+    if (!data) return false
     super()
     let name = data.id || data.name
     let cache = this._getCache(`arti:${game}:${name}`)
-    if (cache) {
-      return cache
-    }
+    if (cache) return cache
+
     this.game = game
     this.id = data.id || ""
     this.name = data.name
@@ -43,41 +40,29 @@ class Artifact extends Base {
     let iPath = this.isGs
       ? `meta-gs/artifact/imgs/${this.setName}/${this.idx}.webp`
       : `meta-sr/artifact/${this.setName}/arti-${this.idx}.webp`
-    if (fs.existsSync(`${wikiPath.getDir("wiki", true)}/${iPath}`)) {
-      return `../../wiki/resources/${iPath}`
-    }
+    if (fs.existsSync(`${wikiPath.getDir("wiki", true)}/${iPath}`)) return `../../wiki/resources/${iPath}`
     return iPath
   }
 
   static get(name, game = "gs") {
-    if (!name) {
-      return false
-    }
+    if (!name) return false
     // 传入为artis对象
-    if (name.id || name.name) {
-      return Artifact.get(name.id || name.name, name.game || game)
-    }
+    if (name.id || name.name) return Artifact.get(name.id || name.name, name.game || game)
     // 兼容圣遗物ID获取
     if (game === "gs" && /^\d{5}$/.test(name)) {
       name = name.toString()
       let artiSet = ArtifactSet.get(name)
-      if (artiSet) {
-        return artiSet.getArti([ 4, 2, 5, 1, 3 ][name[3] - 1])
-      }
+      if (artiSet) return artiSet.getArti([ 4, 2, 5, 1, 3 ][name[3] - 1])
     }
     // 根据名字查询
     let data = Meta.getData(game, "arti", name)
-    if (data) {
-      return new Artifact(data, game)
-    }
+    if (data) return new Artifact(data, game)
     return false
   }
 
   static getSetNameByArti(name) {
     let arti = Artifact.get(name)
-    if (arti) {
-      return arti.setName
-    }
+    if (arti) return arti.setName
     return ""
   }
 
@@ -92,9 +77,7 @@ class Artifact extends Base {
   getIdByStar(star = 5) {
     let ids = this.meta.ids || {}
     for (let key in ids) {
-      if (ids[key] * 1 === star) {
-        return key
-      }
+      if (ids[key] * 1 === star) return key
     }
   }
 

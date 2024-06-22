@@ -16,12 +16,8 @@ const CharImg = {
     let addImg = function(charImgPath, disable = false) {
       let dirPath = `./plugins/miao-plugin/resources/${charImgPath}`
 
-      if (!fs.existsSync(dirPath)) {
-        fs.mkdirSync(dirPath)
-      }
-      if (disable) {
-        return
-      }
+      if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath)
+      if (disable) return
 
       let imgs = fs.readdirSync(dirPath)
       imgs = imgs.filter((img) => /\.(png|jpg|webp|jpeg)/i.test(img))
@@ -29,9 +25,7 @@ const CharImg = {
         list.push(`${charImgPath}/${img}`)
       })
     }
-    if (!lodash.isArray(names)) {
-      names = [ names ]
-    }
+    if (!lodash.isArray(names)) names = [ names ]
     for (let name of names) {
       addImg(`character-img/${name}`)
       addImg(`character-img/${name}/upload`)
@@ -73,14 +67,10 @@ const CharImg = {
           ret.push(`${imgPath}/${encodeURIComponent(img)}`)
         }
       }
-      if (ret.length > 0) {
-        return lodash.sample(ret)
-      }
+      if (ret.length > 0) return lodash.sample(ret)
     }
     for (let defImg of defImgs) {
-      if (fs.existsSync(`${mPath}/${defImg}`)) {
-        return defImg
-      }
+      if (fs.existsSync(`${mPath}/${defImg}`)) return defImg
     }
   },
 
@@ -89,13 +79,9 @@ const CharImg = {
     let fileType = "webp"
     costumeIdx = costumeIdx === "2" ? "2" : ""
     let imgs = {}
-    if (![ "空", "荧", "旅行者" ].includes(name)) {
-      travelerElem = ""
-    }
+    if (![ "空", "荧", "旅行者" ].includes(name)) travelerElem = ""
     let nPath = `/meta-gs/character/${name}/`
-    if (fs.existsSync(`${rPath}/${nPath}`)) {
-      nPath = `../../wiki/resources/meta-gs/character/${name}/`
-    }
+    if (fs.existsSync(`${rPath}/${nPath}`)) nPath = `../../wiki/resources/meta-gs/character/${name}/`
     const tPath = `/meta-gs/character/旅行者/${travelerElem}/`
     let add = (key, path, path2) => {
       if (path2 && fs.existsSync(`${mPath}/${nPath}/${path2}.${fileType}`)) {
@@ -131,9 +117,7 @@ const CharImg = {
   getImgsSr(name, talentCons) {
     let fileType = "webp"
     let nPath = `/meta-sr/character/${name}/`
-    if (fs.existsSync(`${rPath}/${nPath}`)) {
-      nPath = `../../wiki/resources/meta-sr/character/${name}/`
-    }
+    if (fs.existsSync(`${rPath}/${nPath}`)) nPath = `../../wiki/resources/meta-sr/character/${name}/`
     let imgs = {}
     let add = (key, path, path2) => {
       if (path2 && fs.existsSync(`${mPath}/${nPath}/${path2}.${fileType}`)) {
@@ -153,9 +137,7 @@ const CharImg = {
       add(key, `imgs/talent-${key}`)
     }
     for (let i = 1; i <= 6; i++) {
-      if (i !== 3 && i !== 5) {
-        add(`cons${i}`, `imgs/cons-${i}`)
-      }
+      if (i !== 3 && i !== 5) add(`cons${i}`, `imgs/cons-${i}`)
     }
     imgs.banner = "/meta-sr/character/common/imgs/banner.webp"
     imgs.card = "/meta-sr/character/common/imgs/card.webp"

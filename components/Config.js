@@ -24,9 +24,7 @@ class Config {
     const files = fs.readdirSync(this.defPath).filter(file => file.endsWith(".yaml"))
     if (!fs.existsSync(`${this.configPath}`)) fs.mkdirSync(`${this.configPath}`)
     for (let file of files) {
-      if (!fs.existsSync(`${this.configPath}${file}`)) {
-        fs.copyFileSync(`${this.defPath}${file}`, `${this.configPath}${file}`)
-      }
+      if (!fs.existsSync(`${this.configPath}${file}`)) fs.copyFileSync(`${this.defPath}${file}`, `${this.configPath}${file}`)
       this.watch(`${this.configPath}${file}`, file.replace(".yaml", ""), "config")
     }
   }
@@ -37,7 +35,7 @@ class Config {
    */
   getCfg(filename) {
     try {
-      if (!fs.existsSync(`${this.configPath}${filename}.yaml`)) { return false }
+      if (!fs.existsSync(`${this.configPath}${filename}.yaml`)) return false
       return YAML.parse(fs.readFileSync(`${this.configPath}${filename}.yaml`, "utf8"))
     } catch (error) {
       logger.error(`[${filename}] 读取失败 ${error}`)
@@ -76,9 +74,7 @@ class Config {
     watcher.on("change", path => {
       delete this[type][app]
       logger.mark(`[wiki][修改配置文件][${type}][${app}]`)
-      if (this[`change_${app}`]) {
-        this[`change_${app}`]()
-      }
+      if (this[`change_${app}`]) this[`change_${app}`]()
     })
     this.watcher[type][app] = watcher
   }

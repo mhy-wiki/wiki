@@ -10,34 +10,25 @@ const wikiReg = /^(?:#)?(?:星铁)?(.*)(天赋|技能|行迹|命座|命之座|�
 const CharWiki = {
   check(e) {
     let msg = e.original_msg || e.msg
-    if (!e.msg) {
-      return false
-    }
+    if (!e.msg) return false
+
     let ret = wikiReg.exec(msg)
-    if (!ret || !ret[1] || !ret[2]) {
-      return false
-    }
+    if (!ret || !ret[1] || !ret[2]) return false
+
     let mode = "talent"
     if (/(命|星魂)/.test(ret[2])) {
       mode = "cons"
     } else if (/(图鉴|资料)/.test(ret[2])) {
       mode = "wiki"
-      if (!Common.cfg("charWiki")) {
-        return false
-      }
+      if (!Common.cfg("charWiki")) return false
     } else if (/图|画|写真|照片/.test(ret[2])) {
       mode = "pic"
-      if (!Common.cfg("charPic")) {
-        return false
-      }
+      if (!Common.cfg("charPic")) return false
     }
-    if ([ "cons", "talent" ].includes(mode) && !Common.cfg("charWikiTalent")) {
-      return false
-    }
+    if ([ "cons", "talent" ].includes(mode) && !Common.cfg("charWikiTalent")) return false
     let char = Character.get(ret[1], e.game)
-    if (!char || (char.isCustom)) {
-      return false
-    }
+    if (!char || (char.isCustom)) return false
+
     e.wikiMode = mode
     e.msg = "#喵喵扩展WIKI"
     e.char = char
@@ -58,26 +49,14 @@ const CharWiki = {
       return true
     }
     if (char.isCustom) {
-      if (mode === "wiki") {
-        return false
-      }
-      e.reply("暂不支持自定义角色")
-      return true
+      if (mode === "wiki") return false
+      return await e.reply("暂不支持自定义角色")
     }
-    if (!char.isRelease && Cfg.get("notReleasedData") === false) {
-      e.reply("未实装角色资料已禁用...")
-      return true
-    }
+    if (!char.isRelease && Cfg.get("notReleasedData") === false) return await e.reply("未实装角色资料已禁用...")
 
     if (mode === "wiki") {
-      if (char.source === "amber") {
-        e.reply("暂不支持该角色图鉴展示")
-        return true
-      }
-      if (char.isSr) {
-        e.reply("暂不支持星铁角色")
-        return true
-      }
+      if (char.source === "amber") return await e.reply("暂不支持该角色图鉴展示")
+      if (char.isSr) return await e.reply("暂不支持星铁角色")
       return await this.render({ e, char })
     }
     return await CharTalent.render(e, mode, char)

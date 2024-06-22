@@ -29,9 +29,7 @@ try {
     let temp = {}
     let lastLine = {}
     lodash.forEach(logs, (line) => {
-      if (versionCount <= -1) {
-        return false
-      }
+      if (versionCount <= -1) return false
       let versionRet = /^#\s*([0-9a-zA-Z\\.~\s]+?)\s*$/.exec(line)
       if (versionRet && versionRet[1]) {
         let v = versionRet[1].trim()
@@ -51,9 +49,7 @@ try {
           logs: []
         }
       } else {
-        if (!line.trim()) {
-          return
-        }
+        if (!line.trim()) return
         if (/^\*/.test(line)) {
           lastLine = {
             title: getLine(line),

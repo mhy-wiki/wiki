@@ -10,14 +10,11 @@ let weaponSet
 
 class Weapon extends Base {
   constructor(meta, game = "gs") {
-    if (!meta || !meta.name) {
-      return false
-    }
+    if (!meta || !meta.name) return false
     super()
     let cache = this._getCache(`weapon:${game}:${meta.name}`)
-    if (cache) {
-      return cache
-    }
+    if (cache) return cache
+
     this.id = meta.id
     this.name = meta.name
     this.meta = meta
@@ -33,9 +30,7 @@ class Weapon extends Base {
 
   get img() {
     let iPath = `${this.isGs ? "meta-gs" : "meta-sr"}/weapon/${this.type}/${this.name}/icon.webp`
-    if (fs.existsSync(`${wikiPath.getDir("wiki", true)}/${iPath}`)) {
-      return `../../wiki/resources/${iPath}`
-    }
+    if (fs.existsSync(`${wikiPath.getDir("wiki", true)}/${iPath}`)) return `../../wiki/resources/${iPath}`
     return `${iPath}`
   }
 
@@ -89,9 +84,7 @@ class Weapon extends Base {
   }
 
   get maxAffix() {
-    if (this.isSr) {
-      return 5
-    }
+    if (this.isSr) return 5
     let data = this.detail?.affixData?.datas || {}
     return (data["0"] && data["0"][4]) ? 5 : 1
   }
@@ -103,9 +96,7 @@ class Weapon extends Base {
 
   static get(name, game = "gs", type = "") {
     let data = Meta.getData(game, "weapon", name)
-    if (data) {
-      return new Weapon(data, game)
-    }
+    if (data) return new Weapon(data, game)
 
     if (type && game === "gs") {
       const { weaponType } = Meta.getMeta(game, "weapon")
@@ -121,17 +112,13 @@ class Weapon extends Base {
   static async forEach(fn, type = "", game = "gs") {
     Meta.forEach(game, "weapon", async(ds, id) => {
       let w = Weapon.get(ds.name)
-      if (!w || (type && type !== w.type)) {
-        return true
-      }
+      if (!w || (type && type !== w.type)) return true
       return await fn(w)
     })
   }
 
   getDetail() {
-    if (this._detail) {
-      return this._detail
-    }
+    if (this._detail) return this._detail
     const path = `resources/${this.isGs ? "meta-gs" : "meta-sr"}/weapon/${this.type}/${this.name}/data.json`
     try {
       if (fs.existsSync(`${wikiPath.getDir("wiki")}/${path}`)) {
@@ -153,9 +140,8 @@ class Weapon extends Base {
    */
   calcAttr(level, promote = -1) {
     let metaAttr = this.detail?.attr
-    if (!metaAttr) {
-      return false
-    }
+    if (!metaAttr) return false
+
     if (this.isSr) {
       let lvAttr = metaAttr[promote]
       let ret = {}
@@ -265,12 +251,9 @@ class Weapon extends Base {
     let { game } = this
     let { weaponBuffs } = Meta.getMeta(game, "weapon")
     let buffs = weaponBuffs[this.id] || weaponBuffs[this.name]
-    if (!buffs) {
-      return false
-    }
-    if (lodash.isPlainObject(buffs) || lodash.isFunction(buffs)) {
-      buffs = [ buffs ]
-    }
+    if (!buffs) return false
+
+    if (lodash.isPlainObject(buffs) || lodash.isFunction(buffs)) buffs = [ buffs ]
     return buffs
   }
 
@@ -292,12 +275,8 @@ class Weapon extends Base {
     })
 
     lodash.forEach(buffs, (ds) => {
-      if (lodash.isFunction(ds)) {
-        ds = ds(tables)
-      }
-      if (!!ds.isStatic !== !!isStatic) {
-        return true
-      }
+      if (lodash.isFunction(ds)) ds = ds(tables)
+      if (!!ds.isStatic !== !!isStatic) return true
 
       // 静态属性
       if (ds.isStatic) {
@@ -323,9 +302,7 @@ class Weapon extends Base {
       }
 
       // 自动拼接标题
-      if (!/：/.test(ds.title)) {
-        ds.title = `${self.name}：${ds.title}`
-      }
+      if (!/：/.test(ds.title)) ds.title = `${self.name}：${ds.title}`
       ds.data = ds.data || {}
       // refine
       if (ds.idx && ds.key) {
