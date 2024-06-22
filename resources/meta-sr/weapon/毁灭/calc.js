@@ -75,9 +75,9 @@ export default function(staticIdx, keyIdx) {
       staticIdx(1, "stance"),
       keyIdx("释放终结技时，暴击率提高[cpct]%", "cpct", 2)
     ],
-    "梦应归于何处": [
+    梦应归于何处: [
       staticIdx(1, "stance"),
-      keyIdx("装备者击破敌人弱点时，使敌人受到伤害增加[enemydmg]%，速度减少15%", "enemydmg", 2)
+      keyIdx("敌方受到装备者造成的击破伤害提高[breakEnemydmg]%", "breakEnemydmg", 2)
     ],
     "落日时起舞": [
       staticIdx(1, "cdmg"),
