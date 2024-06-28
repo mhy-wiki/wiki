@@ -5,18 +5,18 @@
   "title": "千缕之踪",
   "star": 5,
   "elem": "dendro",
-  "allegiance": "？？？",
+  "allegiance": "枫丹廷",
   "weapon": "polearm",
   "birth": "9-22",
   "astro": "香氛瓶座",
-  "desc": "？？？",
+  "desc": "枫丹香水设计师，将秘密藏于瓶中之人。",
   "cncv": "？？？",
   "jpcv": "？？？",
   "costume": false,
   "ver": 1,
   "baseAttr": {
     "hp": 13568,
-    "atk": 	334.85,
+    "atk": 334.85,
     "def": 730.13
   },
   "growAttr": {
