@@ -6,11 +6,11 @@ import { mainAttr, subAttr, attrMap, attrNameMap, mainIdMap, attrIdMap } from ".
 
 // import calc from './calc.js'
 // import { usefulAttr } from './artis-mark.js'
-// import { setAlias, setAbbr } from './alias.js'
+import { setAlias, setAbbr } from './alias.js'
 
 import calc from "../../../../miao-plugin/resources/meta-gs/artifact/calc.js"
 import { usefulAttr } from "../../../../miao-plugin/resources/meta-gs/artifact/artis-mark.js"
-import { setAlias, setAbbr } from "../../../../miao-plugin/resources/meta-gs/artifact/alias.js"
+// import { setAlias, setAbbr } from "../../../../miao-plugin/resources/meta-gs/artifact/alias.js"
 
 let setMeta = Meta.create("gs", "artiSet")
 let artiMeta = Meta.create("gs", "arti")
