@@ -5,7 +5,7 @@ import dailyData from "./daily.js"
 import { Data, Meta } from "#miao"
 
 let data = Data.readJSON("resources/meta-gs/material/data.json", "wiki")
-if (!data) data = Data.readJSON("resources/meta-gs/material/data.json", "miao")
+if (Object.keys(data).length === 0) data = Data.readJSON("resources/meta-gs/material/data.json", "miao")
 
 let ret = {}
 let abbr2 = {}

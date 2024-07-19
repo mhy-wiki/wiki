@@ -12,7 +12,7 @@ import { artiSetAbbr, aliasCfg, artiAbbr } from '../../../../miao-plugin/resourc
 import { usefulAttr } from '../../../../miao-plugin/resources/meta-sr/artifact/artis-mark.js'
 
 let data = Data.readJSON("resources/meta-sr/artifact/data.json", "wiki")
-if (!data) data = Data.readJSON("resources/meta-sr/artifact/data.json", "miao")
+if (Object.keys(data).length === 0) data = Data.readJSON("resources/meta-sr/artifact/data.json", "miao")
 
 let metaData = Data.readJSON("/resources/meta-sr/artifact/meta.json", "miao")
 

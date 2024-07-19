@@ -15,7 +15,7 @@ let setMeta = Meta.create("gs", "artiSet")
 let artiMeta = Meta.create("gs", "arti")
 
 let artis = Data.readJSON("resources/meta-gs/artifact/data.json", "wiki")
-if (!artis) artis = Data.readJSON("resources/meta-gs/artifact/data.json", "miao")
+if (Object.keys(artis).length === 0) artis = Data.readJSON("resources/meta-gs/artifact/data.json", "miao")
 
 let setIds = {}
 
