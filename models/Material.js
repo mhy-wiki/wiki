@@ -4,8 +4,8 @@
 * */
 import fs from "node:fs"
 import lodash from "lodash"
-import Base from "./Base.js"
 import { Data, Meta } from "#miao"
+import { Base } from "#miao.models"
 
 import { wikiPath } from "../components/index.js"
 
