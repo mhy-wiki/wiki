@@ -1,4 +1,5 @@
 /* eslint-disable import/no-unresolved */
+import fs from "node:fs"
 import lodash from "lodash"
 import { Data, Meta } from "#miao"
 import { weaponType, weaponSet } from "../../../../miao-plugin/resources/meta-gs/weapon/extra.js"
