@@ -36,7 +36,7 @@ const attr = function(key, start, _step) {
 for (let type in weaponType) {
   // calc
   let typeCalc = await Data.importDefault(`resources/meta-gs/weapon/${type}/calc.js`, "wiki")
-  if (Object.keys(typeCalc).length === 0) typeCalc = await Data.importDefault(`resources/meta-gs/weapon/${type}/calc.js`, "miao")
+  if (!fs.existsSync(`./plugins/wiki/resources/meta-gs/weapon/${type}/calc.js`)) typeCalc = await Data.importDefault(`resources/meta-gs/weapon/${type}/calc.js`, "miao")
   let typeRet = typeCalc(step, attr)
   weaponBuffs = lodash.extend(weaponBuffs, typeRet)
 

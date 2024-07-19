@@ -13,7 +13,7 @@ let data = Data.readJSON("resources/meta-gs/material/data.json", "wiki")
 if (Object.keys(data).length === 0) data = Data.readJSON("resources/meta-gs/material/data.json", "miao")
 
 let abbr = await Data.importDefault("resources/meta-gs/material/abbr.js", "wiki")
-if Object.keys(abbr).length === 0) abbr = Data.readJSON("resources/meta-gs/material/abbr.js", "miao")
+if (!fs.existsSync("./plugins/wiki/resources/meta-gs/material/abbr.js")) abbr = Data.readJSON("resources/meta-gs/material/abbr.js", "miao")
 
 let mMap = {}
 let getItem = (ds) => {
