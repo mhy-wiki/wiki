@@ -1,11 +1,11 @@
 /* eslint-disable import/no-unresolved */
-import fs from "node:fs"
 import lodash from "lodash"
 import { Data, Meta } from "#miao"
 import { abbr, aliasCfg } from "./alias.js"
 
 const types = "存护,丰饶,毁灭,同谐,虚无,巡猎,智识".split(",")
-let data = Data.readJSON("/resources/meta-sr/weapon/data.json", "wiki")
+let data = Data.readJSON("resources/meta-sr/weapon/data.json", "wiki")
+if (!data) data = Data.readJSON("resources/meta-sr/weapon/data.json", "miao")
 
 const meta = Meta.create("sr", "weapon")
 meta.addData(data)
@@ -15,10 +15,8 @@ meta.addAbbr(abbr)
 const weaponBuffs = {}
 let loadBuffs = async function() {
   for (let type of types) {
-    let calc = await Data.importDefault(`/resources/meta-sr/weapon/${type}/calc.js`, "wiki")
-    if (!fs.existsSync(`./plugins/wiki/resources/meta-sr/weapon/${type}/calc.js`)) {
-      calc = await Data.importDefault(`/resources/meta-sr/weapon/${type}/calc.js`, "miao")
-    }
+    let calc = await Data.importDefault(`resources/meta-sr/weapon/${type}/calc.js`, "wiki")
+    if (!calc) calc = await Data.importDefault(`resources/meta-sr/weapon/${type}/calc.js`, "miao")
     if (lodash.isFunction(calc)) {
       calc = calc((idx, key) => {
         return {

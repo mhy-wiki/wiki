@@ -1,10 +1,12 @@
 /* eslint-disable import/no-unresolved */
+import lodash from "lodash"
+import { wifeCfg } from "./extra.js"
 import { Data, Meta } from "#miao"
 import { alias, abbr } from "./alias.js"
-import { wifeCfg } from "./extra.js"
-import lodash from "lodash"
 
 let data = Data.readJSON("resources/meta-sr/character/data.json", "wiki")
+if (!data) data = Data.readJSON("resources/meta-sr/character/data.json", "miao")
+
 let meta = Meta.create("sr", "char")
 meta.addData(data)
 meta.addAlias(alias)

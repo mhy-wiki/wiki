@@ -1,5 +1,4 @@
 /* eslint-disable import/no-unresolved */
-import fs from "node:fs"
 import lodash from "lodash"
 import { Data, Meta } from "#miao"
 import { mainAttr, subAttr, attrMap, attrNameMap, mainIdMap, attrIdMap } from "../../../../miao-plugin/resources/meta-gs/artifact/extra.js"
@@ -16,9 +15,8 @@ let setMeta = Meta.create("gs", "artiSet")
 let artiMeta = Meta.create("gs", "arti")
 
 let artis = Data.readJSON("resources/meta-gs/artifact/data.json", "wiki")
-if (!fs.existsSync("./plugins/wiki/resources/meta-gs/artifact/data.json")) {
-  artis = Data.readJSON("resources/meta-gs/artifact/data.json", "miao")
-}
+if (!artis) artis = Data.readJSON("resources/meta-gs/artifact/data.json", "miao")
+
 let setIds = {}
 
 lodash.forEach(artis, (ds) => {

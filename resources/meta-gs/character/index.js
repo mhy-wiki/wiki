@@ -1,4 +1,4 @@
-import fs from 'node:fs'
+/* eslint-disable import/no-unresolved */
 import lodash from 'lodash'
 import { Data, Meta } from '#miao'
 
@@ -9,9 +9,8 @@ import { extraChars, wifeCfg } from './extra.js'
 // import { extraChars, wifeCfg } from '../../../../miao-plugin/resources/meta-gs/character/extra.js'
 
 let data = Data.readJSON('resources/meta-gs/character/data.json', 'wiki')
-if (!fs.existsSync('./plugins/wiki/resources/meta-gs/character/data.json')) {
-  data = Data.readJSON('resources/meta-gs/character/data.json', 'miao')
-}
+if (!data) data = Data.readJSON('resources/meta-gs/character/data.json', 'miao')
+
 let meta = Meta.create('gs', 'char')
 
 meta.addData(data)

@@ -1,5 +1,4 @@
 /* eslint-disable import/no-unresolved */
-import fs from "node:fs"
 import lodash from "lodash"
 import { Data, Meta } from "#miao"
 import { weaponType, weaponSet } from "../../../../miao-plugin/resources/meta-gs/weapon/extra.js"
@@ -37,17 +36,13 @@ const attr = function(key, start, _step) {
 for (let type in weaponType) {
   // calc
   let typeCalc = await Data.importDefault(`resources/meta-gs/weapon/${type}/calc.js`, "wiki")
-  if (!fs.existsSync(`./plugins/wiki/resources/meta-gs/weapon/${type}/calc.js`)) {
-    typeCalc = await Data.importDefault(`resources/meta-gs/weapon/${type}/calc.js`, "miao")
-  }
+  if (!typeCalc) typeCalc = await Data.importDefault(`resources/meta-gs/weapon/${type}/calc.js`, "miao")
   let typeRet = typeCalc(step, attr)
   weaponBuffs = lodash.extend(weaponBuffs, typeRet)
 
   // data
   let typeData = await Data.readJSON(`resources/meta-gs/weapon/${type}/data.json`, "wiki")
-  if (!fs.existsSync(`./plugins/wiki/resources/meta-gs/weapon/${type}/data.json`)) {
-    typeData = await Data.readJSON(`resources/meta-gs/weapon/${type}/data.json`, "miao")
-  }
+  if (!typeData) typeData = await Data.readJSON(`resources/meta-gs/weapon/${type}/data.json`, "miao")
   lodash.forEach(typeData, (ds) => {
     data[ds.id] = {
       id: ds.id,
