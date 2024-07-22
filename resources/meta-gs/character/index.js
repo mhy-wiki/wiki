@@ -1,17 +1,17 @@
 /* eslint-disable import/no-unresolved */
-import lodash from 'lodash'
-import { Data, Meta } from '#miao'
+import lodash from "lodash"
+import { Data, Meta } from "#miao"
 
-import { alias } from './alias.js'
-import { extraChars, wifeCfg } from './extra.js'
+import { alias } from "./alias.js"
+import { extraChars, wifeCfg } from "./extra.js"
 
-// import { alias } from '../../../../miao-plugin/resources/meta-gs/character/alias.js'
-// import { extraChars, wifeCfg } from '../../../../miao-plugin/resources/meta-gs/character/extra.js'
+// import { alias } from "../../../../miao-plugin/resources/meta-gs/character/alias.js"
+// import { extraChars, wifeCfg } from "../../../../miao-plugin/resources/meta-gs/character/extra.js"
 
-let data = Data.readJSON('resources/meta-gs/character/data.json', 'wiki')
-if (Object.keys(data).length === 0) data = Data.readJSON('resources/meta-gs/character/data.json', 'miao')
+let data = Data.readJSON("resources/meta-gs/character/data.json", "wiki")
+if (Object.keys(data).length === 0) data = Data.readJSON("resources/meta-gs/character/data.json", "miao")
 
-let meta = Meta.create('gs', 'char')
+let meta = Meta.create("gs", "char")
 
 meta.addData(data)
 meta.addAlias(alias)
@@ -37,7 +37,7 @@ meta.addAlias(extraChars)
 
 // 添加老婆设置
 let wifeData = {}
-let { diyCfg } = await Data.importCfg('character')
+let { diyCfg } = await Data.importCfg("character")
 let diyWifeData = diyCfg.wifeData || {}
 lodash.forEach(wifeCfg, (txt, type) => {
   wifeData[type] = wifeData[type] || {}

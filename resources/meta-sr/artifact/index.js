@@ -7,9 +7,9 @@ import { mainAttr, subAttr, attrMap } from "../../../../miao-plugin/resources/me
 // import { artiSetAbbr, aliasCfg, artiAbbr } from "./alias.js"
 // import { usefulAttr } from "./artis-mark.js"
 
-import artiBuffs from '../../../../miao-plugin/resources/meta-sr/artifact/calc.js'
-import { artiSetAbbr, aliasCfg, artiAbbr } from '../../../../miao-plugin/resources/meta-sr/artifact/alias.js'
-import { usefulAttr } from '../../../../miao-plugin/resources/meta-sr/artifact/artis-mark.js'
+import artiBuffs from "../../../../miao-plugin/resources/meta-sr/artifact/calc.js"
+import { artiSetAbbr, aliasCfg, artiAbbr } from "../../../../miao-plugin/resources/meta-sr/artifact/alias.js"
+import { usefulAttr } from "../../../../miao-plugin/resources/meta-sr/artifact/artis-mark.js"
 
 let data = Data.readJSON("resources/meta-sr/artifact/data.json", "wiki")
 if (Object.keys(data).length === 0) data = Data.readJSON("resources/meta-sr/artifact/data.json", "miao")

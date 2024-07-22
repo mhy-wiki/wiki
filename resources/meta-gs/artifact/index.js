@@ -3,9 +3,9 @@ import lodash from "lodash"
 import { Data, Meta } from "#miao"
 import { mainAttr, subAttr, attrMap, attrNameMap, mainIdMap, attrIdMap } from "../../../../miao-plugin/resources/meta-gs/artifact/extra.js"
 
-// import calc from './calc.js'
-// import { usefulAttr } from './artis-mark.js'
-import { setAlias, setAbbr } from './alias.js'
+// import calc from "./calc.js"
+// import { usefulAttr } from "./artis-mark.js"
+import { setAlias, setAbbr } from "./alias.js"
 
 import calc from "../../../../miao-plugin/resources/meta-gs/artifact/calc.js"
 import { usefulAttr } from "../../../../miao-plugin/resources/meta-gs/artifact/artis-mark.js"
