@@ -170,9 +170,10 @@ export default function(step, staticStep) {
     金流监督: [
       staticStep("atkPct", 16), {
         title: "满层下，普通攻击造成的伤害提升[aDmg]%，重击造成的伤害提升[a2Dmg]%",
+        buffCount: 3,
         refine: {
-          aDmg: step(16 * 3),
-          a2Dmg: step(14 * 3)
+          aDmg: step(16),
+          a2Dmg: step(14)
         }
       }
     ],
@@ -186,8 +187,9 @@ export default function(step, staticStep) {
     万世流涌大典: [
       staticStep("hpPct", 16), {
         title: "满层下，重击造成的伤害提升[a2Dmg]%",
+        buffCount: 3,
         refine: {
-          a2Dmg: [ 14 * 3, 18 * 3, 22 * 3, 26 * 3, 30 * 3 ]
+          a2Dmg: step(14)
         }
       }
     ],
