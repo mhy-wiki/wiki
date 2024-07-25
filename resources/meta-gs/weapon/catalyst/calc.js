@@ -189,7 +189,7 @@ export default function(step, staticStep) {
         title: "满层下，重击造成的伤害提升[a2Dmg]%",
         buffCount: 3,
         refine: {
-          a2Dmg: step(14)
+          a2Dmg: step(14, 4)
         }
       }
     ],
