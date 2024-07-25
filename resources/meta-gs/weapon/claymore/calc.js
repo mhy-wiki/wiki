@@ -194,16 +194,18 @@ export default function(step, staticStep) {
     "便携动力锯": [
       {
         title: "满层时，元素精通提升[mastery]点",
-        data: {
-          mastery: step(40 * 3)
+        buffCount: 3,
+        refine: {
+          mastery: step(40)
         }
       }
     ],
     "裁断": [
       staticStep("atkPct", 20), {
         title: "满层时，元素战技造成的伤害提升[eDmg]%",
+        buffCount: 2,
         refine: {
-          eDmg: step(18 * 2)
+          eDmg: step(18)
         }
       }
     ],
@@ -215,9 +217,10 @@ export default function(step, staticStep) {
     },
     "山王长牙": {
       title: "满层时，元素战技和元素爆发造成的伤害提升[eDmg]%",
+      buffCount: 6,
       refine: {
-        eDmg: step(10 * 6),
-        qDmg: step(10 * 6)
+        eDmg: step(10),
+        qDmg: step(10)
       }
     }
   }
