@@ -39,33 +39,6 @@ const CharTalent = {
   },
   getLineData(char) {
     let ret = []
-    const attrMap = {
-      gs: {
-        atkPct: "大攻击",
-        hpPct: "大生命",
-        defPct: "大防御",
-        cpct: "暴击",
-        cdmg: "爆伤",
-        recharge: "充能",
-        mastery: "精通",
-        heal: "治疗",
-        dmg: char.elemName + "伤",
-        phy: "物伤"
-      },
-      sr: {
-        atk: "大攻击",
-        def: "大防御",
-        hp: "大生命",
-        speed: "速度",
-        cpct: "暴击率",
-        cdmg: "暴击伤害",
-        recharge: "充能效率",
-        heal: "治疗加成",
-        stance: "击破特攻",
-        effPct: "效果命中",
-        effDef: "效果抵抗"
-      }
-    }
     if (char.isSr) {
       lodash.forEach({ hp: "基础生命", atk: "基础攻击", def: "基础防御", speed: "速度" }, (label, key) => {
         ret.push({
@@ -73,22 +46,19 @@ const CharTalent = {
           label
         })
       })
-      let obj = {}
-      let growret = []
-      for (let key of Object.keys(char.getDetail().tree)) {
-        let i = char.getDetail().tree[key]
-        obj[i.key] = obj[i.key] ? obj[i.key] + i.value : i.value
-      }
-      for (let i in obj) {
-        growret.push({
-          label: attrMap.sr[i] || `${char.elem}伤`,
-          num: Format.comma(obj[i], 1)
-        })
-      }
-      return {
-        ret,
-        growret
-      }
+      return ret
+    }
+    const attrMap = {
+      atkPct: "大攻击",
+      hpPct: "大生命",
+      defPct: "大防御",
+      cpct: "暴击",
+      cdmg: "爆伤",
+      recharge: "充能",
+      mastery: "精通",
+      heal: "治疗",
+      dmg: char.elemName + "伤",
+      phy: "物伤"
     }
     lodash.forEach({ hp: "基础生命", atk: "基础攻击", def: "基础防御" }, (label, key) => {
       ret.push({
@@ -99,7 +69,7 @@ const CharTalent = {
     let ga = char.growAttr
     ret.push({
       num: ga.key === "mastery" ? Format.comma(ga.value, 1) : ga.value,
-      label: `成长·${attrMap.gs[ga.key]}`
+      label: `成长·${attrMap[ga.key]}`
     })
     return ret
   },

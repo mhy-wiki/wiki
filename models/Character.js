@@ -12,7 +12,7 @@ import CharImg from "./character/CharImg.js"
 import { Data, Format, Cfg, Meta } from "#miao"
 import CharId from "../../miao-plugin/models/character/CharId.js"
 import CharCfg from "../../miao-plugin/models/character/CharCfg.js"
-import CharMeta from "../../miao-plugin/models/character/CharMeta.js"
+import CharMeta from "./character/CharMeta.js"
 import CharTalent from "../../miao-plugin/models/character/CharTalent.js"
 
 let metaKey = "abbr,star,elem,weapon,talentId,talentCons,eta".split(",")
@@ -190,8 +190,7 @@ class Character extends Base {
 
   // 获取attr列表
   getAttrList() {
-    let { baseAttr, growAttr } = this
-    return CharMeta.getAttrList(baseAttr, growAttr, this.elemName)
+    return CharMeta.getAttrList(this)
   }
 
   // 获取素材

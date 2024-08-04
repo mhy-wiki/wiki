@@ -37,11 +37,13 @@ lodash.forEach(data, (ds) => {
 })
 
 class Material extends Base {
-  constructor(data) {
+  constructor(data, game) {
     super()
     let cache = this._getCache(`material:${data.name}`)
     if (cache) return cache
 
+    this.game = game
+    if (this.game == "sr") this.id = data.id
     this.name = data.name
     this.meta = data
     this.type = data.type
@@ -51,7 +53,7 @@ class Material extends Base {
 
   static get(name, game = "gs") {
     let data = Meta.getData(game, "material", name)
-    if (data) return new Material(data)
+    if (data) return new Material(data, game)
     return false
   }
 
@@ -89,7 +91,7 @@ class Material extends Base {
   }
 
   get img() {
-    let iPath = `meta-gs/material/${this.type}/${this.name}.webp`
+    let iPath = `meta-${this.game}/material/${this.type}/${this.name}.webp`
     if (fs.existsSync(`${wikiPath.getDir("wiki", true)}/${iPath}`)) return `../../wiki/resources/${iPath}`
     return `${iPath}`
   }
