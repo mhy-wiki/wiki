@@ -5,7 +5,7 @@ import { wikiPath } from "./index.js"
 let logs = {}
 let changelogs = []
 let currentVersion
-let versionCount = 4
+let versionCount = 3
 
 const _logPath = wikiPath.getDir("wiki/CHANGELOG.md")
 
@@ -18,6 +18,7 @@ const getLine = function(line) {
   line = line.replace(/\s*\*\*([^*]+\*\*)/g, "<span class=\"strong\">$1")
   line = line.replace(/\*\*\s*/g, "</span>")
   line = line.replace(/ⁿᵉʷ/g, "<span class=\"new\"></span>")
+  line = line.replace(/(~~([^~]+)~~)/g, "<del>$2</del>")
   return line
 }
 

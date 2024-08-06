@@ -573,7 +573,7 @@
       "root": true,
       "name": "墨毫绣衣",
       "levelReq": 0,
-      "desc": "施放追加攻击后，恢复<nobr>1</nobr>个战技点，该效果在<nobr>1</nobr>回合后可再次触发。",
+      "desc": "施放天赋的追加攻击后，恢复<nobr>1</nobr>个战技点，该效果在<nobr>1</nobr>回合后可再次触发。",
       "cost": {},
       "idx": 1,
       "children": []
