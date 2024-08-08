@@ -92,6 +92,8 @@ export const alias = {
   赛索斯: "Sethos,塞索斯",
   克洛琳德: "Clorinde,科洛琳德,克洛林德,克洛,决斗代理人",
   艾梅莉埃: "Emilie,调香师,梅莉,爱美丽,艾梅丽埃",
+
+  // 5.0
   卡齐娜: "Kachina",
   基尼奇: "Kinich",
   玛拉妮: "Mualani,纳塔鲨",
