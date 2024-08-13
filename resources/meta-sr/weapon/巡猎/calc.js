@@ -112,9 +112,9 @@ export default function(staticIdx, keyIdx) {
       staticIdx(1, "cpct"),
       (tables) => {
         return {
-          title: "6层【流光】使装备者造成的终结技伤害无视目标[qIgnore]%的防御力",
+          title: "2层【流光】使装备者造成的终结技伤害无视目标[qIgnore]%的防御力",
           data: {
-            qIgnore: tables[2] * 6
+            qIgnore: tables[2] * 2
           }
         }
       }
