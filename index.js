@@ -7,12 +7,8 @@ const files = fs.readdirSync("./plugins/wiki/apps").filter(file => file.endsWith
 
 let ret = []
 
-if (Bot?.logger?.info) {
-  Bot.logger.info("---------^_^---------")
-  Bot.logger.info(`喵喵扩展_wiki插件${Version.version}初始化~`)
-} else {
-  console.log(`喵喵扩展_wiki插件${Version.version}初始化~`)
-}
+logger.info("---------^_^---------")
+logger.info(`喵喵扩展_wiki插件${Version.version}初始化~`)
 
 files.forEach((file) => {
   ret.push(import(`./apps/${file}`))
