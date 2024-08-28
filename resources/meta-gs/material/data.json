@@ -2944,18 +2944,24 @@
         "type": "monster",
         "star": 4
       }
-    },
-    "万相石": {
-      "id": "n101224",
-      "name": "万相石",
-      "type": "specialty",
-      "star": 1
-    },
-    "秘刻金纹的源核": {
-      "id": 113066,
-      "name": "秘刻金纹的源核",
-      "type": "boss",
-      "star": 4
     }
+  },
+  "万相石": {
+    "id": 101224,
+    "name": "万相石",
+    "type": "specialty",
+    "star": 1
+  },
+  "秘刻金纹的源核": {
+    "id": 113066,
+    "name": "秘刻金纹的源核",
+    "type": "boss",
+    "star": 4
+  },
+  "灼灼彩菊": {
+    "id": 101248,
+    "name": "灼灼彩菊",
+    "type": "specialty",
+    "star": 1
   }
 }
