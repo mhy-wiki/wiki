@@ -298,7 +298,13 @@ export default function(step, staticStep) {
         title: "两层荣花之歌使防御力提高[defPct]%",
         buffCount: 2,
         refine: {
-          defPct: step(10, 2.5)
+          defPct: step(6, 1.5)
+        }
+      }, {
+        title: "基于装备者的防御力，元素伤害加成提升[dmg]%",
+        sort: 9,
+        data: {
+          dmg: ({ attr, calc, refine }) => Math.min(Math.floor(calc(attr.def) / 1000) * step(12)[refine], step(36)[refine])
         }
       }
     ]
