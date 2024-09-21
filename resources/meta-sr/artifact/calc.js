@@ -375,7 +375,7 @@ export default {
       }, {
         title: "施放终结技后，下一次战技时造成的伤害额外提高[eDmg]%",
         data: {
-          eDmg: 20
+          eDmg: 25
         }
       }
     ]
