@@ -57,6 +57,7 @@ export default function(staticIdx, keyIdx) {
         }
       }
     ],
-    "梦的蒙太奇": [ staticIdx(1, "speedPct") ]
+    "梦的蒙太奇": [ staticIdx(1, "speedPct") ],
+    "何物为真": [ staticIdx(1, "stance") ]
   }
 }
