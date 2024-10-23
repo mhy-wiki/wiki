@@ -364,7 +364,7 @@ export default {
     2: attr("speedPct", 6)
   },
   识海迷坠的学者: {
-    2: attr("cpct", 6),
+    2: attr("cpct", 8),
     4: [
       {
         title: "战技和终结技造成的伤害提高[eDmg]%",
