@@ -6,7 +6,7 @@
 
 ## 克隆
 
-1.Github
+1.Github(延迟更新：每gs/sr v3更新)
 
 ```
 git clone https://github.com/mhy-wiki/wiki.git ./plugins/wiki/
