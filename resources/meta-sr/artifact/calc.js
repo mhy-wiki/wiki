@@ -347,9 +347,6 @@ export default {
       }
     ]
   },
-  沉陆海域露莎卡: {
-    2: attr("recharge", 5)
-  },
   奇想蕉乐园: {
     2: [
       attr("cdmg", 16), {
@@ -360,22 +357,52 @@ export default {
       }
     ]
   },
+  沉陆海域露莎卡: {
+    2: attr("recharge", 5)
+  },
   重循苦旅的司铎: {
     2: attr("speedPct", 6)
   },
   识海迷坠的学者: {
     2: attr("cpct", 8),
+    4: {
+      title: "终结技造成的伤害提高[qDmg]%，施放终结技后战技伤害提高[eDmg]%",
+      data: {
+        eDmg: 45,
+        qDmg: 20
+      }
+    }
+  },
+  凯歌祝捷的英豪: {
+    2: attr("atkPct", 12),
     4: [
       {
-        title: "战技和终结技造成的伤害提高[eDmg]%",
+        title: "装备者的忆灵在场时，装备者的速度提高[speedPct]%",
         data: {
-          eDmg: 20,
-          qDmg: 20
+          speedPct: 6
         }
       }, {
-        title: "施放终结技后，下一次战技时造成的伤害额外提高[eDmg]%",
+        title: "装备者的忆灵攻击时，装备者和忆灵的暴击伤害提高[cdmg]%",
         data: {
-          eDmg: 25
+          cdmg: 30
+        }
+      }
+    ]
+  },
+  哀歌覆国的诗人: {
+    2: attr("quantum", 10),
+    4: [
+      {
+        title: "使装备者的速度降低12%",
+        data: {
+          speedPct: -12
+        }
+      }, {
+        check: ({ attr }) => attr.speed < 110,
+        title: "进入战斗时，若装备者的速度小于[_speed]，使装备者的暴击率提高[cpct]%",
+        data: {
+          _speed: ({ attr }) => attr.speed < 95 ? 95 : 110,
+          cpct: ({ attr }) => attr.speed < 95 ? 40 : 20
         }
       }
     ]

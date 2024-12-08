@@ -77,6 +77,27 @@
     {{/if}}
     {{/each}}
 
+    {{if game === 'sr'}}
+    {{set mtalentKey = ['m','mt'] }}
+    {{each mtalentKey type}}
+    {{if detail.talent[type]}}
+    {{set minLv = 4 }}
+    {{set maxLv = 10}}
+    <div class="talent-box elem-bg">
+      <div class="talent-detail cont {{detail.talent[type+2]?'talent-merge':''}}">
+        <% include(wiki_path+'/wiki/talent-detail.html', [detail.talent[type], {_miao_path,lvs,type,icon:imgs[type],minLv,maxLv,game}]) %>
+        {{if detail.talent[type+1]}}
+          <% include(wiki_path+'/wiki/talent-detail.html', [detail.talent[type+1], {_miao_path,lvs,type,icon:imgs[type+1],minLv,maxLv,game}]) %>
+        {{/if}}
+        {{if detail.talent[type+2]}}
+          <% include(wiki_path+'/wiki/talent-detail.html', [detail.talent[type+2], {_miao_path,lvs,type,icon:imgs[type+2],minLv,maxLv,game}]) %>
+        {{/if}}
+      </div>
+    </div>
+    {{/if}}
+    {{/each}}
+    {{/if}}
+
     <div class="talent-box elem-bg">
       <div class="talent-detail passive-talent">
         {{if game === 'gs'}}
@@ -107,7 +128,7 @@
     {{if game === 'gs'}}
     <div class="copyright">{{@copyright || sys?.copyright}} & wiki<span class="version"> gs-5.3 v1</span></div>
     {{else}}
-    <div class="copyright">{{@copyright || sys?.copyright}} & wiki<span class="version"> sr-2.7 v4</span></div>
+    <div class="copyright">{{@copyright || sys?.copyright}} & wiki<span class="version"> sr-3.0 v1</span></div>
     {{/if}}
     </div>
   </body>
