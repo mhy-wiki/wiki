@@ -393,16 +393,16 @@ export default {
     2: attr("quantum", 10),
     4: [
       {
-        title: "使装备者的速度降低12%",
+        title: "使装备者的速度降低8%",
         data: {
-          speedPct: -12
+          speedPct: -8
         }
       }, {
         check: ({ attr }) => attr.speed < 110,
         title: "进入战斗时，若装备者的速度小于[_speed]，使装备者的暴击率提高[cpct]%",
         data: {
           _speed: ({ attr }) => attr.speed < 95 ? 95 : 110,
-          cpct: ({ attr }) => attr.speed < 95 ? 40 : 20
+          cpct: ({ attr }) => attr.speed < 95 ? 32 : 20
         }
       }
     ]
