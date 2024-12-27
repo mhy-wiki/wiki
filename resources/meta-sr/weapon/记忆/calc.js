@@ -2,7 +2,7 @@ export default function(staticIdx, keyIdx) {
   return {
     "将光阴织成黄金": [
       staticIdx(1, "speedPct"),
-      keyIdx("3层【织锦】使暴击伤害提高[cdmg]%，使普攻造成的伤害提高[aDmg]%", { cdmg: 2, aDmg: 2 })
+      keyIdx("3层【织锦】使暴击伤害提高[cdmg]%，使造成的普攻伤害提高[aDmg]%", { cdmg: 2, aDmg: 2 })
     ],
     "胜利只在朝夕间": [
       staticIdx(1, "cdmg"),
