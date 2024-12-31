@@ -1649,10 +1649,8 @@
     "id": 10000107,
     "name": "茜特菈莉",
     "abbr": "茜特",
-    "title": "？？？",
     "star": 5,
     "elem": "cryo",
-    "allegiance": "？？？",
     "weapon": "catalyst",
     "talentId": {
       "11071": "a",
@@ -1669,10 +1667,8 @@
     "id": 10000108,
     "name": "蓝砚",
     "abbr": "蓝砚",
-    "title": "？？？",
     "star": 4,
     "elem": "anemo",
-    "allegiance": "？？？",
     "weapon": "catalyst",
     "talentId": {
       "11081": "a",
