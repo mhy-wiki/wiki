@@ -1715,108 +1715,20 @@
       "10118": "q",
       "10602": "e",
       "10605": "q",
+      "10087": "e",
+      "10088": "q",
+      "10027": "e",
+      "10028": "q",
       "100553": "a",
       "100555": "a",
       "100556": "a",
-      "100557": "a"
+      "100557": "a",
+      "100552": "a",
+      "100558": "a"
     },
     "talentCons": {
       "e": 5,
       "q": 3
-    }
-  },
-  "20000001": {
-    "id": 20000001,
-    "name": "原主",
-    "abbr": "原主",
-    "star": 5,
-    "elem": "multi",
-    "weapon": "sword",
-    "talentId": {
-      "100553": "a"
-    },
-    "talentCons": {
-      "a": 0,
-      "e": 0,
-      "q": 0
-    }
-  },
-  "20000002": {
-    "id": 20000002,
-    "name": "风主",
-    "abbr": "风主",
-    "star": 5,
-    "elem": "anemo",
-    "weapon": "sword",
-    "talentId": {},
-    "talentCons": {
-      "e": 5,
-      "q": 3
-    }
-  },
-  "20000003": {
-    "id": 20000003,
-    "name": "岩主",
-    "abbr": "岩主",
-    "star": 5,
-    "elem": "geo",
-    "weapon": "sword",
-    "talentId": {},
-    "talentCons": {
-      "e": 5,
-      "q": 3
-    }
-  },
-  "20000004": {
-    "id": 20000004,
-    "name": "雷主",
-    "abbr": "雷主",
-    "star": 5,
-    "elem": "electro",
-    "weapon": "sword",
-    "talentId": {},
-    "talentCons": {
-      "e": 5,
-      "q": 3
-    }
-  },
-  "20000005": {
-    "id": 20000005,
-    "name": "草主",
-    "abbr": "草主",
-    "star": 5,
-    "elem": "dendro",
-    "weapon": "sword",
-    "talentId": {},
-    "talentCons": {
-      "e": 3,
-      "q": 5
-    }
-  },
-  "20000006": {
-    "id": 20000006,
-    "name": "水主",
-    "abbr": "水主",
-    "star": 5,
-    "elem": "hydro",
-    "weapon": "sword",
-    "talentId": {},
-    "talentCons": {
-      "e": 3,
-      "q": 5
-    }
-  },
-  "20000099": {
-    "id": 20000099,
-    "name": "派蒙",
-    "abbr": "派蒙",
-    "star": 5,
-    "elem": "pyro",
-    "weapon": "sword",
-    "talentId": {},
-    "talentCons": {
-      "e": 3,
-      "q": 5
     }
   }
 }
