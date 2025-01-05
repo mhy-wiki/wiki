@@ -27,13 +27,14 @@ class Character extends Base {
     // 检查缓存
     let cacheObj = this._getCache(CharId.isTraveler(id) ? `character:${game}:${id}:${elem || "anemo"}` : `character:${game}:${id}`)
     if (cacheObj) return cacheObj
-
     // 设置数据
     this._id = id
     this.name = name
     this.game = game
     if (!this.isCustom) {
       let meta = Meta.getData(game, "char", name)
+      // 是主角就删除meta._detail
+      if (CharId.isTraveler(id)) delete meta?._detail
       this.meta = meta || {}
       if (this.isGs) this.elem = Format.elem(elem || meta.elem, "anemo")
     } else {
@@ -148,7 +149,7 @@ class Character extends Base {
   // 获取命座天赋等级
   get talentCons() {
     if (this.isSr) return this.meta?.talentCons || {}
-    if (this.isTraveler) return this.elem === "dendro" ? { e: 3, q: 5 } : { e: 5, q: 3 }
+    if (this.isTraveler) return [ "dendro", "hydro", "pyro" ].includes(this.elem) ? { e: 3, q: 5 } : { e: 5, q: 3 }
     return this.meta?.talentCons || {}
   }
 
@@ -303,7 +304,6 @@ class Character extends Base {
   getLvAttr(level, promote) {
     let metaAttr = this.detail?.attr
     if (!metaAttr) return false
-
     if (this.isSr) {
       let lvAttr = metaAttr[promote]
       let ret = {}
