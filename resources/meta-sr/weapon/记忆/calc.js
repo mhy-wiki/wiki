@@ -15,6 +15,11 @@ export default function(staticIdx, keyIdx) {
     "多流汗，少流泪": [
       staticIdx(1, "cpct"),
       keyIdx("装备者的忆灵在场上时，装备者与忆灵造成的伤害提高[dmg]%", "dmg", 2)
+    ],
+    "记忆永不落幕": [
+      staticIdx(1, "speedPct"),
+      keyIdx("装备者施放战技后，使我方全体造成的伤害提高[dmg]%", "dmg", 2)
+
     ]
   }
 }
