@@ -49,14 +49,7 @@ export default function(staticIdx, keyIdx) {
     ],
     "如果时间是一朵花": [
       staticIdx(1, "cdmg"),
-      (tables) => {
-        return {
-          title: "60层【谕示】使我方全体暴击伤害提高[cdmg]%",
-          data: {
-            cdmg: tables[3] * 60
-          }
-        }
-      }
+      keyIdx("装备者持有【谕示】时，使我方全体暴击伤害提高[cdmg]%", "cdmg", 2)
     ]
   }
 }
