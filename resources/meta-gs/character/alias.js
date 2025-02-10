@@ -104,5 +104,5 @@ export const alias = {
   玛薇卡: "Mavuika,火神,马薇卡,玛维卡,马维卡",
   茜特菈莉: "Citlali,茜特,西特菈莉,西特拉莉,茜特拉莉,西特拉利,黑曜石奶奶,黑曜石,奶奶,老伴",
   蓝砚: "Lan Yan,蓝研,蓝燕,兰砚,兰燕",
-  梦见月瑞希: "Yumemizuki Mizuki,梦见月,瑞希,瑞幸,股东,富婆,心理诊疗师"
+  梦见月瑞希: "Yumemizuki Mizuki,Mizuki,梦见月,瑞希,瑞幸,股东,富婆,心理诊疗师"
 }
