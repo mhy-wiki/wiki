@@ -2,10 +2,11 @@
 import lodash from "lodash"
 import { Data, Meta } from "#miao"
 
-import { abbr } from "./abbr.js"
-// import { abbr } from "../../../../miao-plugin/resources/meta-gs/material/abbr.js"
-import dailyData from "./daily.js"
-// import dailyData from "../../../../miao-plugin/resources/meta-gs/material/daily.js"
+// import { abbr } from "./abbr.js"
+// import dailyData from "./daily.js"
+
+import { abbr } from "../../../../miao-plugin/resources/meta-gs/material/abbr.js"
+import dailyData from "../../../../miao-plugin/resources/meta-gs/material/daily.js"
 
 let data = Data.readJSON("resources/meta-gs/material/data.json", "wiki")
 if (Object.keys(data).length === 0) data = Data.readJSON("resources/meta-gs/material/data.json", "miao")
