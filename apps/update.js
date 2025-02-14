@@ -32,6 +32,10 @@ export class updateWiki extends plugin {
     })
   }
 
+  async accept(e) {
+    if (/^#(强制)?更新(日志)?wiki$/.test(e.msg)) e.msg = /日志/.test(e.msg) ? "#扩展wiki更新日志" : /强制/.test(e.msg) ? "#扩展wiki强制更新" : "#扩展wiki更新"
+  }
+
   async update(e) {
     if (!await checkAuth(e)) return true
     if (e.msg.includes("更新日志")) return e.reply(await updatelog(e))
