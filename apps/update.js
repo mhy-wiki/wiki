@@ -65,7 +65,7 @@ export class updateWiki extends plugin {
       isUp = true
     })
     e.reply(isUp ? await updatelog(e, plugin) : (msg || `目前已经是最新版${plugin}了~`))
-    return !!msg
+    return !msg
   }
 
   async restart(e) {
