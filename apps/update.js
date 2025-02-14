@@ -52,7 +52,7 @@ export class updateWiki extends plugin {
   async updatePlugin(e, plugin, isForce) {
     let command = "git  pull"
     if (isForce) command = "git  checkout . && git  pull"
-    e.reply(`正在${isForce ? "强制" : ""}更新${plugin}，请稍等`)
+    await e.reply(`正在${isForce ? "强制" : ""}更新${plugin}，请稍等`)
     e.oldCommitId = getcommitId(plugin)
     let path = wikiPath.getDir(plugin)
     let msg
@@ -64,7 +64,7 @@ export class updateWiki extends plugin {
       }
       isUp = true
     })
-    e.reply(isUp ? await updatelog(e, plugin) : (msg || `目前已经是最新版${plugin}了~`))
+    await e.reply(isUp ? await updatelog(e, plugin) : (msg || `目前已经是最新版${plugin}了~`))
     return !msg
   }
 
