@@ -38,8 +38,10 @@ export class updateWiki extends plugin {
     if (uping) return e.reply("已有更新任务执行中...请勿重复操作")
     let isForce = e.msg.includes("强制")
     let update = await this.updatePlugin(e, "wiki", isForce)
-    if (update) update = await this.updatePlugin(e, "miao-plugin", isForce)
-    if (isUp) await this.restart(e)
+    setTimeout(async() => {
+      if (update) update = await this.updatePlugin(e, "miao-plugin", isForce)
+    }, 1000)
+    if (isUp && update) await this.restart(e)
     return true
   }
 
@@ -49,27 +51,29 @@ export class updateWiki extends plugin {
     e.reply(`正在${isForce ? "强制" : ""}更新${plugin}，请稍等`)
     e.oldCommitId = getcommitId(plugin)
     let path = wikiPath.getDir(plugin)
+    let msg
     exec(command, { cwd: path }, function(error, stdout, stderr) {
-      if (/(Already up[ -]to[ -]date|已经是最新的)/.test(stdout)) return e.reply(`目前已经是最新版${plugin}了~`)
+      if (/(Already up[ -]to[ -]date|已经是最新的)/.test(stdout)) return true
       if (error) {
-        e.reply(plugin + "更新失败！\nError code: " + error.code + "\n" + error.stack + "\n 请稍后重试。")
+        msg = plugin + "更新失败！\nError code: " + error.code + "\n" + error.stack + "\n 请稍后重试。"
         return false
       }
       isUp = true
     })
-    return e.reply(await updatelog(e, plugin))
+    e.reply(isUp ? await updatelog(e, plugin) : (msg || `目前已经是最新版${plugin}了~`))
+    return !!msg
   }
 
   async restart(e) {
     e.reply("更新成功，正在尝试重新启动Yunzai以应用更新...")
     timer && clearTimeout(timer)
-    await redis.set("miao:restart-msg", {
+    await redis.set("miao:restart-msg", JSON.stringify({
       uin: e?.self_id || e.bot.uin,
       qq: e.user_id,
       isGroup: !!e.isGroup,
       id: e.group_id || e.user_id,
       time: new Date().getTime()
-    }, { EX: 100 })
+    }), { EX: 90 })
     let npm = checkPnpm()
     timer = setTimeout(function() {
       let command = `${npm} start`
