@@ -25,7 +25,7 @@ export class updateWiki extends plugin {
       priority: -20,
       rule: [
         {
-          reg: "#扩展wiki((强制)?更新|更新日志)",
+          reg: "^#扩展wiki((强制)?更新|更新日志)$",
           fnc: "update"
         }
       ]

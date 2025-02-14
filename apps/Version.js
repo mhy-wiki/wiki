@@ -11,7 +11,7 @@ export class wikiVersion extends plugin {
       priority: -20,
       rule: [
         {
-          reg: "#扩展wiki版本",
+          reg: "^#扩展wiki版本$",
           fnc: "version"
         }
       ]

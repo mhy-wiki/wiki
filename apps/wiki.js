@@ -12,7 +12,7 @@ export class wiki extends plugin {
       priority: -20,
       rule: [
         {
-          reg: "#喵喵扩展WIKI",
+          reg: "^#喵喵扩展WIKI$",
           fnc: "wiki"
         }
       ]
