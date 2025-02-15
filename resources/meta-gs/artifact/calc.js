@@ -253,6 +253,8 @@ const buffs = {
     2: attr("dmg", 15, "岩"),
     4: {
       title: "获得元素反应晶片，对应元素伤害提高35%",
+      check: ({ element }) => [ "水", "火", "冰", "雷" ].includes(element),
+      // 拾取幼岩龙蜥产生的岩元素晶片盾不能获得35%岩元素伤害加成
       data: {
         dmg: 35
       }
@@ -329,10 +331,10 @@ const buffs = {
   华馆梦醒形骸记: {
     2: attr("defPct", 30),
     4: {
-      title: "满层获得24%防御及24%岩伤加成",
+      title: "满层获得[defPct]%防御及[dmg]%岩伤加成",
       data: {
         defPct: 24,
-        dmg: 24
+        dmg: ({ element }) => [ "岩" ].includes(element) ? 24 : 0
       }
     }
   },
@@ -413,10 +415,10 @@ const buffs = {
   水仙之梦: {
     2: attr("dmg", 15, "水"),
     4: {
-      title: "3层Buff下提高攻击力25%，水伤15%",
+      title: "3层Buff下提高攻击力[atkPct]%，水伤[dmg]%",
       data: {
         atkPct: 25,
-        dmg: 15
+        dmg: ({ element }) => [ "水" ].includes(element) ? 15 : 0
       }
     }
   },
@@ -505,6 +507,32 @@ const buffs = {
       title: "存在处于燃烧状态下的敌人时，伤害提升[dmg]%",
       data: {
         dmg: 10 * 5
+      }
+    }
+  },
+
+  烬城勇者绘卷: {
+    4: {
+      title: "触发元素反应后，元素伤害加成提升[dmg]%",
+      data: {
+        dmg: ({ params }) => params.Nightsoul === true ? 40 : 12
+      }
+    }
+  },
+
+  黑曜秘典: {
+    2: {
+      check: ({ params }) => params.Nightsoul === true,
+      title: "在场上处于夜魂加持状态时，造成的伤害提高[dmg]%",
+      data: {
+        dmg: 15
+      }
+    },
+    4: {
+      check: ({ params }) => params.Nightsoul === true,
+      title: "在场上消耗夜魂值后，暴击率提高[cpct]%",
+      data: {
+        cpct: 40
       }
     }
   },
