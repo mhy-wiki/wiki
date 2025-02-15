@@ -90,6 +90,11 @@ class Material extends Base {
     return abbr
   }
 
+  get poseType() {
+    if (this.game == "gs") return this.type
+    return this.meta?.poseType
+  }
+
   get img() {
     let iPath = `meta-${this.game}/material/${this.type}/${this.name}.webp`
     if (fs.existsSync(`${wikiPath.getDir("wiki", true)}/${iPath}`)) return `../../wiki/resources/${iPath}`

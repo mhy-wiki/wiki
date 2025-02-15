@@ -12,7 +12,8 @@
     <link rel="stylesheet" type="text/css" href="{{_miao_path}}/common/tpl.css"/>
     <link rel="stylesheet" type="text/css" href="{{_miao_path}}/character/profile-detail.css"/>
     <link rel="stylesheet" type="text/css" href="{{_miao_path}}/wiki/character-wiki.css"/>
-    {{if game == "sr"}}<style>.basic{height: 580px;}.main-pic {height: 580px;}</style>{{/if}}
+    <style>.main-pic {width: 100%;background-size: cover;margin-left: -74px}</style>
+    {{if game == "sr"}}<style>.basic {height: 580px}.main-pic {width: 111%;height: 580px;margin-left: -153px}</style>{{/if}}
   </head>
 
   {{set weapon = data.weapon}}
