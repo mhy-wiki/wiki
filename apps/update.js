@@ -41,12 +41,15 @@ export class updateWiki extends plugin {
     if (e.msg.includes("更新日志")) return e.reply(await updatelog(e))
     if (uping) return e.reply("已有更新任务执行中...请勿重复操作")
     let isForce = e.msg.includes("强制")
-    let update = await this.updatePlugin(e, "wiki", isForce)
-    setTimeout(async() => {
-      if (update) update = await this.updatePlugin(e, "miao-plugin", isForce)
-    }, 1000)
-    if (isUp && update) await this.restart(e)
-    return true
+    uping = true
+    for (let plugin of [ "wiki", "miao-plugin" ]) {
+      await this.updatePlugin(e, plugin, isForce)
+    }
+    if (!isUp) {
+      uping = false
+      return true
+    }
+    await this.restart(e)
   }
 
   async updatePlugin(e, plugin, isForce) {
@@ -54,18 +57,15 @@ export class updateWiki extends plugin {
     if (isForce) command = "git  checkout . && git  pull"
     await e.reply(`正在${isForce ? "强制" : ""}更新${plugin}，请稍等`)
     e.oldCommitId = getcommitId(plugin)
-    let path = wikiPath.getDir(plugin)
-    let msg
-    exec(command, { cwd: path }, function(error, stdout, stderr) {
-      if (/(Already up[ -]to[ -]date|已经是最新的)/.test(stdout)) return true
-      if (error) {
-        msg = plugin + "更新失败！\nError code: " + error.code + "\n" + error.stack + "\n 请稍后重试。"
-        return false
-      }
-      isUp = true
-    })
-    await e.reply(isUp ? await updatelog(e, plugin) : (msg || `目前已经是最新版${plugin}了~`))
-    return !msg
+    let cwd = wikiPath.getDir(plugin)
+    let ret = await execPro(command, { cwd })
+    if (/(Already up[ -]to[ -]date|已经是最新的)/.test(ret.stdout)) return await e.reply(`目前已经是最新版${plugin}了~`)
+    if (ret.error) {
+      await e.reply(plugin + "更新失败！\nError code: " + ret.error.code + "\n" + ret.error.stack + "\n 请稍后重试。")
+      return false
+    }
+    isUp = true
+    return await e.reply(await updatelog(e, plugin))
   }
 
   async restart(e) {
@@ -131,4 +131,11 @@ function checkPnpm() {
   let ret = execSync("pnpm -v")
   if (ret.stdout) npm = "pnpm"
   return npm
+}
+async function execPro(cmd, ds = {}) {
+  return new Promise((resolve, reject) => {
+    exec(cmd, ds, (error, stdout, stderr) => {
+      resolve({ error, stdout, stderr })
+    })
+  })
 }
