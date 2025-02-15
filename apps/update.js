@@ -12,7 +12,7 @@ const checkAuth = async function(e) {
   }
   return true
 }
-let timer
+let timer, isMiao
 let uping = false
 let isUp = false
 
@@ -65,6 +65,7 @@ export class updateWiki extends plugin {
       return false
     }
     isUp = true
+    if (plugin == "miao-plugin") isMiao = true
     return await e.reply(await updatelog(e, plugin))
   }
 
@@ -74,6 +75,7 @@ export class updateWiki extends plugin {
     await redis.set("miao:restart-msg", JSON.stringify({
       uin: e?.self_id || e.bot.uin,
       qq: e.user_id,
+      isMiao: !!isMiao,
       isGroup: !!e.isGroup,
       id: e.group_id || e.user_id,
       time: new Date().getTime()
