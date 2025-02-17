@@ -14,7 +14,7 @@ git clone https://github.com/mhy-wiki/wiki.git ./plugins/wiki/
 >  [!NOTE]
 > 如果你的网络环境较差，无法连接到 Github，可以使用 [GitHub Proxy](https://mirror.ghproxy.com/) 提供的文件代理加速下载服务
 > ```
-> git clone https://mirror.ghproxy.com/https://github.com/mhy-wiki/wiki.git ./plugins/wiki/
+> git clone https://ghfast.top/https://github.com/mhy-wiki/wiki.git ./plugins/wiki/
 > ```
 
 2.ssh
