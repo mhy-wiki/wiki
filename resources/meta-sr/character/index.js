@@ -4,8 +4,8 @@ import { wifeCfg } from "./extra.js"
 import { Data, Meta } from "#miao"
 import { alias, abbr } from "./alias.js"
 
-let data = Data.readJSON("resources/meta-sr/character/data.json", "wiki")
-if (Object.keys(data).length === 0) data = Data.readJSON("resources/meta-sr/character/data.json", "miao")
+// let data = Data.readJSON("resources/meta-sr/character/data.json", "wiki")
+let data = Data.readJSON("resources/meta-sr/character/data.json", "miao")
 
 let meta = Meta.create("sr", "char")
 meta.addData(data)
