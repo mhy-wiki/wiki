@@ -3,6 +3,7 @@ import fs from "node:fs"
 import lodash from "lodash"
 import { Base } from "#miao.models"
 import { Data, Format, Meta } from "#miao"
+import WeaponMeta from "./weapon/WeaponMeta.js"
 
 import { wikiPath } from "../components/index.js"
 
@@ -32,6 +33,10 @@ class Weapon extends Base {
     let iPath = `${this.isGs ? "meta-gs" : "meta-sr"}/weapon/${this.type}/${this.name}/icon.webp`
     if (fs.existsSync(`${wikiPath.getDir("wiki", true)}/${iPath}`)) return `../../wiki/resources/${iPath}`
     return `${iPath}`
+  }
+
+  get desc() {
+    return this.getDetail().desc.replace(/<\/br>|<br \/>/g, "")
   }
 
   get abbr() {
@@ -117,6 +122,11 @@ class Weapon extends Base {
     })
   }
 
+  // 获取素材
+  getMaterials(type = "all") {
+    return WeaponMeta.getMaterials(this, type)
+  }
+
   getDetail() {
     if (this._detail) return this._detail
     const path = `resources/${this.isGs ? "meta-gs" : "meta-sr"}/weapon/${this.type}/${this.name}/data.json`
@@ -199,14 +209,15 @@ class Weapon extends Base {
       let { descFix } = Meta.getMeta("gs", "weapon")
       let reg = /\$\[(\d)\]/g
       let ret
-      let desc = (affix === "all") ? text : descFix[this.name] || text || ""
+      let desc = descFix[this.name] || text || ""
       while ((ret = reg.exec(desc)) !== null) {
         let idx = ret[1]
-        let value = (affix === "all") ? datas?.[idx]?.join("</nobr>/<nobr>") : datas?.[idx]?.[affix - 1]
+        let value = affix == "all" ? datas?.[idx]?.join(/\//.test(datas?.[idx]?.[0]) ? ")(" : "/") : datas?.[idx]?.[affix - 1]
+        if (affix == "all" && /\//.test(datas?.[idx]?.[0])) value = `(${value})`
         desc = desc.replaceAll(ret[0], `<nobr>${value}</nobr>`)
       }
       return {
-        name: "",
+        name: this.detail?.affixTitle || "",
         desc
       }
     }
@@ -216,25 +227,15 @@ class Weapon extends Base {
     let ret
     while ((ret = reg.exec(desc)) !== null) {
       let [ txt, idx, format, pct ] = ret
-      let value = tables?.[idx]?.[affix - 1]
-      if (pct === "%") {
-        value = Format.pct(value, format === "f2" ? 2 : 1)
-      } else {
-        value = Format.comma(value)
-      }
-      if (affix === "all") {
-        let values = []
-        for (let i = 0; i < 5; i++) {
-          value = tables?.[idx]?.[i]
-          if (pct === "%") {
-            value = Format.pct(value, format === "f2" ? 2 : 1)
-          } else {
-            value = Format.comma(value)
-          }
-          values.push(value)
+      let values = []
+      lodash.forEach(affix == "all" ? tables?.[idx] : [ tables?.[idx]?.[affix - 1] ], (value) => {
+        if (pct === "%") {
+          values.push(Format.pct(value, format === "f2" ? 2 : 1))
+        } else {
+          values.push(Format.comma(value))
         }
-        value = values.join("</nobr>/<nobr>")
-      }
+      })
+      let value = affix == "all" ? pct === "%" ? values.join("/").replace(/(.00?)?%/g, "") + "%" : values.join("/") : values[0]
       desc = desc.replaceAll(txt, value)
     }
     return {
