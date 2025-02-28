@@ -29,10 +29,29 @@ class Weapon extends Base {
     return this.name
   }
 
+  get typeName() {
+    if (this.isSr) return this.type
+    const map = {
+      sword: "单手剑",
+      catalyst: "法器",
+      bow: "弓",
+      claymore: "双手剑",
+      polearm: "长柄武器"
+    }
+    let type = this.type || ""
+    return map[type.toLowerCase()] || ""
+  }
+
   get img() {
     let iPath = `${this.isGs ? "meta-gs" : "meta-sr"}/weapon/${this.type}/${this.name}/icon.webp`
     if (fs.existsSync(`${wikiPath.getDir("wiki", true)}/${iPath}`)) return `../../wiki/resources/${iPath}`
     return `${iPath}`
+  }
+
+  get gacha() {
+    let iPath = `${this.isGs ? "meta-gs" : "meta-sr"}/weapon/${this.type}/${this.name}/${this.isGs ? "gacha" : "icon"}.webp`
+    if (fs.existsSync(`${wikiPath.getDir("wiki", true)}/${iPath}`)) return `../../wiki/resources/${iPath}`
+    return iPath
   }
 
   get desc() {
@@ -77,11 +96,13 @@ class Weapon extends Base {
   }
 
   get maxLv() {
-    return this.star <= 2 ? 70 : 90
+    if (this.isGs) return this.star <= 2 ? 70 : 90
+    return 80
   }
 
   get maxPromote() {
-    return this.star <= 2 ? 4 : 6
+    if (this.isGs) return this.star <= 2 ? 4 : 6
+    return 6
   }
 
   get materials() {
@@ -100,8 +121,11 @@ class Weapon extends Base {
   }
 
   static get(name, game = "gs", type = "") {
-    let data = Meta.getData(game, "weapon", name)
-    if (data) return new Weapon(data, game)
+    if (!Array.isArray(game)) game = [ game ]
+    for (let g of game) {
+      let data = Meta.getData(g, "weapon", name)
+      if (data) return new Weapon(data, g)
+    }
 
     if (type && game === "gs") {
       const { weaponType } = Meta.getMeta(game, "weapon")
@@ -214,7 +238,7 @@ class Weapon extends Base {
         let idx = ret[1]
         let value = affix == "all" ? datas?.[idx]?.join(/\//.test(datas?.[idx]?.[0]) ? ")(" : "/") : datas?.[idx]?.[affix - 1]
         if (affix == "all" && /\//.test(datas?.[idx]?.[0])) value = `(${value})`
-        desc = desc.replaceAll(ret[0], `<nobr>${value}</nobr>`)
+        desc = desc.replaceAll(ret[0], `<nobr>${/%/.test(value) ? value.replace(/%/g, "") + "%" : value}</nobr>`)
       }
       return {
         name: this.detail?.affixTitle || "",
