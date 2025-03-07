@@ -131,9 +131,7 @@ class Weapon extends Base {
       const { weaponType } = Meta.getMeta(game, "weapon")
       let name2 = name + (weaponType[type] || type)
       let data = Meta.getData(game, "weapon", name2)
-      if (data) {
-        return new Weapon(data, game)
-      }
+      if (data) return new Weapon(data, game)
     }
     return false
   }
@@ -153,15 +151,16 @@ class Weapon extends Base {
 
   getDetail() {
     if (this._detail) return this._detail
-    const path = `resources/${this.isGs ? "meta-gs" : "meta-sr"}/weapon/${this.type}/${this.name}/data.json`
+
+    const path = this.isGs ? "resources/meta-gs/weapon" : "resources/meta-sr/weapon"
     try {
       if (fs.existsSync(`${wikiPath.getDir("wiki")}/${path}`)) {
-        this._detail = Data.readJSON(`${path}`, "wiki")
+        this._detail = Data.readJSON(`${path}/${this.type}/${this.name}/data.json`, "wiki")
       } else {
-        this._detail = Data.readJSON(`${path}`, "miao")
+        this._detail = Data.readJSON(`${path}/${this.type}/${this.name}/data.json`, "miao")
       }
     } catch (e) {
-      console.log(e)
+      logger.error(e)
     }
     return this._detail
   }
@@ -233,7 +232,7 @@ class Weapon extends Base {
       let { descFix } = Meta.getMeta("gs", "weapon")
       let reg = /\$\[(\d)\]/g
       let ret
-      let desc = descFix[this.name] || text || ""
+      let desc = affix == "all" ? (text || "") : (descFix[this.name] || text || "")
       while ((ret = reg.exec(desc)) !== null) {
         let idx = ret[1]
         let value = affix == "all" ? datas?.[idx]?.join(/\//.test(datas?.[idx]?.[0]) ? ")(" : "/") : datas?.[idx]?.[affix - 1]
@@ -277,8 +276,8 @@ class Weapon extends Base {
     let { weaponBuffs } = Meta.getMeta(game, "weapon")
     let buffs = weaponBuffs[this.id] || weaponBuffs[this.name]
     if (!buffs) return false
-
     if (lodash.isPlainObject(buffs) || lodash.isFunction(buffs)) buffs = [ buffs ]
+
     return buffs
   }
 
@@ -328,6 +327,7 @@ class Weapon extends Base {
 
       // 自动拼接标题
       if (!/：/.test(ds.title)) ds.title = `${self.name}：${ds.title}`
+
       ds.data = ds.data || {}
       // refine
       if (ds.idx && ds.key) {
@@ -342,7 +342,6 @@ class Weapon extends Base {
 
       ret.push(ds)
     })
-
     return ret
   }
 }
