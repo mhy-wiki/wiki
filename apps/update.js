@@ -80,7 +80,7 @@ export class updateWiki extends plugin {
       id: e.group_id || e.user_id,
       time: new Date().getTime()
     }), { EX: 90 })
-    let npm = checkPnpm()
+    let npm = await checkPnpm()
     timer = setTimeout(function() {
       let command = `${npm} start`
       if (process.argv[1].includes("pm2")) command = `${npm} run restart`
@@ -128,9 +128,9 @@ function getcommitId(plugin = "wiki") {
   return lodash.trim(commitId)
 }
 
-function checkPnpm() {
+async function checkPnpm() {
   let npm = "npm"
-  let ret = execSync("pnpm -v")
+  let ret = await execPro("pnpm -v")
   if (ret.stdout) npm = "pnpm"
   return npm
 }
