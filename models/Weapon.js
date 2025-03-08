@@ -152,7 +152,7 @@ class Weapon extends Base {
   getDetail() {
     if (this._detail) return this._detail
 
-    const path = `resources/meta-${this.isGs ? "gs" : "sr"}/${this.type}/${this.name}/data.json`
+    const path = `resources/meta-${this.isGs ? "gs" : "sr"}/weapon/${this.type}/${this.name}/data.json`
     try {
       if (fs.existsSync(`${wikiPath.getDir("wiki")}/${path}`)) {
         this._detail = Data.readJSON(path, "wiki")
