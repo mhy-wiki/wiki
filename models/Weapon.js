@@ -45,7 +45,7 @@ class Weapon extends Base {
   get img() {
     let iPath = `${this.isGs ? "meta-gs" : "meta-sr"}/weapon/${this.type}/${this.name}/icon.webp`
     if (fs.existsSync(`${wikiPath.getDir("wiki", true)}/${iPath}`)) return `../../wiki/resources/${iPath}`
-    return `${iPath}`
+    return iPath
   }
 
   get gacha() {
@@ -82,7 +82,7 @@ class Weapon extends Base {
     }
     return {
       icon: `${iPath}/icon.webp`,
-      icon2: `${iPath}/${iPath}/${this.isGs ? "awaken.webp" : "icon-s.webp"}`,
+      icon2: `${iPath}//${this.isGs ? "awaken.webp" : "icon-s.webp"}`,
       gacha: `${iPath}/${this.isGs ? "gacha.webp" : "splash.webp"}`
     }
   }
