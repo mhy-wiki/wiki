@@ -117,18 +117,6 @@ export default function(staticIdx, keyIdx) {
         }
       }
     ],
-    "生命当付之一炬": [
-      staticIdx(1, "cpct"),
-      (tables) => {
-        return {
-          title: "当装备者主动施放技能后，使本次技能期间陷入过负面效果的敌方目标防御力降低[eEnemydmg]，叠加2层",
-          sort: 9,
-          data: {
-            eEnemydmg: tables[2] * 2,
-            qEnemydmg: tables[2] * 2
-          }
-        }
-      }
-    ]
+    "生命当付之一炬": [ keyIdx("装备者对其造成的伤害提高[dmg]%，受到装备者攻击时，使其防御力降低[ignore]%", { dmg: 1, ignore: 2 }) ]
   }
 }
