@@ -438,9 +438,9 @@ export default {
   恶海逐波的船长: {
     2: attr("cdmg", 16),
     4: {
-      title: "三层【助力】，使攻击力提高[atkPct]%",
+      title: "消耗两层【助力】，使攻击力提高[atkPct]%",
       data: {
-        atkPct: 16 * 3
+        atkPct: 48
       }
     }
   }
