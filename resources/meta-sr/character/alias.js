@@ -69,8 +69,8 @@ export const alias = {
   "赛飞儿": "赛菲尔,赛飞尔",
   "风堇": "风瑾,风宝",
   "白厄": "黑厄",
-  "Archer": "",
-  "Saber": ""
+  "Archer": "卫宫,士郎,背影帝,红a",
+  "Saber": "吾王,剑之骑士,剑士,骑士王,亚瑟王,棉被王,蓝呆,呆毛王"
 }
 
 export const abbr = {
