@@ -334,7 +334,7 @@
   "cons": {
     "1": {
       "name": "失落的白垩坚城",
-      "desc": "Saber造成的终结技伤害提高<nobr>60%</nobr>。Saber的回合结束时，获得<nobr>1</nobr>点【炉心共鸣】。"
+      "desc": "Saber造成的终结技伤害提高<nobr>60%</nobr>。Saber施放普攻或战技后，获得<nobr>1</nobr>点【炉心共鸣】。"
     },
     "2": {
       "name": "尘封的圆桌誓言",
