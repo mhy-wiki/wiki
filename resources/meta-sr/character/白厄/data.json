@@ -169,10 +169,10 @@
       "name": "此身为炬",
       "type": "天赋",
       "tag": "强化",
-      "desc": "白厄的天赋。【火种】达到<nobr>12</nobr>点时可激活终结技，达到上限后还可最多溢出<nobr>3</nobr>点。<br />当白厄成为我方队友或敌方任意单体的技能目标时，获得1点【火种】。成为我方队友的技能目标时，暴击伤害提高<nobr>$1[i]%</nobr>，持续<nobr>3</nobr>回合。",
+      "desc": "白厄的天赋。【火种】达到<nobr>12</nobr>点时可激活终结技，达到上限后还可最多溢出<nobr>3</nobr>点，变身结束时会基于溢出点数获得【火种】。<br />当白厄成为其他任意目标的技能目标时，获得1点【火种】。若施放者为白厄的队友，还会使白厄的暴击伤害提高<nobr>$1[i]%</nobr>，持续<nobr>3</nobr>回合。",
       "tables": {
         "1": {
-          "name": "暴击伤害提高",
+          "name": "暴伤提高",
           "isSame": false,
           "values": [
             0.15,
@@ -734,7 +734,7 @@
       "id": 1408201,
       "type": "buff",
       "root": true,
-      "PointName": "暴击伤害强化",
+      "name": "暴击伤害强化",
       "levelReq": 1,
       "cost": {
         "29328": 2500,
@@ -748,7 +748,7 @@
       "id": 1408202,
       "type": "buff",
       "root": false,
-      "PointName": "暴击率强化",
+      "name": "暴击率强化",
       "levelReq": 2,
       "cost": {
         "29328": 5000,
@@ -766,7 +766,7 @@
       "id": 1408203,
       "type": "buff",
       "root": false,
-      "PointName": "暴击伤害强化",
+      "name": "暴击伤害强化",
       "levelReq": 3,
       "cost": {
         "29328": 10000,
@@ -784,7 +784,7 @@
       "id": 1408204,
       "type": "buff",
       "root": false,
-      "PointName": "速度强化",
+      "name": "速度强化",
       "levelReq": 3,
       "cost": {
         "29328": 10000,
@@ -799,7 +799,7 @@
       "id": 1408205,
       "type": "buff",
       "root": false,
-      "PointName": "暴击伤害强化",
+      "name": "暴击伤害强化",
       "levelReq": 4,
       "cost": {
         "29328": 20000,
@@ -817,7 +817,7 @@
       "id": 1408206,
       "type": "buff",
       "root": false,
-      "PointName": "暴击率强化",
+      "name": "暴击率强化",
       "levelReq": 5,
       "cost": {
         "29328": 45000,
@@ -835,7 +835,7 @@
       "id": 1408207,
       "type": "buff",
       "root": false,
-      "PointName": "暴击伤害强化",
+      "name": "暴击伤害强化",
       "levelReq": 5,
       "cost": {
         "29328": 45000,
@@ -850,7 +850,7 @@
       "id": 1408208,
       "type": "buff",
       "root": false,
-      "PointName": "速度强化",
+      "name": "速度强化",
       "levelReq": 6,
       "cost": {
         "29328": 160000,
@@ -869,7 +869,7 @@
       "id": 1408209,
       "type": "buff",
       "root": false,
-      "PointName": "暴击率强化",
+      "name": "暴击率强化",
       "levelReq": 75,
       "cost": {
         "29328": 160000,
@@ -884,7 +884,7 @@
       "id": 1408210,
       "type": "buff",
       "root": false,
-      "PointName": "暴击伤害强化",
+      "name": "暴击伤害强化",
       "levelReq": 80,
       "cost": {
         "29328": 160000,
