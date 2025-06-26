@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import fs from "node:fs"
 import Base from "./Base.js"
 import Character from "./Character.js"
@@ -6,6 +5,7 @@ import Artifact from "./Artifact.js"
 import ArtifactSet from "./ArtifactSet.js"
 import Abyss from "./Abyss.js"
 import RoleCombat from "./RoleCombat.js"
+import HardChallenge from "./HardChallenge.js"
 import Player from "./Player.js"
 import Avatar from "./Avatar.js"
 import ProfileDmg from "./ProfileDmg.js"
@@ -24,15 +24,17 @@ for (let game of [ "gs", "sr" ]) {
       try {
         await import(`file://${file}`)
       } catch (e) {
-        console.log(e)
+        logger.error(e)
       }
     }
   }
 }
+
 export {
   Base,
   Abyss,
   RoleCombat,
+  HardChallenge,
   Button,
   Character,
   Artifact,
